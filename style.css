@@ -829,3 +829,114 @@ body::after {
     text-shadow: 0 2px 6px rgba(0,0,0,.95);
   }
 }
+
+
+/* =========================================================
+   V3.5 — transparent book + sparkfield atmosphere
+   No redesign to the book, dossier, CTA, or reveal.
+   ========================================================= */
+
+/* Kill the old blurred corner lamps entirely. */
+.ambient,
+.ambient-one,
+.ambient-two {
+  display: none !important;
+}
+
+/* Deep velvet-black/plum base, without the big radial light blobs. */
+body {
+  background:
+    linear-gradient(180deg, #120a11 0%, #0c080d 46%, #070507 100%) !important;
+}
+
+/* Keep the subtle physical texture, but do not create corner lighting. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.012) 0 1px,
+      transparent 1px 4px
+    );
+  mix-blend-mode: screen;
+}
+
+/* Fine star-dust/sparks instead of glowing corner blobs. */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .72 !important;
+  filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+
+  background-image:
+    /* top-left cluster */
+    radial-gradient(circle at 2% 5%, rgba(238,196,126,.88) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 5% 11%, rgba(191,85,132,.70) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 8% 3%, rgba(244,223,179,.74) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 11% 15%, rgba(222,168,101,.66) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 15% 7%, rgba(184,72,120,.58) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 18% 18%, rgba(238,196,126,.56) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 6% 23%, rgba(237,216,180,.62) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 22% 9%, rgba(206,104,145,.48) 0 1px, transparent 1.6px),
+
+    /* top-right cluster */
+    radial-gradient(circle at 98% 4%, rgba(238,196,126,.88) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 94% 12%, rgba(191,85,132,.70) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 91% 3%, rgba(244,223,179,.74) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 88% 16%, rgba(222,168,101,.66) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 84% 8%, rgba(184,72,120,.58) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 81% 20%, rgba(238,196,126,.56) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 95% 24%, rgba(237,216,180,.62) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 78% 10%, rgba(206,104,145,.48) 0 1px, transparent 1.6px),
+
+    /* lower-left dust */
+    radial-gradient(circle at 3% 92%, rgba(238,196,126,.64) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 8% 83%, rgba(191,85,132,.48) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 14% 96%, rgba(244,223,179,.52) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 18% 86%, rgba(222,168,101,.44) 0 .8px, transparent 1.4px),
+
+    /* lower-right dust */
+    radial-gradient(circle at 97% 93%, rgba(238,196,126,.64) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 92% 84%, rgba(191,85,132,.48) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 86% 96%, rgba(244,223,179,.52) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 82% 87%, rgba(222,168,101,.44) 0 .8px, transparent 1.4px),
+
+    /* all-over faint dust */
+    radial-gradient(circle, rgba(237,210,161,.32) 0 .7px, transparent 1.1px),
+    radial-gradient(circle, rgba(162,72,111,.22) 0 .7px, transparent 1.2px),
+    radial-gradient(circle, rgba(255,245,226,.18) 0 .6px, transparent 1px);
+
+  background-size:
+    auto,auto,auto,auto,auto,auto,auto,auto,
+    auto,auto,auto,auto,auto,auto,auto,auto,
+    auto,auto,auto,auto,
+    auto,auto,auto,auto,
+    137px 137px,
+    211px 211px,
+    89px 89px;
+
+  background-position:
+    0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,
+    11px 17px,
+    53px 71px,
+    27px 39px;
+}
+
+/* The PNG itself now has alpha, so make absolutely sure nothing behind it
+   reintroduces a rectangular plate. */
+.artifact-image,
+.forbidden-book,
+.artifact-wrap img {
+  background: transparent !important;
+  box-shadow: none;
+}
