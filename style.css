@@ -1141,3 +1141,134 @@ body::after {
     font-size: 1.08rem !important;
   }
 }
+
+
+/* =========================================================
+   V3.8 — STOP MAKING BRITT SQUINT
+   CSS only: larger type + brighter stage + reliable title font.
+   Book image and reveal remain untouched.
+   ========================================================= */
+
+/* A lighter plum-black stage with a soft CENTER lift behind the book.
+   No return of the giant corner lamps. */
+body {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(83, 35, 61, .34) 0%, rgba(38, 18, 31, .18) 31%, transparent 58%),
+    linear-gradient(180deg, #1b1019 0%, #130c13 48%, #0d090e 100%) !important;
+}
+
+/* Header: make the whole hierarchy easier to read. */
+.eyebrow {
+  font-size: 1rem !important;
+  letter-spacing: .25em !important;
+}
+
+.intro h1 {
+  /* Deliberately uses a built-in/local display stack so it WILL change
+     even if Google Fonts decides to be a little bastard. */
+  font-family: "Copperplate", "Copperplate Gothic Light", "Palatino Linotype", Georgia, serif !important;
+  font-size: clamp(4.5rem, 8.4vw, 7.4rem) !important;
+  font-weight: 500 !important;
+  line-height: .94 !important;
+  letter-spacing: .015em !important;
+  font-variant: small-caps;
+}
+
+.teaser {
+  font-size: 1.7rem !important;
+  line-height: 1.25 !important;
+}
+
+/* Bigger dossier/card so the larger type has room to breathe. */
+@media (min-width: 760px) {
+  .artifact-wrap .gift-tag {
+    width: 340px !important;
+    padding: 29px 28px 26px !important;
+    right: -360px !important;
+  }
+}
+
+.artifact-wrap .gift-tag small {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: .14em !important;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.9rem !important;
+  line-height: .94 !important;
+}
+
+.artifact-wrap .profile-lines {
+  margin-top: 21px !important;
+  gap: 11px !important;
+  font-size: 1.24rem !important;
+  line-height: 1.35 !important;
+}
+
+.artifact-wrap .profile-lines span {
+  padding-bottom: 10px !important;
+}
+
+.artifact-wrap .profile-lines b {
+  font-size: 1.24rem !important;
+  font-weight: 700 !important;
+}
+
+.artifact-wrap .gift-tag em {
+  margin-top: 17px !important;
+  font-size: 1.28rem !important;
+  line-height: 1.35 !important;
+}
+
+/* Bottom invitation: this is a CTA, not a footnote. */
+.open-label {
+  margin-top: 28px !important;
+  font-size: 1.58rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: .15em !important;
+  font-weight: 700 !important;
+}
+
+.open-label > span {
+  font-size: 1rem !important;
+  margin: 0 12px !important;
+}
+
+.open-label small {
+  display: block !important;
+  margin-top: 15px !important;
+  font-size: 1.62rem !important;
+  line-height: 1.45 !important;
+  letter-spacing: .005em !important;
+  font-weight: 500 !important;
+}
+
+/* Mobile: still substantially larger than before. */
+@media (max-width: 759px) {
+  .eyebrow { font-size: .78rem !important; }
+
+  .intro h1 {
+    font-size: clamp(3.2rem, 14vw, 5rem) !important;
+  }
+
+  .teaser { font-size: 1.35rem !important; }
+
+  .artifact-wrap .gift-tag {
+    width: 62% !important;
+    padding: 18px 16px 16px !important;
+  }
+
+  .artifact-wrap .gift-tag small { font-size: .72rem !important; }
+  .artifact-wrap .gift-tag strong { font-size: 1.95rem !important; }
+  .artifact-wrap .profile-lines,
+  .artifact-wrap .profile-lines b { font-size: .88rem !important; }
+  .artifact-wrap .gift-tag em { font-size: .92rem !important; }
+
+  .open-label {
+    font-size: 1.05rem !important;
+    letter-spacing: .11em !important;
+  }
+
+  .open-label small { font-size: 1.18rem !important; }
+}
