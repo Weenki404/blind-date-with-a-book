@@ -222,3 +222,234 @@ footer{margin-top:auto;padding-top:18px;color:#786b70;font-size:.62rem;letter-sp
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
+
+/* =========================================================
+   V3.1 — FORBIDDEN EDITION
+   Dark fae correspondence / aged artifact material pass
+   ========================================================= */
+
+body {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(92, 18, 39, .18), transparent 31rem),
+    radial-gradient(circle at 18% 68%, rgba(64, 12, 28, .12), transparent 27rem),
+    linear-gradient(180deg, #080609 0%, #0d070b 44%, #070608 100%);
+}
+
+.stars { opacity: .34; filter: sepia(.25) brightness(.72); }
+.ambient { opacity: .38; filter: blur(76px); }
+
+.wrapped-book {
+  border-radius: 3px 7px 4px 2px;
+  transform: rotate(-.45deg);
+  box-shadow:
+    0 34px 70px rgba(0,0,0,.62),
+    0 8px 20px rgba(0,0,0,.48),
+    inset 0 0 0 1px rgba(54,25,22,.42);
+  filter: saturate(.72) contrast(1.04);
+}
+
+.paper {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(91,49,31,.20), transparent 16%),
+    radial-gradient(circle at 82% 78%, rgba(71,33,27,.17), transparent 21%),
+    radial-gradient(circle at 62% 32%, rgba(255,247,211,.16), transparent 24%),
+    repeating-linear-gradient(101deg, rgba(70,39,24,.035) 0 1px, transparent 1px 7px),
+    linear-gradient(105deg, #c8b78e 0%, #e0d0a8 34%, #c7b184 72%, #ad956d 100%);
+  box-shadow: inset 0 0 32px rgba(60,31,23,.28), inset 0 0 0 1px rgba(74,39,27,.18);
+}
+
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .38;
+  background:
+    linear-gradient(90deg, rgba(49,20,20,.26), transparent 5%, transparent 94%, rgba(49,20,20,.24)),
+    linear-gradient(0deg, rgba(49,20,20,.24), transparent 6%, transparent 93%, rgba(49,20,20,.20));
+  mix-blend-mode: multiply;
+}
+
+.paper-fibers { opacity: .28; filter: contrast(1.35) sepia(.7); }
+.paper-stain { opacity: .45; filter: blur(4px) sepia(1); }
+.corner-flourish { display: none; }
+
+.wrapped-book::before,
+.wrapped-book::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .20;
+}
+.wrapped-book::before {
+  width: 58px; height: 58px; left: 17px; top: 18px;
+  border-left: 1px solid #4e1722; border-top: 1px solid #4e1722;
+  transform: rotate(-3deg);
+}
+.wrapped-book::after {
+  width: 45px; height: 45px; right: 18px; bottom: 17px;
+  border-right: 1px solid #4e1722; border-bottom: 1px solid #4e1722;
+  transform: rotate(2deg);
+}
+
+.twine {
+  background: linear-gradient(90deg, #2b201c, #5a4437 45%, #211915 100%);
+  box-shadow: 0 2px 3px rgba(0,0,0,.44), inset 1px 0 rgba(164,135,100,.16);
+  filter: saturate(.45) brightness(.72);
+}
+.twine-h { height: 7px; transform: rotate(-1.2deg); }
+.twine-v { width: 7px; transform: rotate(.8deg); }
+.twine-knot { filter: brightness(.55) saturate(.45); }
+
+.wax-seal {
+  width: 64px; height: 61px;
+  border-radius: 46% 54% 51% 49% / 55% 45% 57% 43%;
+  background:
+    radial-gradient(circle at 37% 30%, rgba(156,54,67,.28), transparent 17%),
+    radial-gradient(circle at 58% 62%, #4b101d 0 28%, #2c0a12 62%, #18070b 100%);
+  box-shadow:
+    0 8px 13px rgba(0,0,0,.54),
+    inset 3px 3px 7px rgba(184,70,82,.14),
+    inset -5px -6px 8px rgba(0,0,0,.42),
+    0 0 0 1px rgba(11,4,7,.7);
+  transform: rotate(-7deg);
+}
+.seal-ring { border-color: rgba(176,98,89,.28); box-shadow: inset 0 0 8px rgba(0,0,0,.38); }
+.seal-heart { color: rgba(208,144,123,.48); text-shadow: 0 1px 1px #130509; font-size: 21px; }
+.seal-glint { opacity: .15; }
+.parcel:hover .wax-seal { box-shadow: 0 9px 16px rgba(0,0,0,.58), 0 0 18px rgba(101,18,34,.26), inset 3px 3px 7px rgba(184,70,82,.15), inset -5px -6px 8px rgba(0,0,0,.42); }
+
+.gift-tag {
+  background:
+    radial-gradient(circle at 80% 12%, rgba(91,46,34,.10), transparent 18%),
+    linear-gradient(108deg, #d8caa6, #cbb992 64%, #bca77d);
+  border: 1px solid rgba(65,35,29,.34);
+  border-radius: 1px 3px 2px 1px;
+  box-shadow: 0 11px 19px rgba(26,10,12,.36), inset 0 0 18px rgba(82,46,32,.11);
+  transform: rotate(1.8deg);
+  color: #2a1718;
+}
+.gift-tag::after {
+  content: "01";
+  position: absolute; right: 11px; bottom: 9px;
+  font-family: Georgia, serif; font-size: 10px; letter-spacing: .16em;
+  color: rgba(77,17,30,.42); transform: rotate(-8deg);
+}
+.gift-tag small, .gift-tag em { color: #5d2630; }
+.gift-tag strong { color: #271416; letter-spacing: .06em; }
+.tag-rule { background: linear-gradient(90deg, transparent, rgba(86,23,34,.48), transparent); }
+.profile-lines b { color: #4c1a24; }
+
+.open-label {
+  color: #9b7d69;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-size: .69rem;
+  gap: .7rem;
+}
+.open-label small {
+  display: block;
+  width: 100%;
+  margin-top: .55rem;
+  color: rgba(168,142,119,.52);
+  font-family: Georgia, serif;
+  font-size: .62rem;
+  font-style: italic;
+  letter-spacing: .08em;
+  text-transform: none;
+}
+
+.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); opacity: .5; }
+
+/* The reveal: darkness first, then the real cover becomes the jewel. */
+.reveal {
+  background:
+    radial-gradient(circle at 28% 45%, rgba(92,24,45,.16), transparent 29%),
+    linear-gradient(145deg, rgba(24,13,20,.96), rgba(10,8,12,.985));
+  border-color: rgba(141,104,69,.30);
+  box-shadow: 0 30px 85px rgba(0,0,0,.64), inset 0 0 70px rgba(69,15,31,.08);
+}
+
+.cover-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.35rem 1.35rem 1.15rem;
+  background: linear-gradient(145deg, rgba(16,10,14,.92), rgba(31,13,22,.74));
+  border: 1px solid rgba(151,112,72,.34);
+  box-shadow: inset 0 0 28px rgba(0,0,0,.32), 0 17px 35px rgba(0,0,0,.36);
+}
+.cover-card .book-kicker {
+  margin-bottom: .85rem;
+  color: #b99a70;
+  font-size: .66rem;
+  letter-spacing: .27em;
+}
+.cover-link {
+  display: block;
+  width: min(100%, 255px);
+  line-height: 0;
+  position: relative;
+  isolation: isolate;
+}
+.cover-link::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  z-index: -1;
+  border: 1px solid rgba(183,142,91,.30);
+  box-shadow: 0 0 28px rgba(117,33,61,.20);
+}
+.book-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 385px;
+  object-fit: contain;
+  box-shadow: 0 19px 38px rgba(0,0,0,.60), 0 0 28px rgba(112,32,58,.15);
+  filter: saturate(.96) contrast(1.02);
+  transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
+}
+.cover-link:hover .book-cover,
+.cover-link:focus-visible .book-cover {
+  transform: translateY(-3px) scale(1.008);
+  filter: saturate(1.04) contrast(1.03);
+  box-shadow: 0 22px 42px rgba(0,0,0,.66), 0 0 36px rgba(124,38,67,.22);
+}
+.cover-caption {
+  margin: .9rem 0 0;
+  text-align: center;
+  font-family: Georgia, serif;
+  color: #d6c2a1;
+  line-height: 1.35;
+}
+.cover-caption strong { display: block; font-weight: 500; font-size: 1rem; }
+.cover-caption span { display: block; margin-top: .2rem; color: #8f7468; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
+
+.profile-heading { border-bottom-color: rgba(142,100,68,.28); }
+.profile-number { color: #927861; }
+.profile-type { color: #8e3949; }
+.verdict { color: #d2b486; }
+.message { color: #b9a9a2; }
+.message strong { color: #d4b78d; }
+.details-title { color: #806b5d; }
+.chips span {
+  border-radius: 2px;
+  border-color: rgba(132,92,66,.30);
+  background: rgba(45,22,28,.34);
+  color: #a98d7a;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .62rem;
+}
+.warning-note { border-color: rgba(120,78,58,.25); background: rgba(54,22,28,.24); color: #9c8275; }
+.warning-note span { color: #74404a; }
+.reset { color: #a88d76; border-color: rgba(146,105,73,.32); background: rgba(16,10,13,.35); }
+.reset:hover { background: rgba(62,23,33,.34); color: #d1b58d; }
+
+@media (max-width: 700px) {
+  .cover-link { width: min(78vw, 255px); }
+  .book-cover { max-height: none; }
+}
