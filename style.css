@@ -679,3 +679,86 @@ body {
   .artifact-wrap .gift-tag { width: 53%; top: 58%; right: 0; }
   .artifact-wrap .profile-lines span { gap: 5px; }
 }
+
+
+/* =========================================================
+   V3.3 — layout polish only
+   Keep the luxury gothic book asset and reveal unchanged.
+   ========================================================= */
+
+@media (min-width: 760px) {
+  /* Give the unopened artifact enough horizontal room for the dossier
+     to sit BESIDE the book instead of covering the call-to-action. */
+  .parcel-stage,
+  .package-stage,
+  .wrapped-book-stage,
+  .artifact-stage {
+    width: min(920px, 94vw);
+    max-width: 920px;
+    overflow: visible;
+  }
+
+  .gift-tag,
+  .date-tag,
+  .dossier-tag,
+  .parcel-tag {
+    left: calc(50% + 165px) !important;
+    right: auto !important;
+    bottom: 92px !important;
+    transform: rotate(3deg) !important;
+    z-index: 8;
+  }
+
+  /* Keep the acceptance copy centered below the book/tag composition. */
+  .unwrap-copy,
+  .accept-copy,
+  .parcel-instruction,
+  .seal-instruction,
+  .click-label {
+    position: relative;
+    z-index: 12;
+    margin-top: 28px !important;
+  }
+}
+
+/* Readability pass: the invitation should be atmospheric, not invisible. */
+.unwrap-copy,
+.accept-copy,
+.parcel-instruction,
+.seal-instruction,
+.click-label {
+  color: #d9b96f !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 12px rgba(0,0,0,.9), 0 0 18px rgba(151,92,62,.22);
+}
+
+.unwrap-copy small,
+.accept-copy small,
+.parcel-instruction small,
+.seal-instruction small,
+.click-label small,
+.binding-warning,
+.binding-copy {
+  color: #bca9a1 !important;
+  opacity: .94 !important;
+  text-shadow: 0 1px 10px rgba(0,0,0,.92);
+}
+
+/* Balance the lower-right ambient glow with the upper-left glow. */
+body::after {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(116, 22, 62, .20), transparent 27%),
+    radial-gradient(circle at 92% 90%, rgba(116, 22, 62, .20), transparent 27%) !important;
+}
+
+/* On phones the dossier returns to an overlapping/card layout so the
+   page doesn't become wider than the viewport. */
+@media (max-width: 759px) {
+  .gift-tag,
+  .date-tag,
+  .dossier-tag,
+  .parcel-tag {
+    left: 50% !important;
+    right: auto !important;
+  }
+}
