@@ -1663,3 +1663,8 @@ body {
 
 /* Sweetheart asset is already transparent. Keep it clean. */
 .artifact-image { background: transparent !important; }
+
+/* Sweetheart dossier values — keep wrapped text right aligned */
+.dossier-row .value {
+  text-align: right;
+}
