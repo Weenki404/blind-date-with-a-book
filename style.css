@@ -682,83 +682,150 @@ body {
 
 
 /* =========================================================
-   V3.3 — layout polish only
-   Keep the luxury gothic book asset and reveal unchanged.
+   V3.4 — actual unopened-screen layout fix
+   Book asset + reveal are unchanged.
    ========================================================= */
 
+/* Four-corner atmospheric glow: matching pink/plum at both top corners,
+   with restrained lower glows for balance. */
+body {
+  background:
+    radial-gradient(circle at 4% 4%, rgba(143,44,87,.24), transparent 25rem),
+    radial-gradient(circle at 96% 4%, rgba(143,44,87,.24), transparent 25rem),
+    radial-gradient(circle at 7% 94%, rgba(83,44,77,.14), transparent 27rem),
+    radial-gradient(circle at 93% 94%, rgba(143,44,87,.16), transparent 27rem),
+    radial-gradient(circle at 50% -4%, rgba(126,35,70,.24), transparent 34rem),
+    linear-gradient(180deg,#1a1018 0%,#0d080d 54%,#070507 100%);
+}
+
+/* Restore the texture overlay; V3.3 accidentally repurposed body::after. */
+body::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.17;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 4px),
+    linear-gradient(90deg,rgba(255,255,255,.01),transparent 24%,transparent 76%,rgba(255,255,255,.01));
+  mix-blend-mode:screen;
+}
+
+/* Give the desktop composition enough room for the dossier to live
+   BESIDE the book instead of on top of the CTA. */
 @media (min-width: 760px) {
-  /* Give the unopened artifact enough horizontal room for the dossier
-     to sit BESIDE the book instead of covering the call-to-action. */
-  .parcel-stage,
-  .package-stage,
-  .wrapped-book-stage,
-  .artifact-stage {
-    width: min(920px, 94vw);
-    max-width: 920px;
+  .experience {
+    width: min(96vw, 1040px);
+  }
+
+  .parcel {
+    width: min(94vw, 920px);
+    min-height: 650px;
     overflow: visible;
   }
 
-  .gift-tag,
-  .date-tag,
-  .dossier-tag,
-  .parcel-tag {
-    left: calc(50% + 165px) !important;
-    right: auto !important;
-    bottom: 92px !important;
-    transform: rotate(3deg) !important;
-    z-index: 8;
+  .artifact-wrap {
+    left: -125px;
   }
 
-  /* Keep the acceptance copy centered below the book/tag composition. */
-  .unwrap-copy,
-  .accept-copy,
-  .parcel-instruction,
-  .seal-instruction,
-  .click-label {
+  .artifact-wrap .gift-tag {
+    top: 31%;
+    right: -285px;
+    left: auto;
+    width: 275px;
+    padding: 22px 22px 20px;
+    transform: rotate(3deg);
+  }
+
+  .artifact-wrap .gift-tag small {
+    padding-left: 20px;
+    font-size: .66rem;
+    letter-spacing: .20em;
+  }
+
+  .artifact-wrap .gift-tag strong {
+    font-size: 2.15rem;
+    line-height: .88;
+  }
+
+  .artifact-wrap .profile-lines {
+    margin-top: 16px;
+    gap: 8px;
+    font-size: .80rem;
+  }
+
+  .artifact-wrap .profile-lines span {
+    gap: 16px;
+    padding-bottom: 7px;
+  }
+
+  .artifact-wrap .gift-tag em {
+    margin-top: 13px;
+    font-size: .90rem;
+    color: #b89678;
+  }
+
+  /* Keep the CTA fully below the whole book+dossier composition. */
+  .open-label {
     position: relative;
     z-index: 12;
-    margin-top: 28px !important;
+    width: min(92vw, 720px);
+    margin-top: 22px;
+    color: #edcf8a;
+    font-size: .90rem;
+    line-height: 1.35;
+    letter-spacing: .24em;
+    text-shadow:
+      0 2px 5px rgba(0,0,0,.95),
+      0 0 18px rgba(217,185,119,.20);
+  }
+
+  .open-label small {
+    margin-top: 11px;
+    color: #d3c1b9;
+    font-size: 1.08rem;
+    line-height: 1.35;
+    letter-spacing: .025em;
+    text-shadow: 0 2px 6px rgba(0,0,0,.95);
+  }
+
+  /* Preserve horizontal placement during hover/focus. */
+  .parcel:hover .artifact-wrap,
+  .parcel:focus-visible .artifact-wrap {
+    transform: translateY(-8px) scale(1.012);
+  }
+
+  .parcel:hover .artifact-wrap .gift-tag,
+  .parcel:focus-visible .artifact-wrap .gift-tag {
+    transform: rotate(1.5deg) translateY(-2px);
   }
 }
 
-/* Readability pass: the invitation should be atmospheric, not invisible. */
-.unwrap-copy,
-.accept-copy,
-.parcel-instruction,
-.seal-instruction,
-.click-label {
-  color: #d9b96f !important;
-  opacity: 1 !important;
-  text-shadow: 0 1px 12px rgba(0,0,0,.9), 0 0 18px rgba(151,92,62,.22);
-}
-
-.unwrap-copy small,
-.accept-copy small,
-.parcel-instruction small,
-.seal-instruction small,
-.click-label small,
-.binding-warning,
-.binding-copy {
-  color: #bca9a1 !important;
-  opacity: .94 !important;
-  text-shadow: 0 1px 10px rgba(0,0,0,.92);
-}
-
-/* Balance the lower-right ambient glow with the upper-left glow. */
-body::after {
-  background:
-    radial-gradient(circle at 8% 10%, rgba(116, 22, 62, .20), transparent 27%),
-    radial-gradient(circle at 92% 90%, rgba(116, 22, 62, .20), transparent 27%) !important;
-}
-
-/* On phones the dossier returns to an overlapping/card layout so the
-   page doesn't become wider than the viewport. */
+/* Tablet/mobile: stack cleanly rather than forcing the side-by-side layout. */
 @media (max-width: 759px) {
-  .gift-tag,
-  .date-tag,
-  .dossier-tag,
-  .parcel-tag {
-    left: 50% !important;
-    right: auto !important;
+  .artifact-wrap {
+    left: 0;
+  }
+
+  .artifact-wrap .gift-tag {
+    top: 60%;
+    right: -1%;
+    left: auto;
+  }
+
+  .open-label {
+    margin-top: 18px;
+    color: #edcf8a;
+    font-size: .78rem;
+    line-height: 1.35;
+    letter-spacing: .16em;
+    text-shadow: 0 2px 5px rgba(0,0,0,.95);
+  }
+
+  .open-label small {
+    color: #d3c1b9;
+    font-size: .92rem;
+    line-height: 1.35;
+    text-shadow: 0 2px 6px rgba(0,0,0,.95);
   }
 }
