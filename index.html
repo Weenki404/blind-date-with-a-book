@@ -3,87 +3,126 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#120b11">
+  <meta name="theme-color" content="#0c070c">
   <title>Blind Date With a Book</title>
-  <link rel="stylesheet" href="style.css?v=2.1">
+  <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
 
   <main class="stage">
     <header class="intro">
       <p class="eyebrow">💌 YOUR BLIND DATE HAS ARRIVED</p>
       <h1>The Bad Decision</h1>
       <p class="teaser">You were warned.</p>
+      <div class="intro-rule" aria-hidden="true"><span>✦</span></div>
     </header>
 
     <section class="experience" id="experience">
-      <button class="parcel" id="parcel" aria-label="Open your blind date">
-        <span class="parcel-shadow"></span>
+      <button class="parcel" id="parcel" type="button" aria-label="Break the seal and reveal your blind date">
+        <span class="parcel-shadow" aria-hidden="true"></span>
 
         <span class="wrapped-book">
-          <span class="paper paper-left"></span>
-          <span class="paper paper-right"></span>
-          <span class="paper-texture"></span>
+          <span class="book-edge" aria-hidden="true"></span>
+          <span class="paper paper-left" aria-hidden="true"></span>
+          <span class="paper paper-right" aria-hidden="true"></span>
+          <span class="paper-fibers" aria-hidden="true"></span>
+          <span class="paper-stain stain-one" aria-hidden="true"></span>
+          <span class="paper-stain stain-two" aria-hidden="true"></span>
 
-          <span class="twine twine-v"></span>
-          <span class="twine twine-h"></span>
+          <span class="corner-flourish corner-top-left" aria-hidden="true">❦</span>
+          <span class="corner-flourish corner-bottom-right" aria-hidden="true">❦</span>
+
+          <span class="twine twine-v" aria-hidden="true"></span>
+          <span class="twine twine-h" aria-hidden="true"></span>
+          <span class="twine-knot" aria-hidden="true"></span>
 
           <span class="wax-seal" aria-hidden="true">
-            <span>♥</span>
+            <span class="seal-ring"></span>
+            <span class="seal-heart">♥</span>
+            <span class="seal-glint"></span>
           </span>
 
           <span class="gift-tag">
-            <small>DATE No. 01</small>
-            <strong>The Bad<br>Decision</strong>
-            <em>handle with poor judgment</em>
+            <small>BLIND DATE No. 01</small>
+            <span class="tag-rule"></span>
+            <strong>THE BAD<br>DECISION</strong>
+            <span class="profile-lines">
+              <span><b>Disposition</b> Questionable</span>
+              <span><b>Intentions</b> Worse</span>
+              <span><b>Compatibility</b> Unfortunately high</span>
+            </span>
+            <em>break seal at your own risk</em>
           </span>
         </span>
 
         <span class="open-label">
-          <span class="spark">✦</span>
-          Click to unwrap your date
-          <span class="spark">✦</span>
+          <span>✦</span>
+          Break the seal to meet your date
+          <span>✦</span>
         </span>
       </button>
 
-      <article class="reveal" id="reveal" aria-hidden="true">
-        <div class="match-badge">♥</div>
+      <article class="reveal" id="reveal" aria-hidden="true" tabindex="-1">
+        <div class="reveal-aura" aria-hidden="true"></div>
+        <div class="match-badge" aria-hidden="true">♥</div>
         <p class="match">IT'S A MATCH</p>
+        <p class="match-sub">Against everyone's better judgment.</p>
 
-        <div class="book-card" aria-label="Book title card">
-          <span class="book-kicker">YOUR DATE IS</span>
-          <h2>Amid Clouds<br>and Bones</h2>
-          <div class="divider"><span>✦</span></div>
-          <p class="author">Ella Fields</p>
-        </div>
+        <div class="date-layout">
+          <div class="book-card" aria-label="Book title card">
+            <span class="book-ornament ornament-top" aria-hidden="true">✦</span>
+            <span class="book-kicker">YOUR DATE IS</span>
+            <h2>Amid Clouds<br>and Bones</h2>
+            <div class="divider" aria-hidden="true"><span>✦</span></div>
+            <p class="author">Ella Fields</p>
+            <span class="book-ornament ornament-bottom" aria-hidden="true">❦</span>
+          </div>
 
-        <p class="verdict">Dangerously compatible.</p>
-        <p class="message">
-          You knowingly chose <strong>The Bad Decision.</strong><br>
-          We accept no responsibility for what happens next.
-        </p>
+          <div class="date-profile">
+            <div class="profile-heading">
+              <span class="profile-number">DATE No. 01</span>
+              <span class="profile-type">THE BAD DECISION</span>
+            </div>
 
-        <div class="details">
-          <p class="details-title">YOUR DATE'S PARTICULAR BRAND OF NONSENSE</p>
-          <div class="chips" aria-label="Book tropes and vibes">
-            <span>enemies to lovers</span>
-            <span>arranged marriage</span>
-            <span>fae courts</span>
-            <span>betrayal</span>
-            <span>morally gray</span>
-            <span>high spice</span>
+            <p class="verdict">Dangerously compatible.</p>
+            <p class="message">
+              You knowingly chose <strong>The Bad Decision.</strong><br>
+              We accept no responsibility for what happens next.
+            </p>
+
+            <div class="details">
+              <p class="details-title">PARTICULAR BRAND OF NONSENSE</p>
+              <div class="chips" aria-label="Book tropes and vibes">
+                <span>enemies to lovers</span>
+                <span>arranged marriage</span>
+                <span>fae courts</span>
+                <span>betrayal</span>
+                <span>morally gray</span>
+                <span>high spice</span>
+              </div>
+            </div>
+
+            <div class="warning-note">
+              <span aria-hidden="true">⚜</span>
+              <p><strong>House warning:</strong> feelings, betrayal, and several choices nobody's mother would approve of.</p>
+            </div>
           </div>
         </div>
 
-        <button id="reset" class="reset">↶ Wrap it back up</button>
+        <button id="reset" class="reset" type="button">↶ Wrap it back up</button>
       </article>
+
+      <div class="motes" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
     </section>
 
     <footer>Blind Date With a Book · Huzzah</footer>
   </main>
 
-  <script src="script.js?v=2.1"></script>
+  <script src="script.js?v=3.0"></script>
 </body>
 </html>

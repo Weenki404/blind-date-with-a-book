@@ -3,16 +3,30 @@ const parcel = document.getElementById('parcel');
 const reveal = document.getElementById('reveal');
 const reset = document.getElementById('reset');
 
-parcel.addEventListener('click', () => {
-  experience.classList.add('opened');
-  reveal.setAttribute('aria-hidden', 'false');
+function openDate() {
+  if (experience.classList.contains('opened')) return;
+
+  experience.classList.add('opening');
+  parcel.setAttribute('aria-expanded', 'true');
 
   window.setTimeout(() => {
-    reveal.focus?.();
-  }, 800);
-});
+    experience.classList.add('opened');
+    experience.classList.remove('opening');
+    reveal.setAttribute('aria-hidden', 'false');
+  }, 720);
 
-reset.addEventListener('click', () => {
-  experience.classList.remove('opened');
+  window.setTimeout(() => {
+    reveal.focus({ preventScroll: true });
+  }, 980);
+}
+
+function resetDate(event) {
+  event.stopPropagation();
+  experience.classList.remove('opened', 'opening');
   reveal.setAttribute('aria-hidden', 'true');
-});
+  parcel.setAttribute('aria-expanded', 'false');
+  parcel.focus({ preventScroll: true });
+}
+
+parcel.addEventListener('click', openDate);
+reset.addEventListener('click', resetDate);
