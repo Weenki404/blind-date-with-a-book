@@ -1686,19 +1686,22 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Brighter, denser star field */
+/* A little more magical than the original — without the glitter bomb. */
 .stars {
-  opacity: 0.9 !important;
+  opacity: .52 !important;
+  filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
   background-image:
-    radial-gradient(circle, rgba(238, 207, 145, .85) 1px, transparent 1.5px),
-    radial-gradient(circle, rgba(255, 244, 215, .55) 1px, transparent 1.5px),
-    radial-gradient(circle, rgba(210, 228, 194, .45) .8px, transparent 1.3px) !important;
+    radial-gradient(circle, rgba(238, 207, 145, .65) 0 .8px, transparent 1.3px),
+    radial-gradient(circle, rgba(255, 244, 215, .32) 0 .7px, transparent 1.1px),
+    radial-gradient(circle, rgba(210, 228, 194, .24) 0 .6px, transparent 1px) !important;
   background-size:
-    83px 83px,
-    127px 127px,
-    53px 53px !important;
+    137px 137px,
+    211px 211px,
+    89px 89px !important;
   background-position:
-    7px 13px,
-    31px 47px,
-    19px 5px !important;
+    11px 17px,
+    53px 71px,
+    27px 39px !important;
 }
