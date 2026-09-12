@@ -1664,7 +1664,12 @@ body {
 /* Sweetheart asset is already transparent. Keep it clean. */
 .artifact-image { background: transparent !important; }
 
-/* Sweetheart dossier values — keep wrapped text right aligned */
-.dossier-row .value {
+/* Sweetheart dossier — keep the right-hand values right aligned */
+.artifact-wrap .profile-lines span {
   text-align: right;
+}
+
+.artifact-wrap .profile-lines b {
+  text-align: left;
+  flex-shrink: 0;
 }
