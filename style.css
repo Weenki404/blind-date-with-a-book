@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 :root{
   --ink:#f7efe9;
@@ -939,4 +939,116 @@ body::after {
 .artifact-wrap img {
   background: transparent !important;
   box-shadow: none;
+}
+
+
+/* =========================================================
+   V3.6 — typography/readability polish only
+   Book, transparent asset, background, layout, reveal = untouched.
+   ========================================================= */
+
+/* Give the archetype title a more ceremonial/gothic display face. */
+.intro h1 {
+  font-family: "Cinzel Decorative", "Cormorant Garamond", serif;
+  font-size: clamp(3.35rem, 7.2vw, 6rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: .015em;
+}
+
+/* Slightly larger supporting intro text. */
+.eyebrow {
+  font-size: clamp(.72rem, 1vw, .86rem);
+}
+.teaser {
+  font-size: clamp(1.35rem, 1.8vw, 1.62rem);
+}
+
+/* Make the reusable CSS dossier comfortably readable. */
+.artifact-wrap .gift-tag {
+  width: 300px;
+  padding: 25px 24px 22px;
+}
+
+.artifact-wrap .gift-tag small {
+  font-size: .76rem;
+  letter-spacing: .19em;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.45rem;
+  line-height: .88;
+}
+
+.artifact-wrap .profile-lines {
+  margin-top: 18px;
+  gap: 9px;
+  font-size: .94rem;
+}
+
+.artifact-wrap .profile-lines span {
+  padding-bottom: 8px;
+}
+
+.artifact-wrap .gift-tag em {
+  margin-top: 14px;
+  font-size: 1rem;
+}
+
+/* CTA and binding warning: deliberately larger, still elegant. */
+.open-label {
+  font-size: 1.08rem !important;
+  line-height: 1.4;
+  letter-spacing: .22em !important;
+}
+
+.open-label small {
+  margin-top: 12px;
+  font-size: 1.18rem !important;
+  line-height: 1.45;
+  letter-spacing: .02em !important;
+}
+
+/* Keep the side-by-side composition balanced after enlarging the card. */
+@media (min-width: 760px) {
+  .artifact-wrap .gift-tag {
+    right: -315px;
+  }
+}
+
+/* Don't let the larger typography bully smaller screens. */
+@media (max-width: 759px) {
+  .intro h1 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+  }
+
+  .artifact-wrap .gift-tag {
+    width: 56%;
+    padding: 16px 14px 14px;
+  }
+
+  .artifact-wrap .gift-tag small {
+    font-size: .55rem;
+  }
+
+  .artifact-wrap .gift-tag strong {
+    font-size: 1.55rem;
+  }
+
+  .artifact-wrap .profile-lines {
+    font-size: .66rem;
+  }
+
+  .artifact-wrap .gift-tag em {
+    font-size: .72rem;
+  }
+
+  .open-label {
+    font-size: .82rem !important;
+    letter-spacing: .14em !important;
+  }
+
+  .open-label small {
+    font-size: .96rem !important;
+  }
 }
