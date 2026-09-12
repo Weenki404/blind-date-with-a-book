@@ -1,0 +1,1546 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --ink:#f7efe9;
+  --muted:#cbb9b3;
+  --night:#090609;
+  --night-2:#130c12;
+  --plum:#351225;
+  --wine:#7e2346;
+  --wine-2:#9c365d;
+  --wine-dark:#431226;
+  --rose:#d392a7;
+  --gold:#d9b977;
+  --gold-bright:#f0d69b;
+  --gold-dark:#8b6c3c;
+  --paper:#d8c3a2;
+  --paper-light:#ead9bd;
+  --paper-dark:#b99672;
+  --paper-ink:#3f2927;
+  --twine:#7a5738;
+}
+
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  background:
+    radial-gradient(circle at 50% -4%,rgba(126,35,70,.34),transparent 34rem),
+    radial-gradient(circle at 13% 72%,rgba(83,44,77,.18),transparent 29rem),
+    radial-gradient(circle at 86% 67%,rgba(121,82,43,.13),transparent 26rem),
+    linear-gradient(180deg,#1a1018 0%,#0d080d 54%,#070507 100%);
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.17;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 4px),
+    linear-gradient(90deg,rgba(255,255,255,.01),transparent 24%,transparent 76%,rgba(255,255,255,.01));
+  mix-blend-mode:screen;
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+  background-image:
+    radial-gradient(circle,#fff 0 1px,transparent 1.35px),
+    radial-gradient(circle,var(--gold) 0 1px,transparent 1.35px),
+    radial-gradient(circle,#fff 0 .7px,transparent 1px);
+  background-size:113px 113px,173px 173px,71px 71px;
+  background-position:5px 8px,47px 91px,23px 54px;
+  mask-image:linear-gradient(to bottom,black 0%,black 38%,transparent 88%);
+}
+
+.ambient{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.12}
+.ambient-one{width:38rem;height:38rem;background:#8f2c57;top:-16rem;left:-15rem}
+.ambient-two{width:32rem;height:32rem;background:#a57b45;right:-14rem;bottom:-18rem}
+
+.stage{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:52px 20px 24px;
+  text-align:center;
+}
+
+.intro{width:min(94vw,760px)}
+.eyebrow{margin:0 0 10px;color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:.24em}
+h1,h2{font-family:"Cormorant Garamond",serif}
+h1{margin:0;font-size:clamp(3rem,8vw,5.4rem);font-weight:600;line-height:.94;text-shadow:0 8px 36px #000}
+.teaser{margin:10px 0 11px;color:var(--muted);font-family:"Cormorant Garamond",serif;font-size:1.32rem;font-style:italic}
+.intro-rule{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);font-size:.64rem;margin-bottom:2px}
+.intro-rule::before,.intro-rule::after{content:"";width:82px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark))}
+.intro-rule::after{background:linear-gradient(90deg,var(--gold-dark),transparent)}
+
+.experience{position:relative;display:grid;place-items:center;width:min(96vw,900px);min-height:650px;padding:16px 0 28px}
+
+.parcel{
+  position:relative;
+  z-index:5;
+  display:grid;
+  place-items:center;
+  border:0;
+  padding:0;
+  background:none;
+  color:inherit;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:opacity .35s ease,transform .35s ease;
+}
+.parcel:focus-visible{outline:2px solid var(--gold);outline-offset:14px;border-radius:16px}
+
+.parcel-shadow{position:absolute;width:324px;height:62px;top:434px;border-radius:50%;background:#000;filter:blur(24px);opacity:.58;transition:.45s ease}
+
+.wrapped-book{
+  position:relative;
+  display:block;
+  width:308px;
+  height:430px;
+  border-radius:7px 13px 13px 7px;
+  overflow:visible;
+  transform:rotate(-1.3deg);
+  filter:drop-shadow(0 28px 29px rgba(0,0,0,.58));
+  transition:transform .34s cubic-bezier(.2,.8,.2,1),filter .34s ease;
+}
+.parcel:hover .wrapped-book{transform:translateY(-9px) rotate(-.5deg) scale(1.015);filter:drop-shadow(0 37px 33px rgba(0,0,0,.72))}
+.parcel:hover .parcel-shadow{transform:scale(.94);opacity:.47}
+
+.book-edge{position:absolute;inset:10px -8px -8px 9px;z-index:-2;border-radius:6px 15px 15px 7px;background:linear-gradient(90deg,#541b31,#3b1022 72%,#1d0912);box-shadow:inset -5px 0 #19070f,inset 0 1px rgba(255,255,255,.08)}
+
+.paper{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.18),transparent 16%,transparent 77%,rgba(59,35,22,.15)),linear-gradient(145deg,var(--paper-light),var(--paper) 58%,var(--paper-dark));border:1px solid rgba(67,44,29,.42);box-shadow:inset 0 0 40px rgba(80,50,29,.16),inset 0 0 0 1px rgba(255,255,255,.2);transition:transform .7s cubic-bezier(.16,.78,.19,1),opacity .5s ease}
+.paper-left{right:49%;border-radius:7px 0 0 7px;transform-origin:left center}
+.paper-right{left:49%;border-radius:0 13px 13px 0;transform-origin:right center}
+.paper-fibers{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.35;mix-blend-mode:multiply;background-image:repeating-linear-gradient(7deg,transparent 0 8px,rgba(78,48,30,.08) 9px 10px),radial-gradient(circle at 21% 13%,rgba(72,44,29,.23) 0 1px,transparent 1.5px),radial-gradient(circle at 73% 71%,rgba(72,44,29,.18) 0 1px,transparent 1.5px);background-size:auto,29px 31px,41px 39px;transition:opacity .45s ease}
+.paper-stain{position:absolute;border-radius:50%;filter:blur(8px);opacity:.15;background:#765033;pointer-events:none}
+.stain-one{width:92px;height:44px;left:22px;top:62px;transform:rotate(-18deg)}
+.stain-two{width:70px;height:31px;right:18px;bottom:54px;transform:rotate(14deg)}
+
+.corner-flourish{position:absolute;z-index:2;color:rgba(95,57,41,.48);font-family:"Cormorant Garamond",serif;font-size:2.5rem;line-height:1;transition:opacity .3s ease}
+.corner-top-left{top:13px;left:16px;transform:rotate(-26deg)}
+.corner-bottom-right{right:14px;bottom:10px;transform:rotate(155deg)}
+
+.twine{position:absolute;z-index:6;background:repeating-linear-gradient(45deg,#62432d 0 3px,#9b7651 3px 6px,#6c4d33 6px 9px);box-shadow:0 1px 4px rgba(0,0,0,.42);transition:transform .68s cubic-bezier(.2,.75,.2,1),opacity .36s ease}
+.twine-v{top:-9px;bottom:-8px;left:50%;width:11px;transform:translateX(-50%)}
+.twine-h{left:-9px;right:-9px;top:144px;height:11px}
+.twine-knot{position:absolute;z-index:7;width:28px;height:23px;left:50%;top:137px;transform:translate(-50%,-50%) rotate(12deg);border-radius:50%;border:5px solid #7c5a3b;box-shadow:0 2px 5px rgba(0,0,0,.35);transition:transform .65s ease,opacity .3s ease}
+
+.wax-seal{position:absolute;z-index:9;top:111px;left:50%;display:grid;place-items:center;width:70px;height:70px;border-radius:50%;transform:translateX(-50%) rotate(-7deg);color:#f2c9d3;font-family:"Cormorant Garamond",serif;font-size:1.82rem;background:radial-gradient(circle at 34% 25%,#cb617e 0 5%,#a63f62 30%,#7d2448 68%,#4b132b 100%);box-shadow:0 8px 13px rgba(53,10,27,.42),inset 0 0 0 3px rgba(84,19,43,.44),inset 0 0 0 6px rgba(255,255,255,.06);transition:transform .7s cubic-bezier(.15,.75,.18,1),opacity .35s ease;overflow:hidden}
+.seal-ring{position:absolute;inset:10px;border:1px solid rgba(246,201,213,.3);border-radius:50%}
+.seal-heart{position:relative;z-index:2;text-shadow:0 2px 3px rgba(64,9,30,.5)}
+.seal-glint{position:absolute;width:18px;height:48px;top:-10px;left:-18px;transform:rotate(22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);transition:left .55s ease}
+.parcel:hover .seal-glint{left:75px}
+
+.gift-tag{position:absolute;z-index:8;top:176px;left:34px;width:240px;min-height:214px;padding:22px 18px 18px;color:var(--paper-ink);background:linear-gradient(150deg,#f0dfc2,#dcc3a0 78%,#c7aa84);border:1px solid rgba(83,53,34,.45);border-radius:2px;box-shadow:0 12px 17px rgba(58,36,21,.21),inset 0 0 0 1px rgba(255,255,255,.36);transform:rotate(1.5deg);transition:transform .65s cubic-bezier(.2,.75,.2,1),opacity .32s ease}
+.gift-tag::before{content:"";position:absolute;top:-10px;left:50%;width:17px;height:17px;border-radius:50%;transform:translateX(-50%);background:#b99b72;box-shadow:inset 0 1px 4px rgba(53,31,18,.5),0 0 0 4px rgba(238,218,186,.75)}
+.gift-tag small{display:block;font-size:.61rem;font-weight:700;letter-spacing:.22em;color:#684334}
+.tag-rule{display:block;width:48px;height:1px;margin:9px auto 10px;background:#9a7354}
+.gift-tag strong{display:block;font-family:"Cormorant Garamond",serif;font-size:2rem;line-height:.86;letter-spacing:.025em;color:#4d1d2d}
+.profile-lines{display:grid;gap:4px;margin:15px auto 11px;text-align:left;font-size:.66rem;line-height:1.35;color:#5d463d}
+.profile-lines span{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted rgba(83,57,42,.34);padding-bottom:2px}
+.profile-lines b{font-weight:700;color:#4c322c}
+.gift-tag em{display:block;margin-top:9px;font-family:"Cormorant Garamond",serif;font-size:.9rem;color:#6e4c40}
+
+.open-label{margin-top:34px;color:#d7c5bd;font-family:"Cormorant Garamond",serif;font-size:1.08rem;font-style:italic;letter-spacing:.04em;transition:opacity .32s ease,transform .32s ease}
+.open-label span{display:inline-block;margin:0 8px;color:var(--gold);font-size:.63rem;animation:twinkle 2.4s ease-in-out infinite}
+.open-label span:last-child{animation-delay:.7s}
+@keyframes twinkle{50%{opacity:.35;transform:scale(.7)}}
+
+.reveal{position:absolute;z-index:2;width:min(94vw,850px);opacity:0;visibility:hidden;transform:translateY(24px) scale(.97);transition:opacity .55s .08s ease,transform .62s .08s cubic-bezier(.18,.84,.2,1),visibility 0s .7s;outline:0}
+.reveal-aura{position:absolute;z-index:-1;inset:4% 8%;border-radius:50%;background:radial-gradient(circle,rgba(126,35,70,.25),transparent 64%);filter:blur(35px)}
+.match-badge{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 8px;border:1px solid rgba(217,185,119,.52);border-radius:50%;color:#f0c3cf;background:linear-gradient(145deg,#8e2d50,#4e132b);box-shadow:0 8px 22px rgba(0,0,0,.38),inset 0 0 0 5px rgba(255,255,255,.03);font-family:"Cormorant Garamond",serif;font-size:1.35rem}
+.match{margin:0;color:var(--gold-bright);font-size:.74rem;font-weight:800;letter-spacing:.3em}
+.match-sub{margin:7px 0 22px;color:var(--muted);font-family:"Cormorant Garamond",serif;font-size:1rem;font-style:italic}
+
+.date-layout{display:grid;grid-template-columns:minmax(230px,310px) minmax(300px,1fr);gap:28px;align-items:stretch;text-align:left}
+.book-card{position:relative;min-height:430px;padding:42px 26px 34px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid rgba(217,185,119,.55);border-radius:6px;background:radial-gradient(circle at 50% 25%,rgba(185,68,105,.18),transparent 31%),linear-gradient(145deg,#421326,#1b0c17 68%,#10080f);box-shadow:0 26px 52px rgba(0,0,0,.48),inset 0 0 0 5px #160a12,inset 0 0 0 6px rgba(217,185,119,.26)}
+.book-card::before,.book-card::after{content:"";position:absolute;inset:14px;border:1px solid rgba(217,185,119,.14);pointer-events:none}
+.book-card::after{inset:20px;border-color:rgba(217,185,119,.08)}
+.book-kicker{color:var(--gold);font-size:.61rem;font-weight:700;letter-spacing:.24em}
+.book-card h2{margin:23px 0 13px;color:#fff6f1;font-size:clamp(2.35rem,6vw,3.55rem);font-weight:600;line-height:.83;text-shadow:0 3px 18px #000}
+.divider{display:flex;width:88px;align-items:center;gap:8px;color:var(--gold);font-size:.55rem}
+.divider::before,.divider::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold-dark))}
+.divider::after{background:linear-gradient(90deg,var(--gold-dark),transparent)}
+.author{margin:13px 0 0;color:#d6c6c0;font-family:"Cormorant Garamond",serif;font-size:1.24rem;font-style:italic}
+.book-ornament{position:absolute;color:rgba(217,185,119,.54)}
+.ornament-top{top:26px;font-size:.65rem}
+.ornament-bottom{bottom:21px;font-family:"Cormorant Garamond",serif;font-size:2rem}
+
+.date-profile{position:relative;padding:28px 29px 26px;border:1px solid rgba(217,185,119,.2);border-radius:8px;background:linear-gradient(155deg,rgba(39,20,32,.96),rgba(17,10,16,.96));box-shadow:0 23px 50px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.025)}
+.profile-heading{display:flex;justify-content:space-between;gap:16px;align-items:end;padding-bottom:13px;border-bottom:1px solid rgba(217,185,119,.17);font-size:.61rem;font-weight:700;letter-spacing:.17em}
+.profile-number{color:#9c8a83}.profile-type{color:var(--gold)}
+.verdict{margin:22px 0 7px;font-family:"Cormorant Garamond",serif;font-size:2.08rem;font-weight:600;line-height:1;color:#f7ece7}
+.message{margin:0;color:#cdbdb7;font-size:.9rem;line-height:1.65}.message strong{color:#f0d1da}
+.details{margin-top:25px}.details-title{margin:0 0 10px;color:#a88f86;font-size:.59rem;font-weight:700;letter-spacing:.16em}
+.chips{display:flex;flex-wrap:wrap;gap:7px}.chips span{padding:7px 10px;border:1px solid rgba(217,185,119,.22);border-radius:999px;background:rgba(126,35,70,.12);color:#e4d8d3;font-size:.7rem;letter-spacing:.02em}
+.warning-note{display:flex;gap:11px;align-items:flex-start;margin-top:24px;padding:14px 15px;border-left:2px solid #8c3555;background:rgba(126,35,70,.09);color:#baa9a4}
+.warning-note span{color:var(--gold);font-size:.9rem;margin-top:2px}.warning-note p{margin:0;font-family:"Cormorant Garamond",serif;font-size:.92rem;line-height:1.45}.warning-note strong{color:#e2cec8;font-weight:600}
+
+.reset{margin-top:25px;padding:10px 16px;border:1px solid rgba(217,185,119,.26);border-radius:999px;background:rgba(255,255,255,.025);color:#b8a7a1;font-family:"DM Sans",sans-serif;font-size:.72rem;cursor:pointer;transition:.2s ease}
+.reset:hover{border-color:rgba(217,185,119,.5);color:#efe4df;background:rgba(217,185,119,.06)}
+.reset:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+.motes{position:absolute;z-index:4;inset:0;pointer-events:none;overflow:visible}.motes span{position:absolute;left:50%;top:43%;width:4px;height:4px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 9px var(--gold);opacity:0}
+.motes span:nth-child(1){--x:-150px;--y:-120px}.motes span:nth-child(2){--x:140px;--y:-86px}.motes span:nth-child(3){--x:-112px;--y:42px}.motes span:nth-child(4){--x:128px;--y:55px}.motes span:nth-child(5){--x:-48px;--y:-170px}.motes span:nth-child(6){--x:58px;--y:-145px}
+
+.opening .wax-seal{transform:translateX(-50%) translateY(-8px) rotate(-30deg) scale(.78);opacity:0}
+.opening .twine-v{transform:translateX(-50%) translateY(-26px) scaleY(.86);opacity:0}
+.opening .twine-h{transform:translateX(36px) scaleX(.82);opacity:0}
+.opening .twine-knot{transform:translate(-50%,-50%) rotate(70deg) scale(.6);opacity:0}
+.opening .gift-tag{transform:translate(46px,32px) rotate(11deg);opacity:0}
+.opening .paper-left{transform:translateX(-40px) rotateY(54deg) rotate(-5deg);opacity:.1}
+.opening .paper-right{transform:translateX(40px) rotateY(-54deg) rotate(5deg);opacity:.1}
+.opening .paper-fibers,.opening .corner-flourish{opacity:0}
+.opening .motes span{animation:burst .85s ease-out forwards}
+.opening .motes span:nth-child(2){animation-delay:.05s}.opening .motes span:nth-child(3){animation-delay:.1s}.opening .motes span:nth-child(4){animation-delay:.13s}.opening .motes span:nth-child(5){animation-delay:.17s}.opening .motes span:nth-child(6){animation-delay:.2s}
+@keyframes burst{0%{opacity:0;transform:translate(0,0) scale(.4)}28%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(1.2)}}
+
+.opened .parcel{opacity:0;visibility:hidden;transform:scale(.96);pointer-events:none;transition:opacity .25s ease,transform .25s ease,visibility 0s .25s}
+.opened .reveal{opacity:1;visibility:visible;transform:none;transition-delay:.03s}
+
+footer{margin-top:auto;padding-top:18px;color:#786b70;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+
+@media (max-width:720px){
+  .stage{padding-top:40px}.experience{min-height:760px}.date-layout{grid-template-columns:1fr;width:min(92vw,430px)}.book-card{min-height:370px}.date-profile{text-align:left}.reveal{position:relative;padding-top:14px}.opened .reveal{margin-top:-500px}.wrapped-book{width:286px;height:400px}.gift-tag{left:31px;top:163px;width:224px;min-height:204px;padding:20px 16px}.twine-h{top:134px}.wax-seal{top:102px}.parcel-shadow{top:405px;width:292px}
+}
+
+@media (max-width:380px){.wrapped-book{transform:scale(.92) rotate(-1deg)}.parcel:hover .wrapped-book{transform:translateY(-6px) scale(.93)}.date-profile{padding:23px 21px}.profile-heading{align-items:flex-start;flex-direction:column;gap:5px}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;transition-delay:0s!important}
+}
+
+/* =========================================================
+   V3.1 — FORBIDDEN EDITION
+   Dark fae correspondence / aged artifact material pass
+   ========================================================= */
+
+body {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(92, 18, 39, .18), transparent 31rem),
+    radial-gradient(circle at 18% 68%, rgba(64, 12, 28, .12), transparent 27rem),
+    linear-gradient(180deg, #080609 0%, #0d070b 44%, #070608 100%);
+}
+
+.stars { opacity: .34; filter: sepia(.25) brightness(.72); }
+.ambient { opacity: .38; filter: blur(76px); }
+
+.wrapped-book {
+  border-radius: 3px 7px 4px 2px;
+  transform: rotate(-.45deg);
+  box-shadow:
+    0 34px 70px rgba(0,0,0,.62),
+    0 8px 20px rgba(0,0,0,.48),
+    inset 0 0 0 1px rgba(54,25,22,.42);
+  filter: saturate(.72) contrast(1.04);
+}
+
+.paper {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(91,49,31,.20), transparent 16%),
+    radial-gradient(circle at 82% 78%, rgba(71,33,27,.17), transparent 21%),
+    radial-gradient(circle at 62% 32%, rgba(255,247,211,.16), transparent 24%),
+    repeating-linear-gradient(101deg, rgba(70,39,24,.035) 0 1px, transparent 1px 7px),
+    linear-gradient(105deg, #c8b78e 0%, #e0d0a8 34%, #c7b184 72%, #ad956d 100%);
+  box-shadow: inset 0 0 32px rgba(60,31,23,.28), inset 0 0 0 1px rgba(74,39,27,.18);
+}
+
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .38;
+  background:
+    linear-gradient(90deg, rgba(49,20,20,.26), transparent 5%, transparent 94%, rgba(49,20,20,.24)),
+    linear-gradient(0deg, rgba(49,20,20,.24), transparent 6%, transparent 93%, rgba(49,20,20,.20));
+  mix-blend-mode: multiply;
+}
+
+.paper-fibers { opacity: .28; filter: contrast(1.35) sepia(.7); }
+.paper-stain { opacity: .45; filter: blur(4px) sepia(1); }
+.corner-flourish { display: none; }
+
+.wrapped-book::before,
+.wrapped-book::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  opacity: .20;
+}
+.wrapped-book::before {
+  width: 58px; height: 58px; left: 17px; top: 18px;
+  border-left: 1px solid #4e1722; border-top: 1px solid #4e1722;
+  transform: rotate(-3deg);
+}
+.wrapped-book::after {
+  width: 45px; height: 45px; right: 18px; bottom: 17px;
+  border-right: 1px solid #4e1722; border-bottom: 1px solid #4e1722;
+  transform: rotate(2deg);
+}
+
+.twine {
+  background: linear-gradient(90deg, #2b201c, #5a4437 45%, #211915 100%);
+  box-shadow: 0 2px 3px rgba(0,0,0,.44), inset 1px 0 rgba(164,135,100,.16);
+  filter: saturate(.45) brightness(.72);
+}
+.twine-h { height: 7px; transform: rotate(-1.2deg); }
+.twine-v { width: 7px; transform: rotate(.8deg); }
+.twine-knot { filter: brightness(.55) saturate(.45); }
+
+.wax-seal {
+  width: 64px; height: 61px;
+  border-radius: 46% 54% 51% 49% / 55% 45% 57% 43%;
+  background:
+    radial-gradient(circle at 37% 30%, rgba(156,54,67,.28), transparent 17%),
+    radial-gradient(circle at 58% 62%, #4b101d 0 28%, #2c0a12 62%, #18070b 100%);
+  box-shadow:
+    0 8px 13px rgba(0,0,0,.54),
+    inset 3px 3px 7px rgba(184,70,82,.14),
+    inset -5px -6px 8px rgba(0,0,0,.42),
+    0 0 0 1px rgba(11,4,7,.7);
+  transform: rotate(-7deg);
+}
+.seal-ring { border-color: rgba(176,98,89,.28); box-shadow: inset 0 0 8px rgba(0,0,0,.38); }
+.seal-heart { color: rgba(208,144,123,.48); text-shadow: 0 1px 1px #130509; font-size: 21px; }
+.seal-glint { opacity: .15; }
+.parcel:hover .wax-seal { box-shadow: 0 9px 16px rgba(0,0,0,.58), 0 0 18px rgba(101,18,34,.26), inset 3px 3px 7px rgba(184,70,82,.15), inset -5px -6px 8px rgba(0,0,0,.42); }
+
+.gift-tag {
+  background:
+    radial-gradient(circle at 80% 12%, rgba(91,46,34,.10), transparent 18%),
+    linear-gradient(108deg, #d8caa6, #cbb992 64%, #bca77d);
+  border: 1px solid rgba(65,35,29,.34);
+  border-radius: 1px 3px 2px 1px;
+  box-shadow: 0 11px 19px rgba(26,10,12,.36), inset 0 0 18px rgba(82,46,32,.11);
+  transform: rotate(1.8deg);
+  color: #2a1718;
+}
+.gift-tag::after {
+  content: "01";
+  position: absolute; right: 11px; bottom: 9px;
+  font-family: Georgia, serif; font-size: 10px; letter-spacing: .16em;
+  color: rgba(77,17,30,.42); transform: rotate(-8deg);
+}
+.gift-tag small, .gift-tag em { color: #5d2630; }
+.gift-tag strong { color: #271416; letter-spacing: .06em; }
+.tag-rule { background: linear-gradient(90deg, transparent, rgba(86,23,34,.48), transparent); }
+.profile-lines b { color: #4c1a24; }
+
+.open-label {
+  color: #9b7d69;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-size: .69rem;
+  gap: .7rem;
+}
+.open-label small {
+  display: block;
+  width: 100%;
+  margin-top: .55rem;
+  color: rgba(168,142,119,.52);
+  font-family: Georgia, serif;
+  font-size: .62rem;
+  font-style: italic;
+  letter-spacing: .08em;
+  text-transform: none;
+}
+
+.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); opacity: .5; }
+
+/* The reveal: darkness first, then the real cover becomes the jewel. */
+.reveal {
+  background:
+    radial-gradient(circle at 28% 45%, rgba(92,24,45,.16), transparent 29%),
+    linear-gradient(145deg, rgba(24,13,20,.96), rgba(10,8,12,.985));
+  border-color: rgba(141,104,69,.30);
+  box-shadow: 0 30px 85px rgba(0,0,0,.64), inset 0 0 70px rgba(69,15,31,.08);
+}
+
+.cover-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.35rem 1.35rem 1.15rem;
+  background: linear-gradient(145deg, rgba(16,10,14,.92), rgba(31,13,22,.74));
+  border: 1px solid rgba(151,112,72,.34);
+  box-shadow: inset 0 0 28px rgba(0,0,0,.32), 0 17px 35px rgba(0,0,0,.36);
+}
+.cover-card .book-kicker {
+  margin-bottom: .85rem;
+  color: #b99a70;
+  font-size: .66rem;
+  letter-spacing: .27em;
+}
+.cover-link {
+  display: block;
+  width: min(100%, 255px);
+  line-height: 0;
+  position: relative;
+  isolation: isolate;
+}
+.cover-link::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  z-index: -1;
+  border: 1px solid rgba(183,142,91,.30);
+  box-shadow: 0 0 28px rgba(117,33,61,.20);
+}
+.book-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 385px;
+  object-fit: contain;
+  box-shadow: 0 19px 38px rgba(0,0,0,.60), 0 0 28px rgba(112,32,58,.15);
+  filter: saturate(.96) contrast(1.02);
+  transition: transform .28s ease, filter .28s ease, box-shadow .28s ease;
+}
+.cover-link:hover .book-cover,
+.cover-link:focus-visible .book-cover {
+  transform: translateY(-3px) scale(1.008);
+  filter: saturate(1.04) contrast(1.03);
+  box-shadow: 0 22px 42px rgba(0,0,0,.66), 0 0 36px rgba(124,38,67,.22);
+}
+.cover-caption {
+  margin: .9rem 0 0;
+  text-align: center;
+  font-family: Georgia, serif;
+  color: #d6c2a1;
+  line-height: 1.35;
+}
+.cover-caption strong { display: block; font-weight: 500; font-size: 1rem; }
+.cover-caption span { display: block; margin-top: .2rem; color: #8f7468; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
+
+.profile-heading { border-bottom-color: rgba(142,100,68,.28); }
+.profile-number { color: #927861; }
+.profile-type { color: #8e3949; }
+.verdict { color: #d2b486; }
+.message { color: #b9a9a2; }
+.message strong { color: #d4b78d; }
+.details-title { color: #806b5d; }
+.chips span {
+  border-radius: 2px;
+  border-color: rgba(132,92,66,.30);
+  background: rgba(45,22,28,.34);
+  color: #a98d7a;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .62rem;
+}
+.warning-note { border-color: rgba(120,78,58,.25); background: rgba(54,22,28,.24); color: #9c8275; }
+.warning-note span { color: #74404a; }
+.reset { color: #a88d76; border-color: rgba(146,105,73,.32); background: rgba(16,10,13,.35); }
+.reset:hover { background: rgba(62,23,33,.34); color: #d1b58d; }
+
+@media (max-width: 700px) {
+  .cover-link { width: min(78vw, 255px); }
+  .book-cover { max-height: none; }
+}
+
+/* =========================================================
+   V3.2 — LUXURY GOTHIC ARTIFACT
+   Real/static hero asset + reusable CSS dossier tag.
+   Reveal styles above are intentionally left untouched.
+   ========================================================= */
+
+.parcel {
+  width: min(92vw, 470px);
+  min-height: 625px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.artifact-wrap {
+  position: relative;
+  display: block;
+  width: min(92vw, 430px);
+  aspect-ratio: 1211 / 1299;
+  transform: translateY(0) scale(1);
+  transform-origin: center 54%;
+  transition: transform .6s cubic-bezier(.18,.78,.18,1), filter .6s ease, opacity .38s ease;
+  filter: drop-shadow(0 32px 30px rgba(0,0,0,.72));
+}
+
+.artifact-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Reusable monthly dossier: deliberately separate from the artwork. */
+.artifact-wrap .gift-tag {
+  position: absolute;
+  z-index: 5;
+  top: 57%;
+  right: -1.5%;
+  left: auto;
+  width: 48%;
+  min-height: 0;
+  padding: 17px 16px 15px;
+  color: #d8bea0;
+  background:
+    linear-gradient(145deg, rgba(33,22,22,.96), rgba(17,12,14,.98)),
+    #191014;
+  border: 1px solid rgba(180,137,86,.45);
+  border-radius: 3px;
+  box-shadow:
+    0 16px 28px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(255,255,255,.025),
+    inset 0 0 26px rgba(112,46,52,.09);
+  transform: rotate(3deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,.7);
+}
+
+.artifact-wrap .gift-tag::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 11px;
+  top: 11px;
+  border: 1px solid rgba(178,136,85,.5);
+  border-radius: 50%;
+  background: radial-gradient(circle, #1b1114 40%, #806040 43% 50%, #130c0e 53%);
+  box-shadow: none;
+  transform: none;
+}
+
+.artifact-wrap .gift-tag::after {
+  content: "01";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: .47rem;
+  letter-spacing: .28em;
+  color: rgba(185,145,96,.48);
+}
+
+.artifact-wrap .gift-tag small {
+  display: block;
+  padding-left: 18px;
+  color: #b9966e;
+  font-size: .52rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+}
+
+.artifact-wrap .gift-tag .tag-rule {
+  display: block;
+  width: 64%;
+  height: 1px;
+  margin: 8px auto 9px;
+  background: linear-gradient(90deg, transparent, rgba(190,148,95,.5), transparent);
+}
+
+.artifact-wrap .gift-tag strong {
+  display: block;
+  color: #ead9c4;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 600;
+  line-height: .88;
+  letter-spacing: .06em;
+}
+
+.artifact-wrap .profile-lines {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+  font-size: clamp(.55rem, 1.8vw, .68rem);
+  color: #bea68e;
+}
+
+.artifact-wrap .profile-lines span {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(181,135,86,.18);
+}
+
+.artifact-wrap .profile-lines b {
+  color: #d8bea0;
+}
+
+.artifact-wrap .gift-tag em {
+  display: block;
+  margin-top: 9px;
+  color: #987b67;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .72rem;
+}
+
+.parcel-shadow {
+  width: 355px;
+  height: 58px;
+  top: 520px;
+  opacity: .55;
+}
+
+.open-label {
+  margin-top: -2px;
+  color: #d9b776;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-shadow: 0 0 14px rgba(183,119,53,.16), 0 2px 4px #000;
+  opacity: 1;
+}
+
+.open-label small {
+  display: block;
+  margin-top: 9px;
+  color: #bda59a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .9rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: .035em;
+  text-transform: none;
+}
+
+.parcel:hover .artifact-wrap,
+.parcel:focus-visible .artifact-wrap {
+  transform: translateY(-8px) scale(1.012);
+  filter: drop-shadow(0 40px 34px rgba(0,0,0,.78)) brightness(1.035);
+}
+
+.parcel:hover .artifact-wrap .gift-tag,
+.parcel:focus-visible .artifact-wrap .gift-tag {
+  transform: rotate(1.5deg) translateY(-2px);
+}
+
+.artifact-wrap .gift-tag {
+  transition: transform .55s cubic-bezier(.18,.78,.18,1), opacity .38s ease;
+}
+
+.opening .artifact-wrap {
+  transform: translateY(-4px) scale(.965);
+  filter: drop-shadow(0 25px 26px rgba(0,0,0,.75)) brightness(.72);
+  opacity: 0;
+}
+
+.opening .artifact-wrap .gift-tag {
+  transform: translate(30px,18px) rotate(10deg);
+  opacity: 0;
+}
+
+/* Defuse the old CSS-built parcel pieces; V3.2 uses the image asset instead. */
+.wrapped-book,
+.twine,
+.twine-knot,
+.wax-seal,
+.paper,
+.paper-fibers,
+.paper-stain,
+.corner-flourish,
+.book-edge { display: none !important; }
+
+@media (max-width: 560px) {
+  .parcel { width: min(96vw, 390px); min-height: 555px; }
+  .artifact-wrap { width: min(94vw, 365px); }
+  .artifact-wrap .gift-tag {
+    right: 1%;
+    top: 57%;
+    width: 51%;
+    padding: 14px 13px 13px;
+  }
+  .artifact-wrap .gift-tag em { font-size: .65rem; }
+  .open-label { margin-top: 0; font-size: .72rem; letter-spacing: .17em; }
+  .open-label small { font-size: .82rem; }
+  .parcel-shadow { top: 460px; width: 285px; }
+}
+
+@media (max-width: 380px) {
+  .artifact-wrap { width: min(96vw, 330px); }
+  .artifact-wrap .gift-tag { width: 53%; top: 58%; right: 0; }
+  .artifact-wrap .profile-lines span { gap: 5px; }
+}
+
+
+/* =========================================================
+   V3.4 — actual unopened-screen layout fix
+   Book asset + reveal are unchanged.
+   ========================================================= */
+
+/* Four-corner atmospheric glow: matching pink/plum at both top corners,
+   with restrained lower glows for balance. */
+body {
+  background:
+    radial-gradient(circle at 4% 4%, rgba(143,44,87,.24), transparent 25rem),
+    radial-gradient(circle at 96% 4%, rgba(143,44,87,.24), transparent 25rem),
+    radial-gradient(circle at 7% 94%, rgba(83,44,77,.14), transparent 27rem),
+    radial-gradient(circle at 93% 94%, rgba(143,44,87,.16), transparent 27rem),
+    radial-gradient(circle at 50% -4%, rgba(126,35,70,.24), transparent 34rem),
+    linear-gradient(180deg,#1a1018 0%,#0d080d 54%,#070507 100%);
+}
+
+/* Restore the texture overlay; V3.3 accidentally repurposed body::after. */
+body::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.17;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 4px),
+    linear-gradient(90deg,rgba(255,255,255,.01),transparent 24%,transparent 76%,rgba(255,255,255,.01));
+  mix-blend-mode:screen;
+}
+
+/* Give the desktop composition enough room for the dossier to live
+   BESIDE the book instead of on top of the CTA. */
+@media (min-width: 760px) {
+  .experience {
+    width: min(96vw, 1040px);
+  }
+
+  .parcel {
+    width: min(94vw, 920px);
+    min-height: 650px;
+    overflow: visible;
+  }
+
+  .artifact-wrap {
+    left: -125px;
+  }
+
+  .artifact-wrap .gift-tag {
+    top: 31%;
+    right: -285px;
+    left: auto;
+    width: 275px;
+    padding: 22px 22px 20px;
+    transform: rotate(3deg);
+  }
+
+  .artifact-wrap .gift-tag small {
+    padding-left: 20px;
+    font-size: .66rem;
+    letter-spacing: .20em;
+  }
+
+  .artifact-wrap .gift-tag strong {
+    font-size: 2.15rem;
+    line-height: .88;
+  }
+
+  .artifact-wrap .profile-lines {
+    margin-top: 16px;
+    gap: 8px;
+    font-size: .80rem;
+  }
+
+  .artifact-wrap .profile-lines span {
+    gap: 16px;
+    padding-bottom: 7px;
+  }
+
+  .artifact-wrap .gift-tag em {
+    margin-top: 13px;
+    font-size: .90rem;
+    color: #b89678;
+  }
+
+  /* Keep the CTA fully below the whole book+dossier composition. */
+  .open-label {
+    position: relative;
+    z-index: 12;
+    width: min(92vw, 720px);
+    margin-top: 22px;
+    color: #edcf8a;
+    font-size: .90rem;
+    line-height: 1.35;
+    letter-spacing: .24em;
+    text-shadow:
+      0 2px 5px rgba(0,0,0,.95),
+      0 0 18px rgba(217,185,119,.20);
+  }
+
+  .open-label small {
+    margin-top: 11px;
+    color: #d3c1b9;
+    font-size: 1.08rem;
+    line-height: 1.35;
+    letter-spacing: .025em;
+    text-shadow: 0 2px 6px rgba(0,0,0,.95);
+  }
+
+  /* Preserve horizontal placement during hover/focus. */
+  .parcel:hover .artifact-wrap,
+  .parcel:focus-visible .artifact-wrap {
+    transform: translateY(-8px) scale(1.012);
+  }
+
+  .parcel:hover .artifact-wrap .gift-tag,
+  .parcel:focus-visible .artifact-wrap .gift-tag {
+    transform: rotate(1.5deg) translateY(-2px);
+  }
+}
+
+/* Tablet/mobile: stack cleanly rather than forcing the side-by-side layout. */
+@media (max-width: 759px) {
+  .artifact-wrap {
+    left: 0;
+  }
+
+  .artifact-wrap .gift-tag {
+    top: 60%;
+    right: -1%;
+    left: auto;
+  }
+
+  .open-label {
+    margin-top: 18px;
+    color: #edcf8a;
+    font-size: .78rem;
+    line-height: 1.35;
+    letter-spacing: .16em;
+    text-shadow: 0 2px 5px rgba(0,0,0,.95);
+  }
+
+  .open-label small {
+    color: #d3c1b9;
+    font-size: .92rem;
+    line-height: 1.35;
+    text-shadow: 0 2px 6px rgba(0,0,0,.95);
+  }
+}
+
+
+/* =========================================================
+   V3.5 — transparent book + sparkfield atmosphere
+   No redesign to the book, dossier, CTA, or reveal.
+   ========================================================= */
+
+/* Kill the old blurred corner lamps entirely. */
+.ambient,
+.ambient-one,
+.ambient-two {
+  display: none !important;
+}
+
+/* Deep velvet-black/plum base, without the big radial light blobs. */
+body {
+  background:
+    linear-gradient(180deg, #120a11 0%, #0c080d 46%, #070507 100%) !important;
+}
+
+/* Keep the subtle physical texture, but do not create corner lighting. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.012) 0 1px,
+      transparent 1px 4px
+    );
+  mix-blend-mode: screen;
+}
+
+/* Fine star-dust/sparks instead of glowing corner blobs. */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .72 !important;
+  filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+
+  background-image:
+    /* top-left cluster */
+    radial-gradient(circle at 2% 5%, rgba(238,196,126,.88) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 5% 11%, rgba(191,85,132,.70) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 8% 3%, rgba(244,223,179,.74) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 11% 15%, rgba(222,168,101,.66) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 15% 7%, rgba(184,72,120,.58) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 18% 18%, rgba(238,196,126,.56) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 6% 23%, rgba(237,216,180,.62) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 22% 9%, rgba(206,104,145,.48) 0 1px, transparent 1.6px),
+
+    /* top-right cluster */
+    radial-gradient(circle at 98% 4%, rgba(238,196,126,.88) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 94% 12%, rgba(191,85,132,.70) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 91% 3%, rgba(244,223,179,.74) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 88% 16%, rgba(222,168,101,.66) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 84% 8%, rgba(184,72,120,.58) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 81% 20%, rgba(238,196,126,.56) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 95% 24%, rgba(237,216,180,.62) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 78% 10%, rgba(206,104,145,.48) 0 1px, transparent 1.6px),
+
+    /* lower-left dust */
+    radial-gradient(circle at 3% 92%, rgba(238,196,126,.64) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 8% 83%, rgba(191,85,132,.48) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 14% 96%, rgba(244,223,179,.52) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 18% 86%, rgba(222,168,101,.44) 0 .8px, transparent 1.4px),
+
+    /* lower-right dust */
+    radial-gradient(circle at 97% 93%, rgba(238,196,126,.64) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 92% 84%, rgba(191,85,132,.48) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 86% 96%, rgba(244,223,179,.52) 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 82% 87%, rgba(222,168,101,.44) 0 .8px, transparent 1.4px),
+
+    /* all-over faint dust */
+    radial-gradient(circle, rgba(237,210,161,.32) 0 .7px, transparent 1.1px),
+    radial-gradient(circle, rgba(162,72,111,.22) 0 .7px, transparent 1.2px),
+    radial-gradient(circle, rgba(255,245,226,.18) 0 .6px, transparent 1px);
+
+  background-size:
+    auto,auto,auto,auto,auto,auto,auto,auto,
+    auto,auto,auto,auto,auto,auto,auto,auto,
+    auto,auto,auto,auto,
+    auto,auto,auto,auto,
+    137px 137px,
+    211px 211px,
+    89px 89px;
+
+  background-position:
+    0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,
+    0 0,0 0,0 0,0 0,
+    11px 17px,
+    53px 71px,
+    27px 39px;
+}
+
+/* The PNG itself now has alpha, so make absolutely sure nothing behind it
+   reintroduces a rectangular plate. */
+.artifact-image,
+.forbidden-book,
+.artifact-wrap img {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   V3.6 — typography/readability polish only
+   Book, transparent asset, background, layout, reveal = untouched.
+   ========================================================= */
+
+/* Give the archetype title a more ceremonial/gothic display face. */
+.intro h1 {
+  font-family: "Cinzel Decorative", "Cormorant Garamond", serif;
+  font-size: clamp(3.35rem, 7.2vw, 6rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: .015em;
+}
+
+/* Slightly larger supporting intro text. */
+.eyebrow {
+  font-size: clamp(.72rem, 1vw, .86rem);
+}
+.teaser {
+  font-size: clamp(1.35rem, 1.8vw, 1.62rem);
+}
+
+/* Make the reusable CSS dossier comfortably readable. */
+.artifact-wrap .gift-tag {
+  width: 300px;
+  padding: 25px 24px 22px;
+}
+
+.artifact-wrap .gift-tag small {
+  font-size: .76rem;
+  letter-spacing: .19em;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.45rem;
+  line-height: .88;
+}
+
+.artifact-wrap .profile-lines {
+  margin-top: 18px;
+  gap: 9px;
+  font-size: .94rem;
+}
+
+.artifact-wrap .profile-lines span {
+  padding-bottom: 8px;
+}
+
+.artifact-wrap .gift-tag em {
+  margin-top: 14px;
+  font-size: 1rem;
+}
+
+/* CTA and binding warning: deliberately larger, still elegant. */
+.open-label {
+  font-size: 1.08rem !important;
+  line-height: 1.4;
+  letter-spacing: .22em !important;
+}
+
+.open-label small {
+  margin-top: 12px;
+  font-size: 1.18rem !important;
+  line-height: 1.45;
+  letter-spacing: .02em !important;
+}
+
+/* Keep the side-by-side composition balanced after enlarging the card. */
+@media (min-width: 760px) {
+  .artifact-wrap .gift-tag {
+    right: -315px;
+  }
+}
+
+/* Don't let the larger typography bully smaller screens. */
+@media (max-width: 759px) {
+  .intro h1 {
+    font-size: clamp(2.65rem, 12vw, 4rem);
+  }
+
+  .artifact-wrap .gift-tag {
+    width: 56%;
+    padding: 16px 14px 14px;
+  }
+
+  .artifact-wrap .gift-tag small {
+    font-size: .55rem;
+  }
+
+  .artifact-wrap .gift-tag strong {
+    font-size: 1.55rem;
+  }
+
+  .artifact-wrap .profile-lines {
+    font-size: .66rem;
+  }
+
+  .artifact-wrap .gift-tag em {
+    font-size: .72rem;
+  }
+
+  .open-label {
+    font-size: .82rem !important;
+    letter-spacing: .14em !important;
+  }
+
+  .open-label small {
+    font-size: .96rem !important;
+  }
+}
+
+
+/* =========================================================
+   V3.7 — MAKE THE TINY SHIT READABLE
+   Typography only. Book/background/reveal untouched.
+   ========================================================= */
+
+/* The VERY TOP archetype title — deliberately and visibly different. */
+.intro h1 {
+  font-family: "UnifrakturCook", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(4rem, 7.4vw, 6.6rem) !important;
+  font-weight: 700 !important;
+  line-height: .94 !important;
+  letter-spacing: .01em !important;
+}
+
+/* Dossier: prioritize legibility over dainty tiny type. */
+.artifact-wrap .gift-tag small {
+  font-size: .88rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: .15em !important;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.55rem !important;
+  line-height: .92 !important;
+}
+
+.artifact-wrap .profile-lines {
+  font-size: 1.08rem !important;
+  line-height: 1.3 !important;
+}
+
+.artifact-wrap .profile-lines span,
+.artifact-wrap .profile-lines b {
+  font-size: inherit !important;
+}
+
+.artifact-wrap .gift-tag em {
+  font-size: 1.12rem !important;
+  line-height: 1.35 !important;
+}
+
+/* Bottom CTA: keep the sparkles, make the invitation impossible to miss. */
+.open-label {
+  font-size: 1.32rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: .18em !important;
+}
+
+.open-label small {
+  display: block !important;
+  margin-top: 14px !important;
+  font-size: 1.42rem !important;
+  line-height: 1.45 !important;
+  letter-spacing: .01em !important;
+}
+
+/* Mobile stays readable without exploding off-screen. */
+@media (max-width: 759px) {
+  .intro h1 {
+    font-size: clamp(3rem, 13vw, 4.5rem) !important;
+  }
+
+  .artifact-wrap .gift-tag small {
+    font-size: .66rem !important;
+  }
+
+  .artifact-wrap .gift-tag strong {
+    font-size: 1.72rem !important;
+  }
+
+  .artifact-wrap .profile-lines {
+    font-size: .78rem !important;
+  }
+
+  .artifact-wrap .gift-tag em {
+    font-size: .82rem !important;
+  }
+
+  .open-label {
+    font-size: .94rem !important;
+  }
+
+  .open-label small {
+    font-size: 1.08rem !important;
+  }
+}
+
+
+/* =========================================================
+   V3.8 — STOP MAKING BRITT SQUINT
+   CSS only: larger type + brighter stage + reliable title font.
+   Book image and reveal remain untouched.
+   ========================================================= */
+
+/* A lighter plum-black stage with a soft CENTER lift behind the book.
+   No return of the giant corner lamps. */
+body {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(83, 35, 61, .34) 0%, rgba(38, 18, 31, .18) 31%, transparent 58%),
+    linear-gradient(180deg, #1b1019 0%, #130c13 48%, #0d090e 100%) !important;
+}
+
+/* Header: make the whole hierarchy easier to read. */
+.eyebrow {
+  font-size: 1rem !important;
+  letter-spacing: .25em !important;
+}
+
+.intro h1 {
+  /* Deliberately uses a built-in/local display stack so it WILL change
+     even if Google Fonts decides to be a little bastard. */
+  font-family: "Copperplate", "Copperplate Gothic Light", "Palatino Linotype", Georgia, serif !important;
+  font-size: clamp(4.5rem, 8.4vw, 7.4rem) !important;
+  font-weight: 500 !important;
+  line-height: .94 !important;
+  letter-spacing: .015em !important;
+  font-variant: small-caps;
+}
+
+.teaser {
+  font-size: 1.7rem !important;
+  line-height: 1.25 !important;
+}
+
+/* Bigger dossier/card so the larger type has room to breathe. */
+@media (min-width: 760px) {
+  .artifact-wrap .gift-tag {
+    width: 340px !important;
+    padding: 29px 28px 26px !important;
+    right: -360px !important;
+  }
+}
+
+.artifact-wrap .gift-tag small {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: .14em !important;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.9rem !important;
+  line-height: .94 !important;
+}
+
+.artifact-wrap .profile-lines {
+  margin-top: 21px !important;
+  gap: 11px !important;
+  font-size: 1.24rem !important;
+  line-height: 1.35 !important;
+}
+
+.artifact-wrap .profile-lines span {
+  padding-bottom: 10px !important;
+}
+
+.artifact-wrap .profile-lines b {
+  font-size: 1.24rem !important;
+  font-weight: 700 !important;
+}
+
+.artifact-wrap .gift-tag em {
+  margin-top: 17px !important;
+  font-size: 1.28rem !important;
+  line-height: 1.35 !important;
+}
+
+/* Bottom invitation: this is a CTA, not a footnote. */
+.open-label {
+  margin-top: 28px !important;
+  font-size: 1.58rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: .15em !important;
+  font-weight: 700 !important;
+}
+
+.open-label > span {
+  font-size: 1rem !important;
+  margin: 0 12px !important;
+}
+
+.open-label small {
+  display: block !important;
+  margin-top: 15px !important;
+  font-size: 1.62rem !important;
+  line-height: 1.45 !important;
+  letter-spacing: .005em !important;
+  font-weight: 500 !important;
+}
+
+/* Mobile: still substantially larger than before. */
+@media (max-width: 759px) {
+  .eyebrow { font-size: .78rem !important; }
+
+  .intro h1 {
+    font-size: clamp(3.2rem, 14vw, 5rem) !important;
+  }
+
+  .teaser { font-size: 1.35rem !important; }
+
+  .artifact-wrap .gift-tag {
+    width: 62% !important;
+    padding: 18px 16px 16px !important;
+  }
+
+  .artifact-wrap .gift-tag small { font-size: .72rem !important; }
+  .artifact-wrap .gift-tag strong { font-size: 1.95rem !important; }
+  .artifact-wrap .profile-lines,
+  .artifact-wrap .profile-lines b { font-size: .88rem !important; }
+  .artifact-wrap .gift-tag em { font-size: .92rem !important; }
+
+  .open-label {
+    font-size: 1.05rem !important;
+    letter-spacing: .11em !important;
+  }
+
+  .open-label small { font-size: 1.18rem !important; }
+}
+
+
+/* =========================================================
+   V3.9 — GOLDILOCKS TYPOGRAPHY
+   Keep V3.8's brighter background.
+   Only rebalance type/card sizing and spacing.
+   Book + reveal remain untouched.
+   ========================================================= */
+
+/* Top title: elegant gothic/small-caps, not screaming. */
+.intro h1 {
+  font-family: "Cormorant SC", "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(3.8rem, 6.4vw, 5.6rem) !important;
+  font-weight: 600 !important;
+  line-height: .96 !important;
+  letter-spacing: .02em !important;
+  font-variant: normal !important;
+}
+
+/* Supporting header copy: readable but restrained. */
+.eyebrow {
+  font-size: .88rem !important;
+  letter-spacing: .23em !important;
+}
+
+.teaser {
+  font-size: 1.42rem !important;
+  line-height: 1.25 !important;
+}
+
+/* Card: between V3.7 and V3.8, with enough breathing room. */
+@media (min-width: 760px) {
+  .artifact-wrap .gift-tag {
+    width: 305px !important;
+    padding: 25px 24px 22px !important;
+    right: -325px !important;
+  }
+}
+
+.artifact-wrap .gift-tag small {
+  font-size: .82rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: .15em !important;
+}
+
+.artifact-wrap .gift-tag strong {
+  font-size: 2.45rem !important;
+  line-height: .92 !important;
+}
+
+.artifact-wrap .profile-lines {
+  margin-top: 18px !important;
+  gap: 9px !important;
+  font-size: 1.02rem !important;
+  line-height: 1.3 !important;
+}
+
+.artifact-wrap .profile-lines span {
+  padding-bottom: 8px !important;
+}
+
+.artifact-wrap .profile-lines b {
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+}
+
+.artifact-wrap .gift-tag em {
+  margin-top: 14px !important;
+  font-size: 1.02rem !important;
+  line-height: 1.35 !important;
+}
+
+/* CTA: obvious, but not enormous. */
+.open-label {
+  margin-top: 28px !important;
+  font-size: 1.2rem !important;
+  line-height: 1.4 !important;
+  letter-spacing: .17em !important;
+  font-weight: 700 !important;
+}
+
+.open-label > span {
+  font-size: .92rem !important;
+  margin: 0 10px !important;
+}
+
+.open-label small {
+  display: block !important;
+  margin-top: 12px !important;
+  font-size: 1.22rem !important;
+  line-height: 1.45 !important;
+  letter-spacing: .01em !important;
+  font-weight: 500 !important;
+}
+
+/* Keep the card and CTA from colliding visually. */
+@media (min-width: 760px) {
+  .parcel {
+    min-height: 675px !important;
+  }
+}
+
+/* Mobile tuning */
+@media (max-width: 759px) {
+  .intro h1 {
+    font-size: clamp(2.9rem, 12vw, 4.2rem) !important;
+  }
+
+  .eyebrow { font-size: .72rem !important; }
+  .teaser { font-size: 1.2rem !important; }
+
+  .artifact-wrap .gift-tag {
+    width: 58% !important;
+    padding: 16px 14px 14px !important;
+  }
+
+  .artifact-wrap .gift-tag small { font-size: .60rem !important; }
+  .artifact-wrap .gift-tag strong { font-size: 1.65rem !important; }
+
+  .artifact-wrap .profile-lines,
+  .artifact-wrap .profile-lines b {
+    font-size: .74rem !important;
+  }
+
+  .artifact-wrap .gift-tag em { font-size: .78rem !important; }
+
+  .open-label {
+    font-size: .9rem !important;
+    letter-spacing: .13em !important;
+  }
+
+  .open-label small {
+    font-size: 1rem !important;
+  }
+}
+
+
+/* =========================================================
+   THE YEARNER — DATE No. 02
+   V3.9 layout remains the baseline; this section changes
+   only palette/material language for the second date.
+   ========================================================= */
+
+:root {
+  --yearner-ink: #0b0d17;
+  --yearner-indigo: #17172d;
+  --yearner-plum: #211725;
+  --yearner-silver: #c8c9d4;
+  --yearner-moon: #d9ccb0;
+  --yearner-muted: #aaa8b6;
+}
+
+/* Midnight-indigo atmosphere, still bright enough to read the book. */
+body {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(58, 58, 103, .34) 0%, rgba(34, 27, 55, .20) 32%, transparent 59%),
+    linear-gradient(180deg, #171320 0%, #100f19 49%, #090a11 100%) !important;
+}
+
+/* Cool the spark dust so this date feels moonlit rather than dangerous. */
+.stars {
+  opacity: .72 !important;
+  filter: saturate(.72) hue-rotate(165deg) brightness(1.12);
+}
+
+.eyebrow,
+.intro-rule,
+.open-label,
+.book-kicker,
+.profile-number,
+.details-title {
+  color: var(--yearner-moon) !important;
+}
+
+.intro h1 {
+  color: #f3f0ef !important;
+  text-shadow: 0 0 34px rgba(156, 163, 205, .08);
+}
+
+.teaser {
+  color: #bbb8c6 !important;
+}
+
+/* The dossier becomes an archived blue-gray love letter. */
+.artifact-wrap .gift-tag {
+  background:
+    linear-gradient(145deg, rgba(29, 31, 48, .98), rgba(15, 17, 29, .985)) !important;
+  border-color: rgba(190, 190, 207, .38) !important;
+  box-shadow:
+    0 28px 58px rgba(0, 0, 0, .42),
+    inset 0 0 0 1px rgba(221, 220, 228, .035) !important;
+  color: #d5d2db !important;
+}
+
+.artifact-wrap .gift-tag::before,
+.artifact-wrap .gift-tag::after {
+  border-color: rgba(204, 202, 215, .22) !important;
+}
+
+.artifact-wrap .gift-tag small,
+.artifact-wrap .gift-tag em {
+  color: #a9a7b5 !important;
+}
+
+.artifact-wrap .gift-tag strong {
+  color: #ece9ed !important;
+}
+
+.artifact-wrap .tag-rule,
+.artifact-wrap .profile-lines span {
+  border-color: rgba(197, 197, 210, .17) !important;
+}
+
+.artifact-wrap .profile-lines b {
+  color: #d3c6aa !important;
+}
+
+.open-label small {
+  color: #c4c0ca !important;
+}
+
+/* Reveal keeps the locked structure; only the mood shifts. */
+.reveal {
+  --accent: #d7c9aa;
+  --accent-soft: #b8b9ca;
+}
+
+.match-badge {
+  color: #d7c9aa !important;
+  border-color: rgba(199, 199, 214, .32) !important;
+  box-shadow: 0 0 35px rgba(142, 149, 194, .12) !important;
+}
+
+.match,
+.verdict,
+.profile-type {
+  color: #ece8eb !important;
+}
+
+.match-sub,
+.message,
+.cover-caption span,
+.warning-note p {
+  color: #b9b6c1 !important;
+}
+
+.date-profile,
+.book-card {
+  border-color: rgba(190, 190, 205, .20) !important;
+  background:
+    linear-gradient(155deg, rgba(29, 29, 45, .80), rgba(13, 14, 23, .88)) !important;
+}
+
+.chips span {
+  border-color: rgba(193, 193, 207, .24) !important;
+  background: rgba(174, 179, 205, .055) !important;
+  color: #cfccd5 !important;
+}
+
+.warning-note {
+  border-color: rgba(200, 193, 211, .15) !important;
+  background: rgba(120, 126, 158, .05) !important;
+}
+
+.warning-note > span {
+  color: #cfc4aa !important;
+}
+
+.reset {
+  color: #bbb8c5 !important;
+}
