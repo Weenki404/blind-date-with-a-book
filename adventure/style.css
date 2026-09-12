@@ -1685,23 +1685,3 @@ body {
 .artifact-wrap {
   margin-bottom: 2rem;
 }
-
-/* A little more magical than the original — without the glitter bomb. */
-.stars {
-  opacity: 0.65 !important;
-
-  background-image:
-    radial-gradient(circle, rgba(238, 207, 145, .78) 0 .8px, transparent 1.2px),
-    radial-gradient(circle, rgba(255, 244, 215, .42) 0 .6px, transparent 1px),
-    radial-gradient(circle, rgba(210, 228, 194, .28) 0 .5px, transparent .9px) !important;
-
-  background-size:
-    347px 263px,
-    521px 389px,
-    197px 311px !important;
-
-  background-position:
-    31px 79px,
-    173px 41px,
-    89px 157px !important;
-}
