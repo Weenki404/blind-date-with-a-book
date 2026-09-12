@@ -453,3 +453,229 @@ body {
   .cover-link { width: min(78vw, 255px); }
   .book-cover { max-height: none; }
 }
+
+/* =========================================================
+   V3.2 — LUXURY GOTHIC ARTIFACT
+   Real/static hero asset + reusable CSS dossier tag.
+   Reveal styles above are intentionally left untouched.
+   ========================================================= */
+
+.parcel {
+  width: min(92vw, 470px);
+  min-height: 625px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.artifact-wrap {
+  position: relative;
+  display: block;
+  width: min(92vw, 430px);
+  aspect-ratio: 1211 / 1299;
+  transform: translateY(0) scale(1);
+  transform-origin: center 54%;
+  transition: transform .6s cubic-bezier(.18,.78,.18,1), filter .6s ease, opacity .38s ease;
+  filter: drop-shadow(0 32px 30px rgba(0,0,0,.72));
+}
+
+.artifact-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Reusable monthly dossier: deliberately separate from the artwork. */
+.artifact-wrap .gift-tag {
+  position: absolute;
+  z-index: 5;
+  top: 57%;
+  right: -1.5%;
+  left: auto;
+  width: 48%;
+  min-height: 0;
+  padding: 17px 16px 15px;
+  color: #d8bea0;
+  background:
+    linear-gradient(145deg, rgba(33,22,22,.96), rgba(17,12,14,.98)),
+    #191014;
+  border: 1px solid rgba(180,137,86,.45);
+  border-radius: 3px;
+  box-shadow:
+    0 16px 28px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(255,255,255,.025),
+    inset 0 0 26px rgba(112,46,52,.09);
+  transform: rotate(3deg);
+  text-shadow: 0 1px 1px rgba(0,0,0,.7);
+}
+
+.artifact-wrap .gift-tag::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 11px;
+  top: 11px;
+  border: 1px solid rgba(178,136,85,.5);
+  border-radius: 50%;
+  background: radial-gradient(circle, #1b1114 40%, #806040 43% 50%, #130c0e 53%);
+  box-shadow: none;
+  transform: none;
+}
+
+.artifact-wrap .gift-tag::after {
+  content: "01";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: .47rem;
+  letter-spacing: .28em;
+  color: rgba(185,145,96,.48);
+}
+
+.artifact-wrap .gift-tag small {
+  display: block;
+  padding-left: 18px;
+  color: #b9966e;
+  font-size: .52rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+}
+
+.artifact-wrap .gift-tag .tag-rule {
+  display: block;
+  width: 64%;
+  height: 1px;
+  margin: 8px auto 9px;
+  background: linear-gradient(90deg, transparent, rgba(190,148,95,.5), transparent);
+}
+
+.artifact-wrap .gift-tag strong {
+  display: block;
+  color: #ead9c4;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 600;
+  line-height: .88;
+  letter-spacing: .06em;
+}
+
+.artifact-wrap .profile-lines {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+  font-size: clamp(.55rem, 1.8vw, .68rem);
+  color: #bea68e;
+}
+
+.artifact-wrap .profile-lines span {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(181,135,86,.18);
+}
+
+.artifact-wrap .profile-lines b {
+  color: #d8bea0;
+}
+
+.artifact-wrap .gift-tag em {
+  display: block;
+  margin-top: 9px;
+  color: #987b67;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .72rem;
+}
+
+.parcel-shadow {
+  width: 355px;
+  height: 58px;
+  top: 520px;
+  opacity: .55;
+}
+
+.open-label {
+  margin-top: -2px;
+  color: #d9b776;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-shadow: 0 0 14px rgba(183,119,53,.16), 0 2px 4px #000;
+  opacity: 1;
+}
+
+.open-label small {
+  display: block;
+  margin-top: 9px;
+  color: #bda59a;
+  font-family: "Cormorant Garamond", serif;
+  font-size: .9rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: .035em;
+  text-transform: none;
+}
+
+.parcel:hover .artifact-wrap,
+.parcel:focus-visible .artifact-wrap {
+  transform: translateY(-8px) scale(1.012);
+  filter: drop-shadow(0 40px 34px rgba(0,0,0,.78)) brightness(1.035);
+}
+
+.parcel:hover .artifact-wrap .gift-tag,
+.parcel:focus-visible .artifact-wrap .gift-tag {
+  transform: rotate(1.5deg) translateY(-2px);
+}
+
+.artifact-wrap .gift-tag {
+  transition: transform .55s cubic-bezier(.18,.78,.18,1), opacity .38s ease;
+}
+
+.opening .artifact-wrap {
+  transform: translateY(-4px) scale(.965);
+  filter: drop-shadow(0 25px 26px rgba(0,0,0,.75)) brightness(.72);
+  opacity: 0;
+}
+
+.opening .artifact-wrap .gift-tag {
+  transform: translate(30px,18px) rotate(10deg);
+  opacity: 0;
+}
+
+/* Defuse the old CSS-built parcel pieces; V3.2 uses the image asset instead. */
+.wrapped-book,
+.twine,
+.twine-knot,
+.wax-seal,
+.paper,
+.paper-fibers,
+.paper-stain,
+.corner-flourish,
+.book-edge { display: none !important; }
+
+@media (max-width: 560px) {
+  .parcel { width: min(96vw, 390px); min-height: 555px; }
+  .artifact-wrap { width: min(94vw, 365px); }
+  .artifact-wrap .gift-tag {
+    right: 1%;
+    top: 57%;
+    width: 51%;
+    padding: 14px 13px 13px;
+  }
+  .artifact-wrap .gift-tag em { font-size: .65rem; }
+  .open-label { margin-top: 0; font-size: .72rem; letter-spacing: .17em; }
+  .open-label small { font-size: .82rem; }
+  .parcel-shadow { top: 460px; width: 285px; }
+}
+
+@media (max-width: 380px) {
+  .artifact-wrap { width: min(96vw, 330px); }
+  .artifact-wrap .gift-tag { width: 53%; top: 58%; right: 0; }
+  .artifact-wrap .profile-lines span { gap: 5px; }
+}
