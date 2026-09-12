@@ -1,14 +1,18 @@
-const area = document.querySelector('.gift-area');
-const gift = document.getElementById('gift');
+const experience = document.getElementById('experience');
+const parcel = document.getElementById('parcel');
 const reveal = document.getElementById('reveal');
 const reset = document.getElementById('reset');
 
-gift.addEventListener('click', () => {
-  area.classList.add('opened');
+parcel.addEventListener('click', () => {
+  experience.classList.add('opened');
   reveal.setAttribute('aria-hidden', 'false');
+
+  window.setTimeout(() => {
+    reveal.focus?.();
+  }, 800);
 });
 
 reset.addEventListener('click', () => {
-  area.classList.remove('opened');
+  experience.classList.remove('opened');
   reveal.setAttribute('aria-hidden', 'true');
 });

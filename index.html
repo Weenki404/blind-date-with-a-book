@@ -3,39 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#120b11">
   <title>Blind Date With a Book</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="stage">
-    <p class="eyebrow">💌 YOUR BLIND DATE HAS ARRIVED</p>
-    <h1 id="archetype">The Bad Decision</h1>
-    <p id="teaser" class="teaser">You were warned.</p>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-    <section class="gift-area">
-      <button id="gift" class="gift" aria-label="Open your blind date">
-        <span class="box">
-          <span class="ribbon-v"></span>
-          <span class="ribbon-h"></span>
-          <span class="bow bow-left"></span>
-          <span class="bow bow-right"></span>
-          <span class="tag">#1<br><strong>The Bad<br>Decision</strong></span>
+  <main class="stage">
+    <header class="intro">
+      <p class="eyebrow">💌 YOUR BLIND DATE HAS ARRIVED</p>
+      <h1>The Bad Decision</h1>
+      <p class="teaser">You were warned.</p>
+    </header>
+
+    <section class="experience" id="experience">
+      <button class="parcel" id="parcel" aria-label="Open your blind date">
+        <span class="parcel-shadow"></span>
+
+        <span class="wrapped-book">
+          <span class="paper paper-left"></span>
+          <span class="paper paper-right"></span>
+          <span class="paper-texture"></span>
+
+          <span class="twine twine-v"></span>
+          <span class="twine twine-h"></span>
+
+          <span class="wax-seal" aria-hidden="true">
+            <span>♥</span>
+          </span>
+
+          <span class="gift-tag">
+            <small>DATE No. 01</small>
+            <strong>The Bad<br>Decision</strong>
+            <em>handle with poor judgment</em>
+          </span>
         </span>
-        <span class="open-label">Click to open your date</span>
+
+        <span class="open-label">
+          <span class="spark">✦</span>
+          Click to unwrap your date
+          <span class="spark">✦</span>
+        </span>
       </button>
 
-      <article id="reveal" class="reveal" aria-hidden="true">
-        <div class="heart">♥</div>
+      <article class="reveal" id="reveal" aria-hidden="true">
+        <div class="match-badge">♥</div>
         <p class="match">IT'S A MATCH</p>
-        <h2>Amid Clouds and Bones</h2>
-        <p class="author">Ella Fields</p>
-        <p class="message">You knowingly chose The Bad Decision.<br>We accept no responsibility for what happens next.</p>
-        <button id="reset" class="reset">Wrap it back up</button>
+
+        <div class="book-card" aria-label="Book title card">
+          <span class="book-kicker">YOUR DATE IS</span>
+          <h2>Amid Clouds<br>and Bones</h2>
+          <div class="divider"><span>✦</span></div>
+          <p class="author">Ella Fields</p>
+        </div>
+
+        <p class="verdict">Dangerously compatible.</p>
+        <p class="message">
+          You knowingly chose <strong>The Bad Decision.</strong><br>
+          We accept no responsibility for what happens next.
+        </p>
+
+        <div class="details">
+          <p class="details-title">YOUR DATE'S PARTICULAR BRAND OF NONSENSE</p>
+          <div class="chips" aria-label="Book tropes and vibes">
+            <span>enemies to lovers</span>
+            <span>arranged marriage</span>
+            <span>fae courts</span>
+            <span>betrayal</span>
+            <span>morally gray</span>
+            <span>high spice</span>
+          </div>
+        </div>
+
+        <button id="reset" class="reset">↶ Wrap it back up</button>
       </article>
     </section>
 
-    <footer>Blind Date With a Book · test package #1</footer>
+    <footer>Blind Date With a Book · Huzzah</footer>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
