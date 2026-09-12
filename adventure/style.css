@@ -1678,3 +1678,27 @@ body {
 .reset {
   color: #bcb19f !important;
 }
+
+/* Adventure final polish */
+
+/* Give the dossier/tag more breathing room above the CTA */
+.artifact-wrap {
+  margin-bottom: 2rem;
+}
+
+/* Brighter, denser star field */
+.stars {
+  opacity: 0.9 !important;
+  background-image:
+    radial-gradient(circle, rgba(238, 207, 145, .85) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 244, 215, .55) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(210, 228, 194, .45) .8px, transparent 1.3px) !important;
+  background-size:
+    83px 83px,
+    127px 127px,
+    53px 53px !important;
+  background-position:
+    7px 13px,
+    31px 47px,
+    19px 5px !important;
+}
