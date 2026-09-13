@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#2b151f">
   <title>The Sweetheart · Blind Date With a Book</title>
-  <link rel="stylesheet" href="style.css?v=sweetheart-1">
+  <link rel="stylesheet" href="style.css?v=sweetheart-review-1">
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -95,6 +95,107 @@
         </div>
 
         <button id="reset" class="reset" type="button">↶ Wrap it back up</button>
+        <section class="date-review sweetheart-review" id="date-review" aria-labelledby="review-title">
+          <button class="review-toggle" id="review-toggle" type="button" aria-expanded="false" aria-controls="review-panel">
+            <span aria-hidden="true">♥</span> REVIEW YOUR DATE
+          </button>
+
+          <div class="review-panel" id="review-panel" hidden>
+            <div class="review-card-sheen" aria-hidden="true"></div>
+            <div class="review-card-stars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="review-card-seal" aria-hidden="true">♡</div>
+
+            <p class="review-kicker">POST-DATE CORRESPONDENCE</p>
+            <h2 id="review-title">So. Was basic kindness everything we promised?</h2>
+            <p class="review-intro">Please document this suspiciously functional romantic encounter for House records.</p>
+
+            <form id="review-form" class="review-form">
+              <label class="review-field">
+                <span>Discord name <em>optional</em></span>
+                <input type="text" name="discordName" maxlength="80" autocomplete="nickname" placeholder="Anonymous swooning is permitted">
+              </label>
+
+              <fieldset class="rating-field">
+                <legend>Overall Date Rating</legend>
+                <div class="rating-options" aria-label="Overall Date Rating">
+                  <label><input type="radio" name="overallRating" value="1" required><span>★<small>1</small></span></label>
+                  <label><input type="radio" name="overallRating" value="2"><span>★★<small>2</small></span></label>
+                  <label><input type="radio" name="overallRating" value="3"><span>★★★<small>3</small></span></label>
+                  <label><input type="radio" name="overallRating" value="4"><span>★★★★<small>4</small></span></label>
+                  <label><input type="radio" name="overallRating" value="5"><span>★★★★★<small>5</small></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="rating-field">
+                <legend>Chemistry</legend>
+                <div class="rating-options" aria-label="Chemistry">
+                  <label><input type="radio" name="chemistry" value="1" required><span>♥<small>1</small></span></label>
+                  <label><input type="radio" name="chemistry" value="2"><span>♥♥<small>2</small></span></label>
+                  <label><input type="radio" name="chemistry" value="3"><span>♥♥♥<small>3</small></span></label>
+                  <label><input type="radio" name="chemistry" value="4"><span>♥♥♥♥<small>4</small></span></label>
+                  <label><input type="radio" name="chemistry" value="5"><span>♥♥♥♥♥<small>5</small></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="rating-field">
+                <legend>Spice</legend>
+                <div class="rating-options" aria-label="Spice">
+                  <label><input type="radio" name="spice" value="1" required><span>🌶️<small>1</small></span></label>
+                  <label><input type="radio" name="spice" value="2"><span>🌶️🌶️<small>2</small></span></label>
+                  <label><input type="radio" name="spice" value="3"><span>🌶️🌶️🌶️<small>3</small></span></label>
+                  <label><input type="radio" name="spice" value="4"><span>🌶️🌶️🌶️🌶️<small>4</small></span></label>
+                  <label><input type="radio" name="spice" value="5"><span>🌶️🌶️🌶️🌶️🌶️<small>5</small></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="choice-field">
+                <legend>Reading Status</legend>
+                <div class="choice-options">
+                  <label><input type="radio" name="status" value="Finished" required><span>✓ Finished</span></label>
+                  <label><input type="radio" name="status" value="DNF'd"><span>↶ DNF'd</span></label>
+                  <label><input type="radio" name="status" value="Still being treated suspiciously well"><span>♥ Still being treated suspiciously well</span></label>
+                </div>
+              </fieldset>
+
+              <label class="review-field">
+                <span>Biggest Green Flag</span>
+                <textarea name="greenFlag" rows="3" maxlength="600" required placeholder="Go on. We know there were several."></textarea>
+              </label>
+
+              <label class="review-field">
+                <span>Biggest Red Flag</span>
+                <textarea name="redFlag" rows="3" maxlength="600" required placeholder="Surely there was one? Somewhere?"></textarea>
+              </label>
+
+              <label class="review-field">
+                <span>Describe the date in one sentence</span>
+                <textarea name="oneSentence" rows="3" maxlength="800" required placeholder="Try not to make the other dates look too bad."></textarea>
+              </label>
+
+              <fieldset class="choice-field">
+                <legend>Would you see them again?</legend>
+                <div class="choice-options">
+                  <label><input type="radio" name="wouldDateAgain" value="Immediately" required><span>♥ Immediately</span></label>
+                  <label><input type="radio" name="wouldDateAgain" value="After I recover from being respected"><span>⚜ After I recover from being respected</span></label>
+                  <label><input type="radio" name="wouldDateAgain" value="Friends"><span>✕ Friends</span></label>
+                  <label><input type="radio" name="wouldDateAgain" value="No, but he deserves someone lovely"><span>🔥 No, but he deserves someone lovely</span></label>
+                </div>
+              </fieldset>
+
+              <button class="submit-review" id="submit-review" type="submit">♡ SEND THE LOVE LETTER ♡</button>
+              <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="review-success" id="review-success" hidden>
+              <div class="success-seal" aria-hidden="true">♡</div>
+              <span aria-hidden="true">✦ ❀ ✦</span>
+              <h2>Your love letter has been delivered.</h2>
+              <p>The Matchmaking House is trying very hard not to say “we told you so.”</p>
+            </div>
+          </div>
+        </section>
       </article>
 
       <div class="motes" aria-hidden="true">
@@ -105,6 +206,6 @@
     <footer>Blind Date With a Book · by Weenki</footer>
   </main>
 
-  <script src="script.js?v=sweetheart-1"></script>
+  <script src="script.js?v=sweetheart-review-1"></script>
 </body>
 </html>
