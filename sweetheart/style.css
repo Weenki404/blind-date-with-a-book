@@ -362,7 +362,7 @@ body {
   text-transform: none;
 }
 
-.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); opacity: .5; }
+.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); }
 
 /* The reveal: darkness first, then the real cover becomes the jewel. */
 .reveal {
