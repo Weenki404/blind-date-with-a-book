@@ -1685,3 +1685,395 @@ body {
 .artifact-wrap {
   margin-bottom: 2rem;
 }
+
+/* =========================================================
+   POST-DATE REVIEW — THE ADVENTURE DATE
+   ========================================================= */
+.date-review{
+  width:min(94vw,760px);
+  margin:30px auto 0;
+  text-align:center;
+}
+.review-toggle{
+  padding:13px 24px;
+  border:1px solid rgba(184,194,232,.42);
+  border-radius:999px;
+  background:linear-gradient(145deg,rgba(36,42,78,.78),rgba(15,18,38,.92));
+  color:#dce4ff;
+  font-family:"DM Sans",sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  cursor:pointer;
+  box-shadow:0 10px 28px rgba(0,0,0,.28),0 0 22px rgba(112,130,203,.10);
+  transition:.2s ease;
+}
+.review-toggle:hover{border-color:rgba(205,214,249,.72);transform:translateY(-2px)}
+.review-toggle:focus-visible,.submit-review:focus-visible{outline:2px solid #cdd6f9;outline-offset:4px}
+
+.review-panel{
+  margin-top:22px;
+  padding:30px clamp(18px,4vw,38px) 34px;
+  border:1px solid rgba(159,174,225,.26);
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(90,104,166,.16),transparent 24rem),
+    linear-gradient(155deg,rgba(20,24,49,.97),rgba(10,12,27,.98));
+  box-shadow:0 28px 65px rgba(0,0,0,.42),inset 0 0 40px rgba(88,102,166,.05);
+  text-align:left;
+}
+.review-panel[hidden]{display:none}
+.review-kicker{margin:0 0 8px;text-align:center;color:#9eabd8;font-size:.62rem;font-weight:700;letter-spacing:.24em}
+.review-panel h2{
+  margin:0;
+  text-align:center;
+  color:#eef1ff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:600;
+  line-height:.95;
+}
+.review-intro{margin:10px auto 28px;text-align:center;color:#aab1cc;font-family:"Cormorant Garamond",serif;font-size:1rem;font-style:italic}
+
+.review-field,.rating-field,.choice-field{display:block;margin:0 0 22px}
+.review-field>span,.rating-field legend,.choice-field legend{
+  display:block;margin:0 0 9px;color:#c5cce8;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+}
+.review-field>span em{color:#727b9f;font-family:"Cormorant Garamond",serif;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-transform:none}
+.review-field input,.review-field textarea{
+  width:100%;border:1px solid rgba(159,174,225,.22);border-radius:5px;
+  background:rgba(5,8,20,.58);color:#eef1ff;padding:12px 13px;
+  font:500 .82rem/1.5 "DM Sans",sans-serif;resize:vertical;
+}
+.review-field input::placeholder,.review-field textarea::placeholder{color:#66708f}
+.review-field input:focus,.review-field textarea:focus{outline:none;border-color:rgba(184,196,238,.68);box-shadow:0 0 0 3px rgba(112,130,203,.09)}
+.rating-field,.choice-field{padding:0;border:0}
+.rating-options,.choice-options{display:flex;flex-wrap:wrap;gap:8px}
+.rating-options label,.choice-options label{cursor:pointer}
+.rating-options input,.choice-options input{position:absolute;opacity:0;pointer-events:none}
+.rating-options span,.choice-options span{
+  display:block;padding:8px 10px;border:1px solid rgba(159,174,225,.20);border-radius:4px;
+  background:rgba(7,10,25,.48);color:#9ba5ca;font-size:.72rem;transition:.18s ease;
+}
+.rating-options small{display:block;margin-top:3px;text-align:center;color:#646d8e;font:600 .58rem "DM Sans",sans-serif}
+.rating-options input:checked+span,.choice-options input:checked+span{
+  border-color:#9eabd8;background:rgba(102,119,184,.20);color:#eef1ff;box-shadow:0 0 18px rgba(111,129,199,.12);
+}
+.rating-options input:focus-visible+span,.choice-options input:focus-visible+span{outline:2px solid #cdd6f9;outline-offset:2px}
+.submit-review{
+  display:block;width:min(100%,390px);margin:30px auto 0;padding:14px 20px;
+  border:1px solid rgba(196,207,246,.55);border-radius:999px;
+  background:linear-gradient(145deg,#5868a1,#29345f);color:#fff;
+  font:700 .73rem "DM Sans",sans-serif;letter-spacing:.14em;cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.32),0 0 24px rgba(105,124,193,.12);
+}
+.submit-review:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.submit-review:disabled{opacity:.6;cursor:wait}
+.review-status{min-height:1.3em;margin:10px 0 0;text-align:center;color:#d9a7af;font-size:.75rem}
+.review-success{text-align:center;padding:34px 10px 18px}
+.review-success[hidden]{display:none}
+.review-success>span{color:#aab8e8;letter-spacing:.35em}
+.review-success h2{margin:12px 0 8px}
+.review-success p{margin:0;color:#aab1cc;font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-style:italic}
+
+@media(max-width:560px){
+  .review-panel{padding:25px 16px 28px}
+  .rating-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rating-options label:last-child{grid-column:1/-1}
+  .rating-options span{text-align:center}
+  .choice-options{display:grid;grid-template-columns:1fr;width:100%}
+  .choice-options span{text-align:center}
+}
+
+/* =========================================================
+   SWEETHEART REVIEW CARD ANIMATION V1
+   Big, theatrical, obvious motion. Book reveal untouched.
+   ========================================================= */
+.review-panel{
+  position:relative;
+  overflow:hidden;
+  transform-origin:50% 0;
+  will-change:transform,opacity,filter;
+}
+.review-panel[hidden]{display:none!important}
+
+.review-card-sheen{
+  position:absolute;
+  inset:-35%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(104deg,
+      transparent 40%,
+      rgba(169,188,245,.05) 45%,
+      rgba(235,241,255,.24) 50%,
+      rgba(176,196,250,.07) 55%,
+      transparent 61%);
+}
+
+.review-card-stars{
+  position:absolute;
+  z-index:5;
+  inset:0;
+  pointer-events:none;
+}
+.review-card-stars span{
+  position:absolute;
+  left:50%;
+  top:19%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#edf2ff;
+  box-shadow:
+    0 0 7px #edf2ff,
+    0 0 18px rgba(157,181,255,.85);
+  opacity:0;
+}
+.review-card-stars span:nth-child(even){width:4px;height:4px}
+
+.review-card-seal{
+  position:absolute;
+  z-index:7;
+  top:14px;
+  right:16px;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(219,228,255,.7);
+  color:#f4f6ff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:1.35rem;
+  background:
+    radial-gradient(circle at 34% 25%,#8295d2 0 7%,#53659e 30%,#2c396b 68%,#141b39 100%);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.42),
+    0 0 28px rgba(127,151,225,.24),
+    inset 0 0 0 4px rgba(255,255,255,.04);
+  transform-origin:center;
+}
+
+.review-panel > :not(.review-card-sheen):not(.review-card-stars):not(.review-card-seal){
+  position:relative;
+  z-index:3;
+}
+
+/* A subtle constellation line across the top, visible even after motion ends. */
+.review-panel::after{
+  content:"✦      ·      ☾      ·      ✦";
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:max-content;
+  color:rgba(182,199,249,.28);
+  font-family:"Cormorant Garamond",serif;
+  font-size:.72rem;
+  letter-spacing:.36em;
+  pointer-events:none;
+}
+
+/* Keep form fields visible when animation completes / if animation is unavailable. */
+.review-form > *{
+  opacity:1;
+  transform:none;
+  will-change:transform,opacity;
+}
+
+/* Stronger selected-state glow. */
+.rating-options input:checked+span,
+.choice-options input:checked+span{
+  border-color:#b8c5ee;
+  background:rgba(105,124,193,.28);
+  color:#f7f9ff;
+  box-shadow:
+    0 0 0 1px rgba(203,214,250,.1),
+    0 0 22px rgba(132,153,225,.19);
+}
+
+/* Submission success becomes a compact sealed correspondence card. */
+.review-panel.review-complete{
+  width:min(94vw,620px);
+  margin-left:auto;
+  margin-right:auto;
+  padding:28px 24px 30px;
+  min-height:0;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(104,124,190,.19),transparent 17rem),
+    linear-gradient(155deg,rgba(22,27,55,.98),rgba(10,13,29,.99));
+}
+.review-panel.review-complete > .review-kicker,
+.review-panel.review-complete > #review-title,
+.review-panel.review-complete > .review-intro,
+.review-panel.review-complete > .review-card-sheen,
+.review-panel.review-complete > .review-card-seal{
+  display:none!important;
+}
+.review-panel.review-complete::after{
+  top:16px;
+}
+.review-success{
+  padding:34px 10px 12px;
+  text-align:center;
+}
+.review-success[hidden]{display:none!important}
+.review-success > span{
+  display:block;
+  margin-top:7px;
+  color:#9fb0e9;
+  letter-spacing:.38em;
+}
+.review-success h2{
+  margin:13px 0 6px;
+  color:#f4f6ff;
+  font-size:clamp(2rem,5vw,2.85rem);
+}
+.review-success p{
+  margin:0;
+  color:#aeb7d5;
+  font-size:1.08rem;
+}
+.success-seal{
+  width:72px;
+  height:72px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(220,228,255,.72);
+  color:#fff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:1.7rem;
+  background:
+    radial-gradient(circle at 35% 28%,#8fa3df 0 8%,#5a6fab 31%,#334274 68%,#171e40 100%);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.38),
+    0 0 42px rgba(138,160,232,.22),
+    inset 0 0 0 5px rgba(255,255,255,.045);
+}
+
+/* Give the submit button a touch more ceremony. */
+.submit-review{
+  position:relative;
+  overflow:hidden;
+}
+.submit-review::after{
+  content:"";
+  position:absolute;
+  inset:-80% -20%;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);
+  transform:translateX(-70%);
+  transition:transform .55s ease;
+}
+.submit-review:hover::after{transform:translateX(70%)}
+
+@media(max-width:560px){
+  .review-card-seal{width:36px;height:36px;right:10px;top:10px}
+  .review-panel::after{font-size:.58rem;letter-spacing:.22em}
+  .review-panel.review-complete{padding:24px 16px 27px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .review-card-sheen,.review-card-stars{display:none}
+}
+
+
+/* V2.1 — post-submission anti-necromancy patch */
+.review-toggle:disabled{
+  cursor:default;
+  opacity:.78;
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+  box-shadow:0 8px 20px rgba(0,0,0,.20);
+}
+.review-toggle:disabled:hover{
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+}
+
+/* =========================================================
+   ADVENTURE FIELD-REPORT SKIN
+   IMPORTANT: all selectors are scoped to .adventure-review.
+   The page-level .stars / original sky are untouched.
+   ========================================================= */
+.adventure-review .review-toggle{
+  border-color:rgba(190,148,82,.48);
+  background:linear-gradient(145deg,rgba(37,65,46,.96),rgba(17,31,23,.98));
+  color:#efd49b;
+  box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 25px rgba(103,145,87,.13);
+}
+.adventure-review .review-toggle:hover{
+  border-color:rgba(235,201,137,.76);
+  box-shadow:0 15px 34px rgba(0,0,0,.40),0 0 34px rgba(158,119,55,.19);
+}
+.adventure-review .review-panel{
+  border-color:rgba(176,139,83,.38);
+  background:
+    linear-gradient(rgba(77,55,33,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(77,55,33,.06) 1px,transparent 1px),
+    radial-gradient(circle at 50% 3%,rgba(116,148,91,.18),transparent 20rem),
+    linear-gradient(155deg,rgba(48,43,30,.99),rgba(21,25,18,.995));
+  background-size:34px 34px,34px 34px,auto,auto;
+  box-shadow:0 30px 70px rgba(0,0,0,.48),inset 0 0 70px rgba(116,83,44,.08);
+}
+.adventure-review .review-kicker{color:#c9a568}
+.adventure-review #review-title{color:#f3e4c4;text-shadow:0 4px 22px rgba(0,0,0,.42)}
+.adventure-review .review-intro{color:#c9bba0}
+.adventure-review .review-card-sheen{
+  background:linear-gradient(104deg,transparent 40%,rgba(232,201,139,.04) 45%,rgba(255,231,178,.24) 50%,rgba(115,151,92,.08) 55%,transparent 61%);
+}
+.adventure-review .review-card-seal,.adventure-review .success-seal{
+  border-color:rgba(223,184,112,.64);
+  color:#f7deb0;
+  background:radial-gradient(circle at 35% 27%,#b89759 0 6%,#80602e 31%,#4e3a1f 68%,#211c12 100%);
+  box-shadow:0 10px 24px rgba(0,0,0,.42),0 0 30px rgba(186,142,67,.22),inset 0 0 0 4px rgba(255,255,255,.035);
+}
+.adventure-review .review-card-stars span{
+  background:#e9c77d;
+  box-shadow:0 0 7px #e9c77d,0 0 18px rgba(121,157,95,.72);
+}
+.adventure-review .review-panel::after{
+  content:"⌖      ·      ⚔      ·      ⌖";
+  color:rgba(211,172,101,.32);
+}
+.adventure-review .review-field>span,.adventure-review legend{color:#d7c39b}
+.adventure-review input[type="text"],.adventure-review textarea{
+  border-color:rgba(201,166,102,.25);
+  background:rgba(20,25,17,.62);
+  color:#f6ead1;
+}
+.adventure-review input[type="text"]:focus,.adventure-review textarea:focus{
+  border-color:rgba(225,190,123,.62);
+  box-shadow:0 0 0 3px rgba(111,145,88,.14);
+}
+.adventure-review .rating-options span,.adventure-review .choice-options span{
+  border-color:rgba(201,166,102,.23);
+  background:rgba(47,69,43,.24);
+  color:#d4c7a9;
+}
+.adventure-review .rating-options input:checked+span,.adventure-review .choice-options input:checked+span{
+  border-color:#d6ad68;
+  background:rgba(81,111,65,.35);
+  color:#fff0cd;
+  box-shadow:0 0 0 1px rgba(232,199,137,.08),0 0 24px rgba(116,151,92,.22);
+}
+.adventure-review .submit-review{
+  border-color:rgba(221,180,103,.58);
+  background:linear-gradient(145deg,#567447,#33482d);
+  color:#f7dfad;
+  box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 22px rgba(119,151,91,.15);
+}
+.adventure-review .submit-review:hover{
+  border-color:#f0cf8d;
+  box-shadow:0 15px 34px rgba(0,0,0,.40),0 0 30px rgba(180,139,67,.23);
+}
+.adventure-review .review-panel.review-complete{
+  background:radial-gradient(circle at 50% 10%,rgba(112,148,89,.17),transparent 18rem),linear-gradient(155deg,rgba(45,43,29,.99),rgba(19,24,17,.995));
+}
+.adventure-review .review-success>span{color:#d6ad68}
+.adventure-review .review-success h2{color:#f6e7c7}
+.adventure-review .review-success p{color:#c9bba0}
