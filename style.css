@@ -1,1 +1,108 @@
 *{box-sizing:border-box}:root{--ink:#eee7dc;--gold:#c7a55b;--bg:#080910}html{background:var(--bg)}body{margin:0;min-height:100vh;color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;background:radial-gradient(circle at 50% 0%,rgba(89,65,100,.16),transparent 35rem),linear-gradient(#0e0e18,#07080d 70%)}.stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(222,205,170,.34) 1px,transparent 1.4px),radial-gradient(circle,rgba(255,255,255,.15) .8px,transparent 1.2px);background-size:100px 91px,137px 129px;background-position:17px 23px,71px 54px;opacity:.3}.house{position:relative;width:min(1180px,92vw);margin:auto;padding:68px 0 34px}.hero{text-align:center}.eyebrow{margin:0;font-family:"Cormorant SC";font-size:.92rem;letter-spacing:.34em;color:var(--gold)}.ornament{display:flex;align-items:center;justify-content:center;gap:15px;color:var(--gold);margin:16px auto 14px;font-size:.72rem}.ornament span{height:1px;width:70px;background:var(--gold);opacity:.55}h1{font-family:"Cormorant SC";font-weight:500;letter-spacing:.055em;font-size:clamp(3.2rem,8vw,6.8rem);line-height:.75;margin:15px 0 26px}.tagline{font-size:clamp(1.25rem,2vw,1.55rem);color:#c7c0bc;margin:0}.tagline em{color:#e2c778}.invitation{width:min(680px,94%);margin:43px auto 54px;text-align:center;padding:23px 30px;border-top:1px solid #695932;border-bottom:1px solid #695932;font-size:1.08rem;line-height:1.48;color:#bbb3af}.invitation p{margin:.42em 0}.invitation .welcome{font-size:1.35rem;color:#eee7dc;font-style:italic;margin-bottom:.65em}.rules{margin-top:1em!important;font-style:italic}.rules span{color:#d5b75e}.dates{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;align-items:stretch}.date{--accent:#9b2436;--edge:#6b2830;position:relative;min-height:330px;padding:52px 18px 23px;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none;border:1px solid var(--edge);background:linear-gradient(160deg,rgba(255,255,255,.04),transparent 45%),#101018;box-shadow:0 17px 35px rgba(0,0,0,.35),inset 0 0 32px color-mix(in srgb,var(--accent) 18%,transparent);transition:.25s}.date:before{content:"";position:absolute;inset:8px;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);pointer-events:none}.date:hover,.date:focus-visible{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 22px 50px #000,0 0 26px color-mix(in srgb,var(--accent) 25%,transparent);outline:none}.seal{position:absolute;top:-26px;width:55px;height:55px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;color:#f1dfaa;background:#25191d;border:2px solid var(--accent);box-shadow:0 5px 15px #000,0 0 0 4px #090a10}.number{font-family:"Cormorant SC";letter-spacing:.18em;font-size:.72rem;color:#aaa2a0;margin-bottom:27px}.date strong{font-family:"Cormorant SC";font-weight:500;letter-spacing:.045em;font-size:clamp(1.45rem,2vw,1.9rem);line-height:.92;min-height:74px;display:grid;place-items:center}.date em{font-size:1.05rem;color:#bbb1ad;margin:17px 0 auto}.enter{margin-top:25px;padding-top:14px;width:90%;border-top:1px solid var(--edge);font-family:"Cormorant SC";letter-spacing:.12em;font-size:.68rem;color:#cdbb8d}.yearner{--accent:#7e88b9;--edge:#5d668d}.adventure{--accent:#758e58;--edge:#79663d}.sweetheart{--accent:#b77988;--edge:#9a6d72}.aristocrat{--accent:#b99546;--edge:#775c29}.fine-print{text-align:center;margin:38px 0 0;color:#777074;font-style:italic}footer{position:relative;text-align:center;padding:18px 20px 30px;color:#69636a;font-size:.9rem}footer span{color:#8e7a62;font-style:italic}@media(max-width:1050px){.dates{grid-template-columns:repeat(2,1fr);max-width:760px;margin:auto}.date:last-child{grid-column:1/-1;width:calc(50% - 9px);justify-self:center}}@media(max-width:620px){.house{padding-top:48px}h1{line-height:.82}.invitation{padding:20px 8px;margin-bottom:50px}.dates{grid-template-columns:1fr;gap:42px;width:min(390px,94%);margin:auto}.date,.date:last-child{grid-column:auto;width:100%;min-height:295px}}
+
+/* Trophy Case / House Records — intentionally separate from the five date cards */
+.house-records{
+  width:min(760px,94%);
+  margin:54px auto 0;
+}
+
+.trophy-card{
+  position:relative;
+  min-height:210px;
+  padding:42px 34px 30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--ink);
+  text-decoration:none;
+  border:1px solid #8f743d;
+  background:
+    linear-gradient(160deg,rgba(255,255,255,.045),transparent 48%),
+    radial-gradient(circle at 50% 0%,rgba(199,165,91,.10),transparent 58%),
+    #111018;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.38),
+    inset 0 0 36px rgba(199,165,91,.08);
+  transition:.25s;
+}
+
+.trophy-card:before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px solid rgba(199,165,91,.24);
+  pointer-events:none;
+}
+
+.trophy-card:hover,
+.trophy-card:focus-visible{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:
+    0 24px 54px #000,
+    0 0 28px rgba(199,165,91,.20),
+    inset 0 0 36px rgba(199,165,91,.10);
+  outline:none;
+}
+
+.trophy-seal{
+  position:absolute;
+  top:-28px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:1.35rem;
+  background:#211a12;
+  border:2px solid var(--gold);
+  box-shadow:0 5px 15px #000,0 0 0 4px #090a10;
+}
+
+.trophy-eyebrow{
+  margin-bottom:12px;
+  font-family:"Cormorant SC";
+  font-size:.72rem;
+  letter-spacing:.24em;
+  color:var(--gold);
+}
+
+.trophy-card strong{
+  font-family:"Cormorant SC";
+  font-weight:500;
+  letter-spacing:.055em;
+  font-size:clamp(1.9rem,4vw,2.9rem);
+  line-height:1;
+}
+
+.trophy-card em{
+  width:min(540px,92%);
+  margin:15px auto 0;
+  color:#bbb1ad;
+  font-size:1.08rem;
+}
+
+.trophy-enter{
+  width:min(390px,86%);
+  margin-top:22px;
+  padding-top:14px;
+  border-top:1px solid #8f743d;
+  font-family:"Cormorant SC";
+  letter-spacing:.13em;
+  font-size:.69rem;
+  color:#dfc986;
+}
+
+@media(max-width:620px){
+  .house-records{
+    width:min(390px,94%);
+    margin-top:52px;
+  }
+
+  .trophy-card{
+    min-height:230px;
+    padding:44px 22px 28px;
+  }
+}
