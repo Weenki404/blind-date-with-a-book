@@ -235,6 +235,11 @@ reviewForm.addEventListener('submit', async (event) => {
     reviewPanel.classList.add('review-complete');
     reviewSuccess.hidden = false;
 
+    // The date has been reviewed. No necromancy, no duplicate reopening.
+    reviewToggle.disabled = true;
+    reviewToggle.setAttribute('aria-expanded', 'true');
+    reviewToggle.innerHTML = '<span aria-hidden="true">✓</span> DATE REVIEWED';
+
     if (!prefersReducedMotion) {
       reviewSeal.style.opacity = '0';
       reviewSuccess.animate([

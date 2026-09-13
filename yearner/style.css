@@ -1839,3 +1839,17 @@ body {
 @media(prefers-reduced-motion:reduce){
   .review-card-sheen,.review-card-stars{display:none}
 }
+
+
+/* V2.1 — post-submission anti-necromancy patch */
+.review-toggle:disabled{
+  cursor:default;
+  opacity:.78;
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+  box-shadow:0 8px 20px rgba(0,0,0,.20);
+}
+.review-toggle:disabled:hover{
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+}
