@@ -1,5 +1,5 @@
 const REVIEW_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbwi0OYLQUDeoJP16VUKUYd-d584k59223PZJolOjoEbqS8sA5f0nS2NkDhdLp0GuD6f/exec';
+  'https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec';
 
 
 const totalReviews = document.getElementById('totalReviews');
