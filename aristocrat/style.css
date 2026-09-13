@@ -2239,3 +2239,14 @@ body {
 .aristocrat-review .review-success>span{color:#d7ae58}
 .aristocrat-review .review-success h2{color:#fff1cf}
 .aristocrat-review .review-success p{color:#c8bcc0}
+
+
+/* V1.1 — CONTAIN THE ARISTOCRAT
+   The long title word gets its own sizing so it cannot escape the dossier. */
+.artifact-wrap .gift-tag strong .aristocratic-fit {
+  display: inline-block;
+  font-size: .82em;
+  letter-spacing: .045em;
+  white-space: nowrap;
+  max-width: 100%;
+}
