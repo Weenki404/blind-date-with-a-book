@@ -1838,18 +1838,404 @@ body {
   }
 }
 
-/* Aristocrat title: contain the royal bastard. */
-.artifact-wrap .gift-tag strong {
-  font-size: 2.12rem !important;
-  line-height: .94 !important;
-  letter-spacing: .055em !important;
-  max-width: 100% !important;
-  overflow-wrap: normal !important;
+/* =========================================================
+   POST-DATE REVIEW — THE ARISTOCRATIC ASSHOLE
+   ========================================================= */
+.date-review{
+  width:min(94vw,760px);
+  margin:30px auto 0;
+  text-align:center;
+}
+.review-toggle{
+  padding:13px 24px;
+  border:1px solid rgba(184,194,232,.42);
+  border-radius:999px;
+  background:linear-gradient(145deg,rgba(36,42,78,.78),rgba(15,18,38,.92));
+  color:#dce4ff;
+  font-family:"DM Sans",sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  cursor:pointer;
+  box-shadow:0 10px 28px rgba(0,0,0,.28),0 0 22px rgba(112,130,203,.10);
+  transition:.2s ease;
+}
+.review-toggle:hover{border-color:rgba(205,214,249,.72);transform:translateY(-2px)}
+.review-toggle:focus-visible,.submit-review:focus-visible{outline:2px solid #cdd6f9;outline-offset:4px}
+
+.review-panel{
+  margin-top:22px;
+  padding:30px clamp(18px,4vw,38px) 34px;
+  border:1px solid rgba(159,174,225,.26);
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(90,104,166,.16),transparent 24rem),
+    linear-gradient(155deg,rgba(20,24,49,.97),rgba(10,12,27,.98));
+  box-shadow:0 28px 65px rgba(0,0,0,.42),inset 0 0 40px rgba(88,102,166,.05);
+  text-align:left;
+}
+.review-panel[hidden]{display:none}
+.review-kicker{margin:0 0 8px;text-align:center;color:#9eabd8;font-size:.62rem;font-weight:700;letter-spacing:.24em}
+.review-panel h2{
+  margin:0;
+  text-align:center;
+  color:#eef1ff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:600;
+  line-height:.95;
+}
+.review-intro{margin:10px auto 28px;text-align:center;color:#aab1cc;font-family:"Cormorant Garamond",serif;font-size:1rem;font-style:italic}
+
+.review-field,.rating-field,.choice-field{display:block;margin:0 0 22px}
+.review-field>span,.rating-field legend,.choice-field legend{
+  display:block;margin:0 0 9px;color:#c5cce8;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+}
+.review-field>span em{color:#727b9f;font-family:"Cormorant Garamond",serif;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-transform:none}
+.review-field input,.review-field textarea{
+  width:100%;border:1px solid rgba(159,174,225,.22);border-radius:5px;
+  background:rgba(5,8,20,.58);color:#eef1ff;padding:12px 13px;
+  font:500 .82rem/1.5 "DM Sans",sans-serif;resize:vertical;
+}
+.review-field input::placeholder,.review-field textarea::placeholder{color:#66708f}
+.review-field input:focus,.review-field textarea:focus{outline:none;border-color:rgba(184,196,238,.68);box-shadow:0 0 0 3px rgba(112,130,203,.09)}
+.rating-field,.choice-field{padding:0;border:0}
+.rating-options,.choice-options{display:flex;flex-wrap:wrap;gap:8px}
+.rating-options label,.choice-options label{cursor:pointer}
+.rating-options input,.choice-options input{position:absolute;opacity:0;pointer-events:none}
+.rating-options span,.choice-options span{
+  display:block;padding:8px 10px;border:1px solid rgba(159,174,225,.20);border-radius:4px;
+  background:rgba(7,10,25,.48);color:#9ba5ca;font-size:.72rem;transition:.18s ease;
+}
+.rating-options small{display:block;margin-top:3px;text-align:center;color:#646d8e;font:600 .58rem "DM Sans",sans-serif}
+.rating-options input:checked+span,.choice-options input:checked+span{
+  border-color:#9eabd8;background:rgba(102,119,184,.20);color:#eef1ff;box-shadow:0 0 18px rgba(111,129,199,.12);
+}
+.rating-options input:focus-visible+span,.choice-options input:focus-visible+span{outline:2px solid #cdd6f9;outline-offset:2px}
+.submit-review{
+  display:block;width:min(100%,390px);margin:30px auto 0;padding:14px 20px;
+  border:1px solid rgba(196,207,246,.55);border-radius:999px;
+  background:linear-gradient(145deg,#5868a1,#29345f);color:#fff;
+  font:700 .73rem "DM Sans",sans-serif;letter-spacing:.14em;cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.32),0 0 24px rgba(105,124,193,.12);
+}
+.submit-review:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.submit-review:disabled{opacity:.6;cursor:wait}
+.review-status{min-height:1.3em;margin:10px 0 0;text-align:center;color:#d9a7af;font-size:.75rem}
+.review-success{text-align:center;padding:34px 10px 18px}
+.review-success[hidden]{display:none}
+.review-success>span{color:#aab8e8;letter-spacing:.35em}
+.review-success h2{margin:12px 0 8px}
+.review-success p{margin:0;color:#aab1cc;font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-style:italic}
+
+@media(max-width:560px){
+  .review-panel{padding:25px 16px 28px}
+  .rating-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rating-options label:last-child{grid-column:1/-1}
+  .rating-options span{text-align:center}
+  .choice-options{display:grid;grid-template-columns:1fr;width:100%}
+  .choice-options span{text-align:center}
 }
 
-@media (max-width: 759px) {
-  .artifact-wrap .gift-tag strong {
-    font-size: 1.5rem !important;
-    line-height: .96 !important;
-  }
+/* =========================================================
+   ARISTOCRAT REVIEW CARD ANIMATION V1
+   Big, theatrical, obvious motion. Book reveal untouched.
+   ========================================================= */
+.review-panel{
+  position:relative;
+  overflow:hidden;
+  transform-origin:50% 0;
+  will-change:transform,opacity,filter;
 }
+.review-panel[hidden]{display:none!important}
+
+.review-card-sheen{
+  position:absolute;
+  inset:-35%;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(104deg,
+      transparent 40%,
+      rgba(169,188,245,.05) 45%,
+      rgba(235,241,255,.24) 50%,
+      rgba(176,196,250,.07) 55%,
+      transparent 61%);
+}
+
+.review-card-stars{
+  position:absolute;
+  z-index:5;
+  inset:0;
+  pointer-events:none;
+}
+.review-card-stars span{
+  position:absolute;
+  left:50%;
+  top:19%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#edf2ff;
+  box-shadow:
+    0 0 7px #edf2ff,
+    0 0 18px rgba(157,181,255,.85);
+  opacity:0;
+}
+.review-card-stars span:nth-child(even){width:4px;height:4px}
+
+.review-card-seal{
+  position:absolute;
+  z-index:7;
+  top:14px;
+  right:16px;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(219,228,255,.7);
+  color:#f4f6ff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:1.35rem;
+  background:
+    radial-gradient(circle at 34% 25%,#8295d2 0 7%,#53659e 30%,#2c396b 68%,#141b39 100%);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.42),
+    0 0 28px rgba(127,151,225,.24),
+    inset 0 0 0 4px rgba(255,255,255,.04);
+  transform-origin:center;
+}
+
+.review-panel > :not(.review-card-sheen):not(.review-card-stars):not(.review-card-seal){
+  position:relative;
+  z-index:3;
+}
+
+/* A subtle constellation line across the top, visible even after motion ends. */
+.review-panel::after{
+  content:"✦      ·      ☾      ·      ✦";
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:max-content;
+  color:rgba(182,199,249,.28);
+  font-family:"Cormorant Garamond",serif;
+  font-size:.72rem;
+  letter-spacing:.36em;
+  pointer-events:none;
+}
+
+/* Keep form fields visible when animation completes / if animation is unavailable. */
+.review-form > *{
+  opacity:1;
+  transform:none;
+  will-change:transform,opacity;
+}
+
+/* Stronger selected-state glow. */
+.rating-options input:checked+span,
+.choice-options input:checked+span{
+  border-color:#b8c5ee;
+  background:rgba(105,124,193,.28);
+  color:#f7f9ff;
+  box-shadow:
+    0 0 0 1px rgba(203,214,250,.1),
+    0 0 22px rgba(132,153,225,.19);
+}
+
+/* Submission success becomes a compact sealed correspondence card. */
+.review-panel.review-complete{
+  width:min(94vw,620px);
+  margin-left:auto;
+  margin-right:auto;
+  padding:28px 24px 30px;
+  min-height:0;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(104,124,190,.19),transparent 17rem),
+    linear-gradient(155deg,rgba(22,27,55,.98),rgba(10,13,29,.99));
+}
+.review-panel.review-complete > .review-kicker,
+.review-panel.review-complete > #review-title,
+.review-panel.review-complete > .review-intro,
+.review-panel.review-complete > .review-card-sheen,
+.review-panel.review-complete > .review-card-seal{
+  display:none!important;
+}
+.review-panel.review-complete::after{
+  top:16px;
+}
+.review-success{
+  padding:34px 10px 12px;
+  text-align:center;
+}
+.review-success[hidden]{display:none!important}
+.review-success > span{
+  display:block;
+  margin-top:7px;
+  color:#9fb0e9;
+  letter-spacing:.38em;
+}
+.review-success h2{
+  margin:13px 0 6px;
+  color:#f4f6ff;
+  font-size:clamp(2rem,5vw,2.85rem);
+}
+.review-success p{
+  margin:0;
+  color:#aeb7d5;
+  font-size:1.08rem;
+}
+.success-seal{
+  width:72px;
+  height:72px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(220,228,255,.72);
+  color:#fff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:1.7rem;
+  background:
+    radial-gradient(circle at 35% 28%,#8fa3df 0 8%,#5a6fab 31%,#334274 68%,#171e40 100%);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.38),
+    0 0 42px rgba(138,160,232,.22),
+    inset 0 0 0 5px rgba(255,255,255,.045);
+}
+
+/* Give the submit button a touch more ceremony. */
+.submit-review{
+  position:relative;
+  overflow:hidden;
+}
+.submit-review::after{
+  content:"";
+  position:absolute;
+  inset:-80% -20%;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);
+  transform:translateX(-70%);
+  transition:transform .55s ease;
+}
+.submit-review:hover::after{transform:translateX(70%)}
+
+@media(max-width:560px){
+  .review-card-seal{width:36px;height:36px;right:10px;top:10px}
+  .review-panel::after{font-size:.58rem;letter-spacing:.22em}
+  .review-panel.review-complete{padding:24px 16px 27px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .review-card-sheen,.review-card-stars{display:none}
+}
+
+
+/* V2.1 — post-submission anti-necromancy patch */
+.review-toggle:disabled{
+  cursor:default;
+  opacity:.78;
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+  box-shadow:0 8px 20px rgba(0,0,0,.20);
+}
+.review-toggle:disabled:hover{
+  transform:none;
+  border-color:rgba(184,194,232,.30);
+}
+
+/* =========================================================
+   ARISTOCRATIC ASSHOLE — PALACE HR SKIN
+   Black lacquer, antique gold, ruby light, royal bureaucracy.
+   Scoped to the review subsystem only.
+   ========================================================= */
+.aristocrat-review .review-toggle{
+  border-color:rgba(212,175,91,.52);
+  background:linear-gradient(145deg,rgba(19,19,29,.98),rgba(8,8,13,.995));
+  color:#f0d48f;
+  box-shadow:0 12px 30px rgba(0,0,0,.44),0 0 26px rgba(134,18,37,.14);
+}
+.aristocrat-review .review-toggle:hover{
+  border-color:rgba(244,216,143,.80);
+  box-shadow:0 15px 36px rgba(0,0,0,.52),0 0 34px rgba(164,25,45,.22);
+}
+.aristocrat-review .review-panel{
+  border-color:rgba(207,169,84,.40);
+  background:
+    radial-gradient(circle at 50% 3%,rgba(147,25,43,.19),transparent 18rem),
+    radial-gradient(circle at 8% 84%,rgba(181,139,56,.08),transparent 20rem),
+    linear-gradient(155deg,rgba(20,19,28,.995),rgba(8,8,13,.998));
+  box-shadow:0 32px 76px rgba(0,0,0,.58),inset 0 0 64px rgba(155,27,45,.05);
+}
+.aristocrat-review .review-kicker{color:#cda854}
+.aristocrat-review #review-title{color:#fff0cd;text-shadow:0 4px 24px rgba(0,0,0,.50)}
+.aristocrat-review .review-intro{color:#c8bcc0}
+.aristocrat-review .review-card-sheen{
+  background:linear-gradient(104deg,transparent 40%,rgba(232,198,120,.04) 45%,rgba(255,225,145,.27) 50%,rgba(173,32,53,.10) 55%,transparent 61%);
+}
+.aristocrat-review .review-card-seal,
+.aristocrat-review .success-seal{
+  border-color:rgba(238,203,121,.70);
+  color:#ffe4a1;
+  background:
+    radial-gradient(circle at 35% 25%,#c54259 0 7%,#8e1d32 30%,#4f101d 66%,#16070b 100%);
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.52),
+    0 0 38px rgba(173,32,53,.28),
+    inset 0 0 0 4px rgba(255,255,255,.035);
+}
+.aristocrat-review .review-card-stars span{
+  background:#f1cf79;
+  box-shadow:0 0 7px #f1cf79,0 0 20px rgba(177,34,55,.82);
+}
+.aristocrat-review .review-panel::after{
+  content:"♛      ·      ♦      ·      ♛";
+  color:rgba(215,176,88,.34);
+}
+.aristocrat-review .review-field>span,
+.aristocrat-review legend{color:#d8c596}
+.aristocrat-review input[type="text"],
+.aristocrat-review textarea{
+  border-color:rgba(210,172,86,.26);
+  background:rgba(8,8,13,.70);
+  color:#f7edd8;
+}
+.aristocrat-review input[type="text"]:focus,
+.aristocrat-review textarea:focus{
+  border-color:rgba(233,197,113,.66);
+  box-shadow:0 0 0 3px rgba(148,26,44,.14);
+}
+.aristocrat-review .rating-options span,
+.aristocrat-review .choice-options span{
+  border-color:rgba(210,172,86,.23);
+  background:rgba(33,30,41,.42);
+  color:#d5c7c1;
+}
+.aristocrat-review .rating-options input:checked+span,
+.aristocrat-review .choice-options input:checked+span{
+  border-color:#d7ae58;
+  background:rgba(122,19,36,.38);
+  color:#fff2cc;
+  box-shadow:0 0 0 1px rgba(225,187,99,.09),0 0 26px rgba(158,27,46,.24);
+}
+.aristocrat-review .submit-review{
+  border-color:rgba(223,182,88,.62);
+  background:linear-gradient(145deg,#7d172b,#3f0d18);
+  color:#ffe0a1;
+  box-shadow:0 12px 30px rgba(0,0,0,.42),0 0 24px rgba(158,27,46,.18);
+}
+.aristocrat-review .submit-review:hover{
+  border-color:#f1cf79;
+  box-shadow:0 15px 38px rgba(0,0,0,.50),0 0 34px rgba(184,34,55,.26);
+}
+.aristocrat-review .review-panel.review-complete{
+  background:
+    radial-gradient(circle at 50% 10%,rgba(155,27,45,.18),transparent 18rem),
+    linear-gradient(155deg,rgba(21,19,28,.995),rgba(8,8,13,.998));
+}
+.aristocrat-review .review-success>span{color:#d7ae58}
+.aristocrat-review .review-success h2{color:#fff1cf}
+.aristocrat-review .review-success p{color:#c8bcc0}
