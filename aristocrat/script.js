@@ -206,6 +206,7 @@ reviewForm.addEventListener('submit', async (event) => {
     discordName: formData.get('discordName') || '',
     archetype: 'The Aristocratic Asshole',
     book: 'To Vex a Dark Prince',
+    author: 'Abelia Sumpter',
     overallRating: formData.get('overallRating') || '',
     chemistry: formData.get('chemistry') || '',
     spice: formData.get('spice') || '',

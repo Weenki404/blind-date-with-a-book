@@ -207,6 +207,7 @@ reviewForm.addEventListener('submit', async (event) => {
     discordName: formData.get('discordName') || '',
     archetype: 'The Bad Decision',
     book: 'Amid Clouds and Bones',
+    author: 'Ella Fields',
     overallRating: formData.get('overallRating') || '',
     chemistry: formData.get('chemistry') || '',
     spice: formData.get('spice') || '',

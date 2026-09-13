@@ -206,6 +206,7 @@ reviewForm.addEventListener('submit', async (event) => {
     discordName: formData.get('discordName') || '',
     archetype: 'The Adventure Date',
     book: 'A Hunt Bound in Blood',
+    author: 'Krista Walsh',
     overallRating: formData.get('overallRating') || '',
     chemistry: formData.get('chemistry') || '',
     spice: formData.get('spice') || '',
