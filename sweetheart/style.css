@@ -1987,3 +1987,15 @@ body {
 .sweetheart-review .review-card-stars span{background:#f7d9b8;box-shadow:0 0 7px #f7d9b8,0 0 19px rgba(211,148,173,.85)}.sweetheart-review .review-panel::after{content:"❀      ·      ♡      ·      ❀";color:rgba(232,194,158,.34)}
 .sweetheart-review .review-field>span,.sweetheart-review legend{color:#e1c5b3}.sweetheart-review input[type="text"],.sweetheart-review textarea{border-color:rgba(232,194,158,.25);background:rgba(29,18,25,.58);color:#fff5ef}.sweetheart-review .rating-options span,.sweetheart-review .choice-options span{border-color:rgba(232,194,158,.22);background:rgba(100,57,76,.24);color:#dfcbc4}.sweetheart-review .rating-options input:checked+span,.sweetheart-review .choice-options input:checked+span{border-color:#e4bd98;background:rgba(174,102,131,.34);color:#fff7f1;box-shadow:0 0 0 1px rgba(238,200,165,.09),0 0 24px rgba(194,125,151,.22)}
 .sweetheart-review .submit-review{border-color:rgba(238,200,165,.56);background:linear-gradient(145deg,#a65f7c,#6f3c55);color:#fff1df;box-shadow:0 12px 28px rgba(0,0,0,.30),0 0 22px rgba(194,125,151,.16)}.sweetheart-review .review-panel.review-complete{background:radial-gradient(circle at 50% 10%,rgba(190,120,147,.20),transparent 17rem),linear-gradient(155deg,rgba(66,38,52,.99),rgba(23,17,22,.995))}.sweetheart-review .review-success>span{color:#e4bd98}.sweetheart-review .review-success h2{color:#fff4eb}.sweetheart-review .review-success p{color:#d7c2bd}
+
+
+/* V1.1 — Sweetheart dossier alignment hotfix
+   Restore the LOCKED formatting for long profile values. */
+.artifact-wrap .profile-lines span {
+  text-align: right;
+}
+
+.artifact-wrap .profile-lines b {
+  text-align: left;
+  flex-shrink: 0;
+}
