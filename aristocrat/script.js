@@ -45,7 +45,7 @@ const reviewSeal = reviewPanel.querySelector('.review-card-seal');
 const reviewSheen = reviewPanel.querySelector('.review-card-sheen');
 const reviewStars = [...reviewPanel.querySelectorAll('.review-card-stars span')];
 
-const REVIEW_ENDPOINT = 'https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec';
+const REVIEW_ENDPOINT = window.WEENKI_HOUSE_ENDPOINT || "https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec";
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function animateReviewOpen() {
@@ -205,8 +205,8 @@ reviewForm.addEventListener('submit', async (event) => {
   const payload = {
     discordName: formData.get('discordName') || '',
     archetype: 'The Aristocratic Asshole',
-    book: 'To Vex a Dark Prince',
-    author: 'Abelia Sumpter',
+    book: window.currentDateConfig?.book?.title || "To Vex a Dark Prince",
+    author: window.currentDateConfig?.book?.author || "Abelia Sumpter",
     overallRating: formData.get('overallRating') || '',
     chemistry: formData.get('chemistry') || '',
     spice: formData.get('spice') || '',

@@ -1,5 +1,4 @@
-const REVIEW_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec';
+const REVIEW_ENDPOINT = window.WEENKI_HOUSE_ENDPOINT || "https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec";
 
 
 const totalReviews = document.getElementById('totalReviews');
