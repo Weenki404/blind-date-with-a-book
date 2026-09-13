@@ -46,11 +46,21 @@ const REVIEW_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwi0OYLQUDeoJP1
 reviewToggle.addEventListener('click', () => {
   const isOpen = reviewToggle.getAttribute('aria-expanded') === 'true';
   reviewToggle.setAttribute('aria-expanded', String(!isOpen));
-  reviewPanel.hidden = isOpen;
 
-  if (!isOpen) {
-    window.setTimeout(() => reviewPanel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  if (isOpen) {
+    reviewPanel.classList.remove('review-enter');
+    reviewPanel.hidden = true;
+    return;
   }
+
+  reviewPanel.hidden = false;
+  reviewPanel.classList.remove('review-enter');
+  void reviewPanel.offsetWidth;
+  reviewPanel.classList.add('review-enter');
+
+  window.setTimeout(() => {
+    reviewPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 90);
 });
 
 reviewForm.addEventListener('submit', async (event) => {
@@ -85,9 +95,18 @@ reviewForm.addEventListener('submit', async (event) => {
       body: JSON.stringify(payload)
     });
 
-    reviewForm.hidden = true;
-    reviewSuccess.hidden = false;
-    reviewSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    reviewPanel.classList.add('review-submitting');
+
+    window.setTimeout(() => {
+      reviewForm.hidden = true;
+      reviewSuccess.hidden = false;
+      reviewSuccess.classList.remove('success-enter');
+      void reviewSuccess.offsetWidth;
+      reviewSuccess.classList.add('success-enter');
+      reviewPanel.classList.remove('review-submitting');
+
+      reviewSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 760);
   } catch (error) {
     submitReview.disabled = false;
     submitReview.textContent = '☾ SUBMIT THE GOSSIP ☾';

@@ -1644,3 +1644,224 @@ body {
   .choice-options span{text-align:center}
 }
 
+/* =========================================================
+   YEARNER REVIEW CARD ANIMATION V1
+   No changes to the book reveal. Review subsystem only.
+   ========================================================= */
+
+/* The card unfolds upward like a piece of midnight correspondence. */
+.review-panel{
+  position:relative;
+  overflow:hidden;
+  transform-origin:50% 0%;
+  opacity:0;
+  transform:translateY(28px) scaleY(.92) scale(.985);
+  filter:blur(3px);
+}
+.review-panel.review-enter{
+  animation:yearnerCardOpen .78s cubic-bezier(.16,.82,.18,1) forwards;
+}
+@keyframes yearnerCardOpen{
+  0%{opacity:0;transform:translateY(34px) scaleY(.88) scale(.98);filter:blur(4px)}
+  48%{opacity:1;transform:translateY(-4px) scaleY(1.015) scale(1);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scaleY(1) scale(1);filter:blur(0)}
+}
+
+/* Silver-blue moon sheen passes across the card once. */
+.review-card-sheen{
+  position:absolute;
+  inset:-25%;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(220,231,255,.10) 48%,rgba(255,255,255,.18) 50%,rgba(190,206,255,.08) 53%,transparent 63%);
+  transform:translateX(-70%) rotate(4deg);
+  opacity:0;
+}
+.review-panel.review-enter .review-card-sheen{
+  animation:yearnerSheen 1.4s .18s ease-out forwards;
+}
+@keyframes yearnerSheen{
+  0%{opacity:0;transform:translateX(-75%) rotate(4deg)}
+  18%{opacity:.85}
+  100%{opacity:0;transform:translateX(75%) rotate(4deg)}
+}
+
+/* Little moon seal lands in the top-right corner. */
+.review-card-seal{
+  position:absolute;
+  z-index:2;
+  top:13px;
+  right:15px;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(193,205,245,.48);
+  border-radius:50%;
+  color:#dfe7ff;
+  background:radial-gradient(circle at 35% 30%,#6475ad,#28345f 60%,#11162f 100%);
+  box-shadow:0 8px 18px rgba(0,0,0,.32),0 0 20px rgba(133,151,214,.13);
+  opacity:0;
+  transform:translateY(-12px) rotate(-18deg) scale(.65);
+}
+.review-panel.review-enter .review-card-seal{
+  animation:yearnerSealDrop .62s .43s cubic-bezier(.2,1.35,.32,1) forwards;
+}
+@keyframes yearnerSealDrop{
+  0%{opacity:0;transform:translateY(-14px) rotate(-18deg) scale(.58)}
+  70%{opacity:1;transform:translateY(2px) rotate(4deg) scale(1.08)}
+  100%{opacity:1;transform:none}
+}
+
+/* Star motes drift out around the header. */
+.review-card-stars{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  pointer-events:none;
+}
+.review-card-stars span{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#dfe7ff;
+  box-shadow:0 0 10px rgba(188,204,255,.8);
+  opacity:0;
+}
+.review-card-stars span:nth-child(1){left:12%;top:11%;--dx:-18px;--dy:-26px}
+.review-card-stars span:nth-child(2){left:27%;top:7%;--dx:-6px;--dy:-34px}
+.review-card-stars span:nth-child(3){left:46%;top:10%;--dx:4px;--dy:-30px}
+.review-card-stars span:nth-child(4){left:66%;top:8%;--dx:12px;--dy:-32px}
+.review-card-stars span:nth-child(5){left:82%;top:13%;--dx:20px;--dy:-24px}
+.review-card-stars span:nth-child(6){left:91%;top:20%;--dx:24px;--dy:-14px}
+.review-panel.review-enter .review-card-stars span{
+  animation:yearnerMote 1.05s .28s ease-out forwards;
+}
+.review-panel.review-enter .review-card-stars span:nth-child(2){animation-delay:.34s}
+.review-panel.review-enter .review-card-stars span:nth-child(3){animation-delay:.40s}
+.review-panel.review-enter .review-card-stars span:nth-child(4){animation-delay:.46s}
+.review-panel.review-enter .review-card-stars span:nth-child(5){animation-delay:.52s}
+.review-panel.review-enter .review-card-stars span:nth-child(6){animation-delay:.58s}
+@keyframes yearnerMote{
+  0%{opacity:0;transform:translate(0,8px) scale(.45)}
+  35%{opacity:1}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.15)}
+}
+
+/* Keep actual form content above decoration. */
+.review-panel > :not(.review-card-sheen):not(.review-card-stars):not(.review-card-seal){
+  position:relative;
+  z-index:3;
+}
+
+/* Questions arrive in little waves instead of appearing all at once. */
+.review-form > *{
+  opacity:0;
+  transform:translateY(10px);
+}
+.review-panel.review-enter .review-form > *{
+  animation:yearnerQuestionIn .46s ease forwards;
+}
+.review-panel.review-enter .review-form > *:nth-child(1){animation-delay:.38s}
+.review-panel.review-enter .review-form > *:nth-child(2){animation-delay:.45s}
+.review-panel.review-enter .review-form > *:nth-child(3){animation-delay:.52s}
+.review-panel.review-enter .review-form > *:nth-child(4){animation-delay:.59s}
+.review-panel.review-enter .review-form > *:nth-child(5){animation-delay:.66s}
+.review-panel.review-enter .review-form > *:nth-child(6){animation-delay:.73s}
+.review-panel.review-enter .review-form > *:nth-child(7){animation-delay:.80s}
+.review-panel.review-enter .review-form > *:nth-child(8){animation-delay:.87s}
+.review-panel.review-enter .review-form > *:nth-child(9){animation-delay:.94s}
+.review-panel.review-enter .review-form > *:nth-child(10){animation-delay:1.01s}
+@keyframes yearnerQuestionIn{
+  to{opacity:1;transform:none}
+}
+
+/* Selected answers give a tiny heartbeat/pulse. */
+.rating-options input:checked+span,
+.choice-options input:checked+span{
+  animation:yearnerChoicePulse .28s ease-out;
+}
+@keyframes yearnerChoicePulse{
+  0%{transform:scale(.97);box-shadow:0 0 0 rgba(150,170,235,0)}
+  65%{transform:scale(1.035);box-shadow:0 0 20px rgba(150,170,235,.16)}
+  100%{transform:scale(1)}
+}
+
+/* Submission closes/seals the card before showing success. */
+.review-panel.review-submitting .review-form{
+  animation:yearnerFormFade .35s ease forwards;
+  pointer-events:none;
+}
+.review-panel.review-submitting .review-card-seal{
+  animation:yearnerFinalSeal .58s cubic-bezier(.15,1.25,.32,1) forwards;
+}
+.review-panel.review-submitting{
+  animation:yearnerCardSeal .72s .12s ease-in-out forwards;
+}
+@keyframes yearnerFormFade{
+  to{opacity:0;transform:translateY(-8px);filter:blur(2px)}
+}
+@keyframes yearnerFinalSeal{
+  0%{opacity:1;transform:translate(0,0) scale(1)}
+  55%{opacity:1;transform:translate(calc(-50vw + 50%),160px) scale(1.55) rotate(-8deg)}
+  100%{opacity:0;transform:translate(calc(-50vw + 50%),165px) scale(.9)}
+}
+@keyframes yearnerCardSeal{
+  0%{transform:scale(1);box-shadow:0 28px 65px rgba(0,0,0,.42)}
+  50%{transform:scale(.985);box-shadow:0 14px 30px rgba(0,0,0,.48)}
+  100%{transform:scale(1);box-shadow:0 28px 65px rgba(0,0,0,.42)}
+}
+
+/* Success appears like a sealed reply. */
+.review-success{
+  opacity:0;
+  transform:translateY(14px) scale(.98);
+}
+.review-success.success-enter{
+  animation:yearnerSuccessIn .6s cubic-bezier(.16,.82,.18,1) forwards;
+}
+.success-seal{
+  width:62px;
+  height:62px;
+  margin:0 auto 12px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(205,216,250,.58);
+  color:#f1f4ff;
+  font-size:1.45rem;
+  background:radial-gradient(circle at 35% 30%,#7486c0,#364574 62%,#171e3d 100%);
+  box-shadow:0 12px 30px rgba(0,0,0,.36),0 0 30px rgba(137,157,224,.14);
+  transform:scale(.6) rotate(-16deg);
+}
+.review-success.success-enter .success-seal{
+  animation:yearnerSuccessSeal .7s .08s cubic-bezier(.15,1.35,.32,1) forwards;
+}
+@keyframes yearnerSuccessIn{
+  to{opacity:1;transform:none}
+}
+@keyframes yearnerSuccessSeal{
+  0%{transform:scale(.55) rotate(-18deg);opacity:0}
+  70%{transform:scale(1.08) rotate(4deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+
+/* Reduced motion stays respectful. */
+@media (prefers-reduced-motion: reduce){
+  .review-panel,
+  .review-form > *,
+  .review-success{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    animation:none!important;
+  }
+  .review-card-sheen,
+  .review-card-stars,
+  .review-card-seal,
+  .success-seal{
+    animation:none!important;
+  }
+}
+

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0d1020">
   <title>The Yearner · Blind Date With a Book</title>
-  <link rel="stylesheet" href="style.css?v=yearner-review-1">
+  <link rel="stylesheet" href="style.css?v=yearner-review-anim-1">
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -102,11 +102,16 @@
           </button>
 
           <div class="review-panel" id="review-panel" hidden>
+            <div class="review-card-sheen" aria-hidden="true"></div>
+            <div class="review-card-stars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="review-card-seal" aria-hidden="true">☾</div>
             <p class="review-kicker">POST-DATE CORRESPONDENCE</p>
             <h2 id="review-title">So. How emotionally compromised are you?</h2>
             <p class="review-intro">The Matchmaking House requires gossip. For quality assurance, obviously.</p>
 
-            <form id="review-form">
+            <form id="review-form" class="review-form">
               <label class="review-field">
                 <span>Discord name <em>optional</em></span>
                 <input type="text" name="discordName" maxlength="80" autocomplete="nickname" placeholder="Remain mysterious if you wish">
@@ -184,6 +189,7 @@
             </form>
 
             <div class="review-success" id="review-success" hidden>
+              <div class="success-seal" aria-hidden="true">☾</div>
               <span aria-hidden="true">✦ ☾ ✦</span>
               <h2>Your gossip has been received.</h2>
               <p>The Matchmaking House thanks you for your service.</p>
@@ -201,6 +207,6 @@
     <footer>Blind Date With a Book · by Weenki</footer>
   </main>
 
-  <script src="script.js?v=yearner-review-1"></script>
+  <script src="script.js?v=yearner-review-anim-1"></script>
 </body>
 </html>
