@@ -195,7 +195,7 @@ h1{margin:0;font-size:clamp(3rem,8vw,5.4rem);font-weight:600;line-height:.94;tex
 .reset:hover{border-color:rgba(217,185,119,.5);color:#efe4df;background:rgba(217,185,119,.06)}
 .reset:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 
-.motes{position:absolute;z-index:0;inset:0;pointer-events:none;overflow:visible}.motes span{position:absolute;left:50%;top:43%;width:4px;height:4px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 9px var(--gold);opacity:0}
+.motes{position:absolute;z-index:4;inset:0;pointer-events:none;overflow:visible}.motes span{position:absolute;left:50%;top:43%;width:4px;height:4px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 9px var(--gold);opacity:0}
 .motes span:nth-child(1){--x:-150px;--y:-120px}.motes span:nth-child(2){--x:140px;--y:-86px}.motes span:nth-child(3){--x:-112px;--y:42px}.motes span:nth-child(4){--x:128px;--y:55px}.motes span:nth-child(5){--x:-48px;--y:-170px}.motes span:nth-child(6){--x:58px;--y:-145px}
 
 .opening .wax-seal{transform:translateX(-50%) translateY(-8px) rotate(-30deg) scale(.78);opacity:0}
@@ -362,7 +362,7 @@ body {
   text-transform: none;
 }
 
-.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); opacity: .5; }
+.motes span { background: #7f3b35; box-shadow: 0 0 8px rgba(112,42,38,.42); }
 
 /* The reveal: darkness first, then the real cover becomes the jewel. */
 .reveal {
