@@ -91,7 +91,12 @@
     const chips = document.querySelector('.chips');
     if (chips) {
       chips.replaceChildren();
-      (config.reveal.tropes || []).forEach(trope => {
+      const tropes = (config.reveal.tropes || [])
+        .flatMap(trope => String(trope || '').split(/\r?\n|\\n|,/))
+        .map(trope => trope.trim())
+        .filter(Boolean);
+
+      tropes.forEach(trope => {
         const span = document.createElement('span');
         span.textContent = trope;
         chips.appendChild(span);
