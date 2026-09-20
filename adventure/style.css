@@ -2003,6 +2003,14 @@ body {
 @media(max-width:620px){.parlor-return{top:10px;left:10px;padding:7px 9px;font-size:.61rem;letter-spacing:.1em}}
 @media(prefers-reduced-motion:reduce){.parlor-return,.parlor-footer-link{transition:none}.parlor-return:hover,.parlor-return:focus-visible{transform:none}}
 
+/* Final apartment cleanup: mute the reveal motes, remove them once opened,
+   and reserve enough room that the review controls never crowd the footer. */
+.motes span{background:#7f3b35;box-shadow:0 0 8px rgba(112,42,38,.42)}
+.experience.opened{min-height:940px}
+.experience.opened .motes{display:none!important}
+footer{flex:0 0 auto;padding-bottom:34px}
+@media(max-width:720px){.experience.opened{min-height:1040px}}
+
 /* =========================================================
    ADVENTURE FIELD-REPORT SKIN
    IMPORTANT: all selectors are scoped to .adventure-review.

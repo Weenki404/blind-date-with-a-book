@@ -1986,6 +1986,14 @@ body {
 @media(max-width:620px){.parlor-return{top:10px;left:10px;padding:7px 9px;font-size:.61rem;letter-spacing:.1em}}
 @media(prefers-reduced-motion:reduce){.parlor-return,.parlor-footer-link{transition:none}.parlor-return:hover,.parlor-return:focus-visible{transform:none}}
 
+/* Final apartment cleanup: mute the reveal motes, remove them once opened,
+   and reserve enough room that the review controls never crowd the footer. */
+.motes span{background:#7f3b35;box-shadow:0 0 8px rgba(112,42,38,.42)}
+.experience.opened{min-height:940px}
+.experience.opened .motes{display:none!important}
+footer{flex:0 0 auto;padding-bottom:34px}
+@media(max-width:720px){.experience.opened{min-height:1040px}}
+
 /* SWEETHEART LOVE-LETTER SKIN */
 .sweetheart-review .review-toggle{border-color:rgba(224,184,150,.42);background:linear-gradient(145deg,rgba(92,49,70,.94),rgba(39,23,34,.98));color:#f3d8bd;box-shadow:0 12px 28px rgba(0,0,0,.30),0 0 26px rgba(183,105,136,.14)}
 .sweetheart-review .review-toggle:hover{border-color:rgba(246,214,181,.68);box-shadow:0 14px 34px rgba(0,0,0,.36),0 0 34px rgba(194,125,151,.22)}
