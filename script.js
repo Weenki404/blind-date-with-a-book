@@ -1,3 +1,9 @@
+const houseFavicon = document.createElement('link');
+houseFavicon.rel = 'icon';
+houseFavicon.type = 'image/svg+xml';
+houseFavicon.href = 'favicon.svg';
+document.head.appendChild(houseFavicon);
+
 document.querySelectorAll('.date').forEach(card => {
   card.addEventListener('pointermove', e => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
