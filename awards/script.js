@@ -8,7 +8,9 @@ const totalCurrent = document.getElementById('totalCurrent');
 
 const awardGrid = document.getElementById('awardGrid');
 const dateGrid = document.getElementById('dateGrid');
+const verdictGrid = document.getElementById('verdictGrid');
 const lastUpdated = document.getElementById('lastUpdated');
+const eventHeading = document.getElementById('eventHeading');
 
 
 function escapeHtml(value) {
@@ -42,39 +44,63 @@ function prettyNumber(value) {
 }
 
 
-function makeAward(icon, name, item, field, suffix = '') {
-  if (!item) {
+function makeAward(icon, name, winners, field, suffix = '', declassified = false) {
+  const items = Array.isArray(winners) ? winners : (winners ? [winners] : []);
+  if (!items.length) {
     return `
       <article class="award-card">
         <div class="award-icon">${icon}</div>
         <p class="award-name">${escapeHtml(name)}</p>
-        <h3>Awaiting testimony</h3>
-        <p class="award-book">The House has insufficient gossip.</p>
+        <h3>No verdict yet</h3>
+        <p class="award-book">The House refuses to crown a resident with zero evidence.</p>
       </article>
     `;
   }
 
+  const value = items[0][field];
   return `
     <article class="award-card">
       <div class="award-icon">${icon}</div>
       <p class="award-name">${escapeHtml(name)}</p>
 
-      <h3>${escapeHtml(item.archetype)}</h3>
+      <h3>${items.map(item => escapeHtml(item.archetype)).join('<span class="tie-mark"> &amp; </span>')}</h3>
 
       <p class="award-book">
-        ${escapeHtml(item.book)}
-        ${item.author ? ` · ${escapeHtml(item.author)}` : ''}
+        ${declassified
+          ? items.map(item => `${escapeHtml(item.book)}${item.author ? ` · ${escapeHtml(item.author)}` : ''}`).join('<br>')
+          : 'Identity withheld while this resident remains in the House.'}
       </p>
 
       <span class="award-value">
-        ${prettyNumber(item[field])}${suffix}
+        ${prettyNumber(value)}${suffix}
       </span>
     </article>
   `;
 }
 
 
+function makeVerdict(icon, name, winners, field, suffix, evidenceMaker, declassified) {
+  const items = Array.isArray(winners) ? winners : (winners ? [winners] : []);
+  if (!items.length) {
+    return `<article class="award-card"><div class="award-icon">${icon}</div><p class="award-name">${escapeHtml(name)}</p><h3>No verdict yet</h3><p class="award-book">The House cannot condemn anyone without paperwork.</p></article>`;
+  }
+  const item = items[0];
+  return `<article class="award-card">
+    <div class="award-icon">${icon}</div>
+    <p class="award-name">${escapeHtml(name)}</p>
+    <h3>${items.map(x => escapeHtml(x.archetype)).join('<span class="tie-mark"> &amp; </span>')}</h3>
+    <p class="award-book">${declassified ? items.map(x => `${escapeHtml(x.book)}${x.author ? ` · ${escapeHtml(x.author)}` : ''}`).join('<br>') : 'Identity withheld while this resident remains in the House.'}</p>
+    <span class="award-value">${prettyNumber(item[field])}${suffix}</span>
+    <p class="verdict-evidence">${escapeHtml(evidenceMaker(item))}</p>
+  </article>`;
+}
+
+
 function renderReport(data) {
+  const declassified = Boolean(data.declassified);
+  if (data.event && eventHeading) {
+    eventHeading.textContent = [data.event.title, data.event.date].filter(Boolean).join(' · ').toUpperCase();
+  }
   totalReviews.textContent = data.totalReviews ?? 0;
   totalFinished.textContent = data.totals?.finished ?? 0;
   totalDnf.textContent = data.totals?.dnf ?? 0;
@@ -88,7 +114,8 @@ function renderReport(data) {
       'Most Successful Match',
       awards.mostSuccessfulMatch,
       'averageOverall',
-      ' / 5'
+      ' / 5',
+      declassified
     ) +
 
     makeAward(
@@ -96,7 +123,8 @@ function renderReport(data) {
       'Most Chemistry',
       awards.mostChemistry,
       'averageChemistry',
-      ' / 5'
+      ' / 5',
+      declassified
     ) +
 
     makeAward(
@@ -104,7 +132,8 @@ function renderReport(data) {
       'Spiciest Date',
       awards.spiciestDate,
       'averageSpice',
-      ' / 5'
+      ' / 5',
+      declassified
     ) +
 
     makeAward(
@@ -112,7 +141,8 @@ function renderReport(data) {
       'Most Popular Match',
       awards.mostPopularMatch,
       'reviewCount',
-      ' reviews'
+      ' reviews',
+      declassified
     ) +
 
     makeAward(
@@ -120,8 +150,20 @@ function renderReport(data) {
       'Most Frequently Blocked',
       awards.mostFrequentlyBlocked,
       'blocked',
-      ' blocks'
+      ' blocks',
+      declassified
     );
+
+  const completed = awards.mostCompleted;
+  const secondDate = awards.strongestSecondDate;
+  const goodbye = awards.strongestGoodbye;
+  verdictGrid.innerHTML =
+    makeVerdict('🏁', 'Most Dates Completed', completed, 'finished', ' finished',
+      item => `${item.finished} of ${item.reviewCount} readers made it to the end.`, declassified) +
+    makeVerdict('💌', 'Most Likely to Get a Second Date', secondDate, 'secondDateRate', '%',
+      item => `${item.secondDate} of ${item.decisionCount} readers would return.`, declassified) +
+    makeVerdict('🚪', 'Most Decisive Goodbye', goodbye, 'noSecondDateRate', '%',
+      item => `${item.noSecondDate} of ${item.decisionCount} readers declined another date.`, declassified);
 
 
   const preferredOrder = [
@@ -175,11 +217,11 @@ function renderReport(data) {
           <h3>${escapeHtml(date.archetype)}</h3>
 
           <p class="date-book">
-            ${escapeHtml(date.book)}
+            ${declassified ? escapeHtml(date.book) : 'Classified Resident'}
           </p>
 
           <p class="date-author">
-            ${escapeHtml(date.author)}
+            ${declassified ? escapeHtml(date.author) : 'Identity withheld until this residency ends'}
           </p>
 
 
@@ -245,6 +287,7 @@ function renderFailure() {
       Make sure the Apps Script web app was redeployed after adding doGet().
     </article>
   `;
+  if (verdictGrid) verdictGrid.innerHTML = awardGrid.innerHTML;
 }
 
 
@@ -257,6 +300,7 @@ const request = document.createElement('script');
 request.src =
   `${REVIEW_ENDPOINT}` +
   `?callback=receiveMatchmakingSummary` +
+  `${new URLSearchParams(location.search).get('event') ? `&event=${encodeURIComponent(new URLSearchParams(location.search).get('event'))}` : ''}` +
   `&v=${Date.now()}`;
 
 request.onerror = renderFailure;

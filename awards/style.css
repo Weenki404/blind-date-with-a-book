@@ -382,6 +382,19 @@ h1 span{
   font-size:.88rem;
 }
 
+.verdict-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:24px;
+}
+
+.verdict-evidence{
+  margin:12px 0 0;
+  color:#9f969f;
+  font-size:.72rem;
+  line-height:1.42;
+}
+.tie-mark{display:block;color:#887b82;font-size:.75em;margin:.2em 0}
+
 .last-updated{
   margin:58px 0 0;
   text-align:center;
@@ -404,6 +417,10 @@ footer{
   .date-grid{
     grid-template-columns:repeat(2,1fr);
   }
+}
+
+@media(max-width:900px){
+  .verdict-grid{grid-template-columns:1fr}
 }
 
 @media(max-width:720px){

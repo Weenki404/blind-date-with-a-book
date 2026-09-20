@@ -112,24 +112,32 @@
     document.documentElement.dataset.houseConfig = 'loaded';
   }
 
+  let refreshInFlight = false;
+
   function requestConfig() {
+    if (refreshInFlight) return;
+    refreshInFlight = true;
+
     const callback = '__weenkiHouseConfig_' + key.replace(/[^a-z0-9]/gi, '_') + '_' + Date.now();
     const script = document.createElement('script');
 
     window[callback] = payload => {
       try {
         if (payload && payload.success && payload.config) {
+          window.currentHouseRound = payload.round || null;
           applyConfig(payload.config);
         } else {
           console.warn('The House returned no published config; using the baked-in fallback.');
         }
       } finally {
+        refreshInFlight = false;
         delete window[callback];
         script.remove();
       }
     };
 
     script.onerror = () => {
+      refreshInFlight = false;
       console.warn('The House records could not be reached; using the baked-in fallback.');
       delete window[callback];
       script.remove();
@@ -146,4 +154,18 @@
   }
 
   requestConfig();
+
+  // If a reader already has an apartment open when a new record is published,
+  // refresh when they return to the tab/window. Each request already includes a
+  // unique timestamp, so the config response itself cannot be reused from cache.
+  window.addEventListener('pageshow', () => requestConfig());
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestConfig();
+  });
+
+  // Safety net for long-lived open tabs.
+  window.setInterval(() => {
+    if (!document.hidden) requestConfig();
+  }, 60000);
 })();

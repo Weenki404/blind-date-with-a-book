@@ -2,8 +2,11 @@
 
 /* Trophy Case / House Records — intentionally separate from the five date cards */
 .house-records{
-  width:min(760px,94%);
+  width:min(980px,94%);
   margin:54px auto 0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:26px;
 }
 
 .trophy-card{
@@ -95,10 +98,17 @@
   color:#dfc986;
 }
 
+.former-card{border-color:#665b81;background:linear-gradient(160deg,rgba(255,255,255,.045),transparent 48%),radial-gradient(circle at 50% 0%,rgba(126,136,185,.11),transparent 58%),#111018}
+.former-card .trophy-seal{border-color:#7e88b9;background:#171827}
+.former-card .trophy-eyebrow,.former-card .trophy-enter{color:#b7bfe5}
+.former-card .trophy-enter{border-color:#665b81}
+
 @media(max-width:620px){
   .house-records{
     width:min(390px,94%);
     margin-top:52px;
+    grid-template-columns:1fr;
+    gap:48px;
   }
 
   .trophy-card{
@@ -123,3 +133,4 @@
 @keyframes bell-ring{0%{transform:rotate(0)}12%{transform:rotate(-12deg)}25%{transform:rotate(10deg)}39%{transform:rotate(-8deg)}53%{transform:rotate(6deg)}67%{transform:rotate(-4deg)}80%{transform:rotate(2deg)}100%{transform:rotate(0)}}
 @media(max-width:620px){.house-assistance{margin-top:52px;padding-inline:10px}.bell-stage{width:64px;height:96px}.bell-label{min-width:205px;font-size:.76rem}}
 @media(prefers-reduced-motion:reduce){.fate-bell:hover .bell-stage,.fate-bell:focus-visible .bell-stage,.fate-bell.is-ringing .bell-stage{animation:none}.fate-bell-image,.bell-label,.assistance-copy{transition:none}}
+footer .staff-entrance{display:block;width:max-content;margin:12px auto 0;color:#57515c;text-decoration:none;font-family:"Cormorant SC";font-size:.62rem;letter-spacing:.14em;transition:color .18s}footer .staff-entrance:hover,footer .staff-entrance:focus-visible{color:#bda86d;outline:none}
