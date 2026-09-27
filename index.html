@@ -1,19 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blind Date With a Book · by Weenki</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+SC:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=fate-bell-2-1"></head><body><div class="stars"></div><main class="house"><header class="hero"><p class="eyebrow">WEENKI PRESENTS</p><div class="ornament"><span></span>✦<span></span></div><h1>BLIND DATE<br>WITH A BOOK</h1><p class="tagline">Five books are waiting. <em>Choose poorly.</em></p></header><section class="invitation"><p class="welcome">Welcome to the Matchmaking House.</p><p>We've selected five eligible books and removed all identifying information because judging them by their covers would defeat the purpose.</p><p>Choose the date whose profile calls to you. Titles, authors, and covers remain hidden until you accept your match.</p><p class="rules">DNFs are permitted. <span>Bad decisions are encouraged.</span></p></section><section class="dates">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blind Date With a Book · by Weenki</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+SC:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=matchmaker-letter-1"></head><body><div class="stars"></div><main class="house"><header class="hero"><p class="eyebrow">WEENKI PRESENTS</p><div class="ornament"><span></span>✦<span></span></div><h1>BLIND DATE<br>WITH A BOOK</h1><p class="tagline">Five books are waiting. <em>Choose poorly.</em></p></header><section class="invitation"><p class="welcome">Welcome to the Matchmaking House.</p><p>We've selected five eligible books and removed all identifying information because judging them by their covers would defeat the purpose.</p><p>Choose the date whose profile calls to you. Titles, authors, and covers remain hidden until you accept your match.</p><p class="rules">DNFs are permitted. <span>Bad decisions are encouraged.</span></p></section><section class="dates">
 <a class="date bad" href="bad-decision/"><span class="seal">🩸</span><span class="number">BLIND DATE No. 01</span><strong>THE BAD<br>DECISION</strong><em>You know better.</em><span class="enter">OPEN CORRESPONDENCE</span></a>
 <a class="date yearner" href="yearner/"><span class="seal">☾</span><span class="number">BLIND DATE No. 02</span><strong>THE<br>YEARNER</strong><em>He is waiting.</em><span class="enter">OPEN CORRESPONDENCE</span></a>
 <a class="date adventure" href="adventure/"><span class="seal">⚔</span><span class="number">BLIND DATE No. 03</span><strong>THE ADVENTURE<br>DATE</strong><em>Try to keep up.</em><span class="enter">OPEN CORRESPONDENCE</span></a>
 <a class="date sweetheart" href="sweetheart/"><span class="seal">❀</span><span class="number">BLIND DATE No. 04</span><strong>THE<br>SWEETHEART</strong><em>You can put the knife down.</em><span class="enter">OPEN CORRESPONDENCE</span></a>
 <a class="date aristocrat" href="aristocrat/"><span class="seal">♛</span><span class="number">BLIND DATE No. 05</span><strong>THE ARISTOCRATIC<br>ASSHOLE</strong><em>Mind your manners.</em><span class="enter">OPEN CORRESPONDENCE</span></a>
 </section>
-<section class="house-assistance" aria-label="Matchmaking assistance">
+<section class="house-assistance" aria-label="At your service">
   <div class="assistance-ornament" aria-hidden="true"><span></span>✦<span></span></div>
-  <p class="assistance-eyebrow">CAN&apos;T CHOOSE?</p>
-  <button class="fate-bell" id="fate-bell" type="button" aria-label="Ring for assistance and let the House choose a random blind date">
-    <span class="bell-stage" aria-hidden="true"><img src="fate-bell.png?v=fate-bell-2-1" alt="" class="fate-bell-image"></span>
-    <span class="bell-label">RING FOR ASSISTANCE</span>
-  </button>
-  <p class="assistance-copy" id="assistance-copy" aria-live="polite">The House would be delighted to make a questionable decision on your behalf.</p>
+  <p class="service-heading">AT YOUR SERVICE</p>
+  <div class="service-grid">
+    <div class="service-option service-fate">
+      <p class="assistance-eyebrow">CAN&apos;T CHOOSE?</p>
+      <button class="fate-bell" id="fate-bell" type="button" aria-label="Ring for assistance and let the House choose a random blind date">
+        <span class="bell-stage" aria-hidden="true"><img src="fate-bell.png?v=fate-bell-2-1" alt="" class="fate-bell-image"></span>
+        <span class="bell-label">RING FOR ASSISTANCE</span>
+      </button>
+      <p class="assistance-copy" id="assistance-copy" aria-live="polite">The House would be delighted to make a questionable decision on your behalf.</p>
+    </div>
+    <div class="service-divider" aria-hidden="true"><span>◆</span></div>
+    <div class="service-option service-letter">
+      <p class="assistance-eyebrow">HAVE SOMETHING TO SAY?</p>
+      <button class="matchmaker-letter" id="matchmaker-letter" type="button" aria-haspopup="dialog" aria-controls="matchmaker-letter-modal">
+        <span class="letter-stage" aria-hidden="true"><img src="matchmaker-envelope.png?v=1" alt="" class="matchmaker-envelope-image"></span>
+        <span class="bell-label">WRITE TO THE MATCHMAKER</span>
+      </button>
+      <p class="assistance-copy">Some matters are best placed directly into her hands.</p>
+    </div>
+  </div>
 </section>
+
+<div class="letter-modal" id="matchmaker-letter-modal" hidden>
+  <div class="letter-backdrop" data-close-letter></div>
+  <section class="letter-dialog" role="dialog" aria-modal="true" aria-labelledby="letter-dialog-title">
+    <button class="letter-close" type="button" data-close-letter aria-label="Close correspondence">×</button>
+    <p class="letter-kicker">PRIVATE CORRESPONDENCE</p>
+    <h2 id="letter-dialog-title">A Letter to the Matchmaker</h2>
+    <p class="letter-intro">Slip your correspondence beneath her door. It may be read, considered, ignored, treasured, or addressed publicly at the Matchmaker&apos;s discretion. Private replies should not be expected.</p>
+    <form id="matchmaker-letter-form">
+      <label>HOW SHALL THE MATCHMAKER ADDRESS YOU? <span>OPTIONAL</span><input id="letter-address" name="addressAs" maxlength="80" placeholder="A Resident"></label>
+      <label>REGARDING<select id="letter-regarding" name="regarding">
+        <option>My Match</option><option>The House</option><option>A Question</option><option>A Confession</option><option>A Complaint</option><option>A Suggestion</option><option>A Matter Best Left Unspecified</option>
+      </select></label>
+      <label>YOUR LETTER<textarea id="letter-body" name="letter" maxlength="4000" rows="8" required placeholder="Matchmaker,"></textarea></label>
+      <div class="letter-form-foot"><span id="letter-count">0 / 4000</span><button id="letter-submit" type="submit">SEAL &amp; DELIVER</button></div>
+      <p class="letter-status" id="letter-status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
 <section class="house-records" aria-label="House records">
   <a class="trophy-card" href="awards/">
     <span class="trophy-seal">🏆</span>
@@ -30,4 +63,4 @@
     <span class="trophy-enter">CONSULT THE OLD LEDGERS</span>
   </a>
 </section>
-<p class="fine-print">Choose carefully. Or don't. We are not your mother.</p></main><footer>Blind Date With a Book · <span>by Weenki</span><a class="staff-entrance" href="back-office/">⚿ STAFF ENTRANCE</a></footer><script src="script.js?v=fate-bell-2-3"></script></body></html>
+<p class="fine-print">Choose carefully. Or don't. We are not your mother.</p></main><footer>Blind Date With a Book · <span>by Weenki</span><a class="staff-entrance" href="back-office/">⚿ STAFF ENTRANCE</a></footer><script src="script.js?v=matchmaker-letter-1"></script></body></html>
