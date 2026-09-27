@@ -59,22 +59,44 @@ const letterSubmit = document.getElementById('letter-submit');
 
 if (matchmakerLetterButton && matchmakerLetterModal && matchmakerLetterForm) {
   let lastFocus = null;
+  const letterParams = new URLSearchParams(window.location.search);
+  const apartmentResidentContext = (letterParams.get('resident') || '').trim();
+  const shouldOpenFromApartment = letterParams.get('write') === 'matchmaker' && Boolean(apartmentResidentContext);
+  const regardingSelect = document.getElementById('letter-regarding');
+  const appointmentField = document.getElementById('letter-appointment-field');
+  const appointmentSelect = document.getElementById('letter-appointment');
+  const syncAppointmentField = () => {
+    if (!appointmentField || !appointmentSelect) return;
+    if (shouldOpenFromApartment) { appointmentField.hidden = true; return; }
+    const show = regardingSelect.value === 'My Match';
+    appointmentField.hidden = !show;
+    if (!show) appointmentSelect.value = '';
+  };
   const endpoint = window.WEENKI_HOUSE_ENDPOINT || 'https://script.google.com/macros/s/AKfycby0K3Yqbjhtd8sxIpC451GUl2ZII3TcIGLdF2e7UifOAJF7YPXDQTMETQD76-PKIGlp/exec';
   const openLetter = () => { lastFocus = document.activeElement; matchmakerLetterModal.hidden = false; document.body.classList.add('letter-open'); document.getElementById('letter-address').focus(); };
   const closeLetter = () => { matchmakerLetterModal.hidden = true; document.body.classList.remove('letter-open'); if (lastFocus) lastFocus.focus(); };
-  matchmakerLetterButton.addEventListener('click', openLetter);
+  matchmakerLetterButton.addEventListener('click', () => { syncAppointmentField(); openLetter(); });
+  regardingSelect.addEventListener('change', syncAppointmentField);
+  syncAppointmentField();
   matchmakerLetterModal.querySelectorAll('[data-close-letter]').forEach(el => el.addEventListener('click', closeLetter));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !matchmakerLetterModal.hidden) closeLetter(); });
   letterBody.addEventListener('input', () => { letterCount.textContent = `${letterBody.value.length} / 4000`; });
+  if (shouldOpenFromApartment) {
+    document.getElementById('letter-regarding').value = 'My Match';
+    openLetter();
+  }
   matchmakerLetterForm.addEventListener('submit', async e => {
     e.preventDefault();
     const letter = letterBody.value.trim();
     if (!letter) { letterStatus.textContent = 'The Matchmaker cannot receive an empty letter.'; letterBody.focus(); return; }
     letterSubmit.disabled = true; letterSubmit.textContent = 'DELIVERING…'; letterStatus.textContent = 'A footman has been summoned.';
-    const payload = { type:'matchmaker-letter', addressAs:document.getElementById('letter-address').value.trim() || 'A Resident', regarding:document.getElementById('letter-regarding').value, letter };
+    const regarding = regardingSelect.value;
+    const residentContext = shouldOpenFromApartment ? apartmentResidentContext : (regarding === 'My Match' ? appointmentSelect.value : '');
+    if (regarding === 'My Match' && !residentContext) { letterStatus.textContent = 'The Matchmaker requires the name of the appointment in question.'; appointmentSelect.focus(); return; }
+    const payload = { type:'matchmaker-letter', addressAs:document.getElementById('letter-address').value.trim() || 'A Resident', regarding, residentContext, letter };
     try {
       await fetch(endpoint, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
-      matchmakerLetterForm.reset(); letterCount.textContent = '0 / 4000';
+      matchmakerLetterForm.reset(); syncAppointmentField(); letterCount.textContent = '0 / 4000';
       letterStatus.textContent = 'Your correspondence has been slipped beneath the Matchmaker’s door.';
       letterSubmit.textContent = 'DELIVERED';
       window.setTimeout(() => { closeLetter(); letterStatus.textContent=''; letterSubmit.disabled=false; letterSubmit.textContent='SEAL & DELIVER'; }, 1800);
