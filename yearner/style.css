@@ -1869,3 +1869,9 @@ body {
 .experience.opened .motes{display:none!important}
 footer{flex:0 0 auto;padding-bottom:34px}
 @media(max-width:720px){.experience.opened{min-height:1040px}}
+
+/* Correspondence sits in normal page flow, clear of the apartment controls. */
+.matchmaker-correspondence{position:relative;z-index:10;flex:0 0 auto;margin:28px auto 8px;padding:0 16px;text-align:center}
+.matchmaker-correspondence a{display:inline-block;max-width:100%;padding:10px 12px;border-bottom:1px solid rgba(217,185,119,.35);color:#d9b977;font:600 .68rem/1.5 "DM Sans",sans-serif;letter-spacing:.12em;text-decoration:none;transition:color .2s ease,border-color .2s ease}
+.matchmaker-correspondence a:hover,.matchmaker-correspondence a:focus-visible{color:#fff0d0;border-color:#fff0d0}
+@media(max-width:620px){.matchmaker-correspondence{margin-top:24px}.matchmaker-correspondence a{font-size:.62rem;letter-spacing:.07em}}

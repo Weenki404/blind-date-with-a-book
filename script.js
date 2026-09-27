@@ -83,16 +83,17 @@ if (matchmakerLetterButton && matchmakerLetterModal && matchmakerLetterForm) {
   letterBody.addEventListener('input', () => { letterCount.textContent = `${letterBody.value.length} / 4000`; });
   if (shouldOpenFromApartment) {
     document.getElementById('letter-regarding').value = 'My Match';
+    syncAppointmentField();
     openLetter();
   }
   matchmakerLetterForm.addEventListener('submit', async e => {
     e.preventDefault();
     const letter = letterBody.value.trim();
     if (!letter) { letterStatus.textContent = 'The Matchmaker cannot receive an empty letter.'; letterBody.focus(); return; }
-    letterSubmit.disabled = true; letterSubmit.textContent = 'DELIVERING…'; letterStatus.textContent = 'A footman has been summoned.';
     const regarding = regardingSelect.value;
-    const residentContext = shouldOpenFromApartment ? apartmentResidentContext : (regarding === 'My Match' ? appointmentSelect.value : '');
+    const residentContext = regarding === 'My Match' ? (shouldOpenFromApartment ? apartmentResidentContext : appointmentSelect.value) : '';
     if (regarding === 'My Match' && !residentContext) { letterStatus.textContent = 'The Matchmaker requires the name of the appointment in question.'; appointmentSelect.focus(); return; }
+    letterSubmit.disabled = true; letterSubmit.textContent = 'DELIVERING…'; letterStatus.textContent = 'A footman has been summoned.';
     const payload = { type:'matchmaker-letter', addressAs:document.getElementById('letter-address').value.trim() || 'A Resident', regarding, residentContext, letter };
     try {
       await fetch(endpoint, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
