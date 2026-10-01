@@ -162,3 +162,11 @@ body.letter-open{overflow:hidden}
 @media(max-width:620px){.house-assistance{width:min(390px,94%)}.service-grid{grid-template-columns:1fr;gap:30px}.service-divider{height:1px;width:70%;margin:auto;background:linear-gradient(90deg,transparent,rgba(199,165,91,.34),transparent)}.service-divider span{left:50%;top:50%;padding:0 8px}.letter-dialog{padding:34px 22px 28px}.letter-form-foot{align-items:flex-end;flex-direction:column}.letter-form-foot button{width:100%}}
 
 #matchmaker-letter-form label[hidden]{display:none}
+
+/* Three published clues; keep book identities behind the apartment doors. */
+.date{min-height:390px}
+.date em{margin-bottom:18px}
+.date-tropes{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:auto;color:#d2c6b3;font-size:.92rem;line-height:1.25}
+.date-tropes>span{display:block;overflow-wrap:anywhere}
+.date .enter{margin-top:22px}
+@media(max-width:600px){.date{min-height:365px}.date-tropes{font-size:.95rem}}
