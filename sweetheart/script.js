@@ -205,7 +205,7 @@ reviewForm.addEventListener('submit', async (event) => {
   const formData = new FormData(reviewForm);
   const payload = {
     discordName: formData.get('discordName') || '',
-    archetype: 'The Sweetheart',
+    archetype: window.currentDateConfig?.archetype || 'The Sweetheart',
     book: window.currentDateConfig?.book?.title || "Swordheart",
     author: window.currentDateConfig?.book?.author || "T. Kingfisher",
     eventId: window.currentHouseRound?.id || 'house-debut-2026-10',

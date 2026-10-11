@@ -204,7 +204,7 @@ reviewForm.addEventListener('submit', async (event) => {
   const formData = new FormData(reviewForm);
   const payload = {
     discordName: formData.get('discordName') || '',
-    archetype: 'The Aristocratic Asshole',
+    archetype: window.currentDateConfig?.archetype || 'The Aristocratic Asshole',
     book: window.currentDateConfig?.book?.title || "To Vex a Dark Prince",
     author: window.currentDateConfig?.book?.author || "Abelia Sumpter",
     eventId: window.currentHouseRound?.id || 'house-debut-2026-10',

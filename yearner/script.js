@@ -205,7 +205,7 @@ reviewForm.addEventListener('submit', async (event) => {
   const formData = new FormData(reviewForm);
   const payload = {
     discordName: formData.get('discordName') || '',
-    archetype: 'The Yearner',
+    archetype: window.currentDateConfig?.archetype || 'The Yearner',
     book: window.currentDateConfig?.book?.title || "The Everlasting",
     author: window.currentDateConfig?.book?.author || "Alix E. Harrow",
     eventId: window.currentHouseRound?.id || 'house-debut-2026-10',

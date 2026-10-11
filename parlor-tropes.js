@@ -23,6 +23,17 @@
       window[callback] = payload => {
         try {
           if (!payload || !payload.success || !payload.config) return;
+          const name = payload.config.archetype;
+          if (name) {
+            const card = document.querySelector(`.date[href="${key}/"]`);
+            const heading = card && card.querySelector('strong');
+            if (heading) heading.textContent = name.toUpperCase();
+            const option = document.querySelector(`#letter-appointment option[data-resident-key="${key}"]`);
+            if (option) {
+              option.textContent = name;
+              option.value = name;
+            }
+          }
           const source = payload.config.reveal && payload.config.reveal.tropes;
           if (!Array.isArray(source)) return;
           const tropes = source.flatMap(trope => String(trope || '').split(/\r?\n|\\n|,/))

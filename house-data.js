@@ -22,6 +22,23 @@
 
     window.currentDateConfig = config;
 
+    // The route remains a stable apartment ID; only its public name changes.
+    if (config.archetype) {
+      setText('.intro h1', config.archetype);
+      setText('.gift-tag strong', config.archetype.toUpperCase());
+      setText('.profile-type', config.archetype.toUpperCase());
+      const artifact = document.querySelector('.artifact-image');
+      if (artifact) artifact.alt = 'A sealed appointment for ' + config.archetype;
+      const letterLink = document.querySelector('.matchmaker-correspondence a');
+      if (letterLink) {
+        const destination = new URL('../', window.location.href);
+        destination.searchParams.set('write', 'matchmaker');
+        destination.searchParams.set('resident', config.archetype);
+        letterLink.href = destination.href;
+      }
+    }
+
+
     setText('.teaser', config.profile.teaser);
     setText('.gift-tag > em', config.profile.tagline);
     setText('.open-label small', config.profile.ctaSubline);

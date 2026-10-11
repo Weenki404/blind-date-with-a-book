@@ -205,7 +205,7 @@ reviewForm.addEventListener('submit', async (event) => {
   const formData = new FormData(reviewForm);
   const payload = {
     discordName: formData.get('discordName') || '',
-    archetype: 'The Bad Decision',
+    archetype: window.currentDateConfig?.archetype || 'The Bad Decision',
     book: window.currentDateConfig?.book?.title || "Amid Clouds and Bones",
     author: window.currentDateConfig?.book?.author || "Ella Fields",
     eventId: window.currentHouseRound?.id || 'house-debut-2026-10',

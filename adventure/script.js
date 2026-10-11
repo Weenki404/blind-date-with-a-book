@@ -204,7 +204,7 @@ reviewForm.addEventListener('submit', async (event) => {
   const formData = new FormData(reviewForm);
   const payload = {
     discordName: formData.get('discordName') || '',
-    archetype: 'The Adventure Date',
+    archetype: window.currentDateConfig?.archetype || 'The Adventure Date',
     book: window.currentDateConfig?.book?.title || "A Hunt Bound in Blood",
     author: window.currentDateConfig?.book?.author || "Krista Walsh",
     eventId: window.currentHouseRound?.id || 'house-debut-2026-10',
