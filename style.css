@@ -172,4 +172,4 @@ body.letter-open{overflow:hidden}
 @media(max-width:600px){.date{min-height:365px}.date-tropes{font-size:.95rem}}
 
 /* Public date titles can vary in length; wrap within each existing card. */
-.date strong{overflow-wrap:anywhere;max-width:100%;min-height:74px}
+.date strong{overflow-wrap:normal;word-break:normal;max-width:none;min-height:74px}
