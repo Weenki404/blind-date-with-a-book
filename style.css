@@ -173,3 +173,8 @@ body.letter-open{overflow:hidden}
 
 /* Public date titles can vary in length; wrap within each existing card. */
 .date strong{overflow-wrap:normal;word-break:normal;max-width:none;min-height:74px}
+
+/* Keep complete words together and size long names to their cards. */
+.date strong{display:flex;align-items:center;justify-content:center;width:100%;min-height:3em;line-height:1;overflow-wrap:normal;word-break:normal}
+.date-title-lines{display:block;width:100%;text-align:center}
+.date-title-word{display:inline-block;white-space:nowrap;overflow-wrap:normal;word-break:normal}

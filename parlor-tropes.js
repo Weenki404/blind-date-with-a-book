@@ -4,6 +4,33 @@
   const keys = ['bad-decision', 'yearner', 'adventure', 'sweetheart', 'aristocrat'];
   const pending = new Set();
   let sequence = 0;
+  function fitTitles() {
+    document.querySelectorAll('.date strong').forEach(heading => {
+      heading.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(heading).fontSize);
+      const words = [...heading.querySelectorAll('.date-title-word')];
+      while (size > 12 && words.some(word => word.getBoundingClientRect().width > heading.clientWidth)) {
+        size -= 0.5;
+        heading.style.fontSize = size + 'px';
+      }
+    });
+  }
+  function showTitle(heading, name) {
+    const lines = document.createElement('span');
+    lines.className = 'date-title-lines';
+    String(name).toUpperCase().trim().split(/\s+/).forEach((word, index) => {
+      if (index) lines.appendChild(document.createTextNode(' '));
+      const span = document.createElement('span');
+      span.className = 'date-title-word';
+      span.textContent = word;
+      lines.appendChild(span);
+    });
+    heading.replaceChildren(lines);
+    fitTitles();
+  }
+  document.querySelectorAll('.date strong').forEach(heading => showTitle(heading, [...heading.childNodes].map(node => node.nodeName === 'BR' ? ' ' : node.textContent).join('')));
+  window.addEventListener('resize', fitTitles);
+  if (document.fonts) document.fonts.ready.then(fitTitles);
   function refresh() {
     keys.forEach(key => {
       if (pending.has(key)) return;
@@ -27,7 +54,7 @@
           if (name) {
             const card = document.querySelector(`.date[href="${key}/"]`);
             const heading = card && card.querySelector('strong');
-            if (heading) heading.textContent = name.toUpperCase();
+            if (heading) showTitle(heading, name);
             const option = document.querySelector(`#letter-appointment option[data-resident-key="${key}"]`);
             if (option) {
               option.textContent = name;
